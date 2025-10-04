@@ -17,7 +17,7 @@ const Register = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:2000/api/auth/register', {
+      const response = await axios.post('https://fastbietres.onrender.com/api/auth/register', {
         name, 
         email,
         password
