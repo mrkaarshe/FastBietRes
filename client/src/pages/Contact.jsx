@@ -180,7 +180,7 @@ const Contact = () => {
                     <div className="flex space-x-4">
                       <a
                         href="#"
-                        className="w-10 h-10 bg-[#fa961d]   text-white hover:bg-transparent rounded-full 
+                        className="w-10 h-10 bg-[#fa961d] hover:border border-[#fa961d]   text-white hover:bg-transparent rounded-full 
                                    flex items-center justify-center  transition-colors"
                       >
                        <FaFacebook/>  
