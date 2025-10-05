@@ -35,7 +35,7 @@ const products = [
     id: 5,
     title: "Shawarma",
     subtitle: "Chicken Shawarma",
-    price: 5.05,
+    price: 1.05,
     image: "/shuwarma.jpg",
     category: "Burgers",
   },

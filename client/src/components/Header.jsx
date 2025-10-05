@@ -338,7 +338,7 @@ const Header = () => {
         {/* Cart sidebar */}
         <div className="absolute right-0 top-20 z-[100]">
           <div
-            className={`absolute min-h-[70vh] min-w-[300px] right-2 rounded-xl bg-[#212e39] text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+            className={`absolute min-h-96 min-w-[300px] right-2 rounded-xl bg-[#212e39] text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${
               open ? "translate-x-0" : "translate-x-[1000px]"
             }`}
           >
@@ -351,7 +351,7 @@ const Header = () => {
             </div>
 
             {/* Items */}
-            <div className="max-h-[430px] w-[350px] overflow-auto p ">
+            <div className=" w-[350px] max-h-100 overflow-auto mb-10 ">
               <div className="p-4 flex flex-col gap-4 rounded-lg">
                 <Cart />
               </div>
