@@ -68,11 +68,11 @@ const handleAddToCart = (item) => {
 
   return (
     <>
-      <div className=" lg:mx-10  flex flex-col md:flex-col justify-around items-center mt-10   lg:flex-row ">
+      <div className=" lg:mx-10 w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col justify-around items-center mt-10   lg:flex-row ">
 
         
-        <div data-aos="fade-right" className=" mt-30 w-1/1 md:w-1/1 lg:w-1/2 md:px-10 ">
-          <p className="text-[#fa961d] text-8xl font-bold font-mono ">FastBite</p>
+        <div data-aos="fade-right" className=" mt-30 w-full md:w-1/1 lg:w-1/2 md:px-10 ">
+          <p className="text-[#fa961d] text-4xl md:text-6xl lg:text-8xl font-bold font-mono ">FastBite</p>
           <p className="text-xl mb-3 font-bold lg:text-6xl max-w-3xl text-gray-300">
             The Fastest Food Delivery in <span className="text-[#fa961d]">Somalia</span>
           </p>
@@ -86,7 +86,7 @@ const handleAddToCart = (item) => {
         </div>
 
         {/* Cards Section */}
-      <div data-aos="fade-left" className=' bg-gradient-to-r from-[#1d242c] to-[#1a2129]  mt-30 rounded-xl w-1/1 md:w-1/1 mx-10  lg:w-1/2  z-10  pb-10'>
+      <div data-aos="fade-left" className=' bg-gradient-to-r from-[#1d242c] to-[#1a2129]  mt-30 rounded-xl w-screen sm:w-sm md:w-1/1 mx-10  lg:w-1/2  z-10  pb-10'>
        
           <div className="flex flex-col  md:felx-row   sm:mt-10 md:mt-20 sm:pt-5  ">
          <h2 className='text-3xl text-[#fa961d] text-center font-bold '>our specialist</h2>

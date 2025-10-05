@@ -11,9 +11,12 @@ import userRouter from './routers/userRoutes.js';
 
 const app = express()
 app.use(express.json())
-
-const allowedOrigns = ['http://localhost:5173']
-app.use(cors({origin:allowedOrigns,credentials:true}))
+app.use(cors({
+  origin: 'https://fast-biet-res.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
+}));
+const allowedOrigns = ['https://fastbietres.onrender.com/']
 app.use(cookieParser())
 
 const port = process.env.PORT || 4000;

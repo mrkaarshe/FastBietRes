@@ -18,7 +18,7 @@ const Contact = () => {
     <>
     
       <div className="mt-25 mb-20 pb-5 "> 
-        <div className=" px-4  lg:px-8 lg:mx-24">
+        <div className=" px-5  lg:px-10">
           <div  className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-[#fa961d]">Contact Us</h2>
             <p className="text-gray-300 mt-4 text-xl max-w-2xl mx-auto">
@@ -28,7 +28,7 @@ const Contact = () => {
 
           <div className="grid grid-cols-1  lg:grid-cols-2 gap-12">
             {/* Form Section */}
-            <div  data-aos="fade-right"  className="">
+            <div  data-aos="fade-right"  className="container  w-screen  md:w-1/1">
               <form
                 id="contact-form"
                 className="rounded-xl shadow-sm border border-[#fa961d] p-8"
@@ -105,7 +105,7 @@ const Contact = () => {
             </div>
 
             {/* Info Section */}
-            <div data-aos="fade-left" className="">
+            <div data-aos="fade-left" className="container w-screen md:w-1/1">
               <div className="rounded-xl shadow-sm border border-[#fa961d]   overflow-hidden h-full">
                 <div className="h-64">
                   <iframe

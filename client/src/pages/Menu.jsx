@@ -25,10 +25,10 @@ const Menu = () => {
       : products.filter(item => item.category === activeCategory)
 
   return (
-    <div className="lg:px-15 sm:mx-4
-    pt-16 pb-6 mt-30 mx-w-6xl mx-auto lg:mx-20 mb-6 rounded-2xl">
+    <div className="lg:px-15 
+    pt-16 pb-6  w-screen sm:w-sm md:w-1/1 mt-30 m mx-auto  mb-6 rounded-2xl">
       {/* Title */}
-      <h2 className="text-4xl text-center md:text-6xl font-extrabold mb-12 text-[#fa961d] " data-aos="fade-down">
+      <h2 className="text-4xl text-center md:text-6xl font-extrabold mb-12 text-[#fa961d] ">
         Our Hot Dishes
       </h2>
 
