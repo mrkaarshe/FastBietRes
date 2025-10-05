@@ -25,11 +25,11 @@ const About = () => {
             creating meals that bring people together. From our freshly grilled burgers to refreshing drinks, 
             every item is crafted with love and passion.
           </p>
-          <p className="mt-1 text-gray-300 leading-relaxed">
+          <p className="mt-1 text-gray-300 text-xs leading-relaxed">
             We started as a small family kitchen, and today we continue to grow while keeping our tradition alive — 
             serving happiness on every plate.
             Our team of culinary artists works tirelessly to push the boundaries of traditional cuisine while respecting the fundamentals that make great food timeless. From our signature wagyu preparations to our innovative dessert creations, each plate represents our dedication to excellence.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, praesentium aspernatur. Cupiditate ad tempore nisi aut iusto? Sequi dolor nihil ipsam a labore, adipisci fugiat aperiam, enim, vitae accusantium ad. Odit iure tempore modi qui, fuga quod aut repellat natus nostrum ducimus consequuntur aliquid accusantium dolorum optio? Non, inventore ipsum?
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, praesentium aspernatur. Cupiditate ad tempore nisi aut iusto? Sequi dolor nihil ipsam a labore, adipisci fugiat aperiam, enim, vitae accdolorum optio? Non, inventore ipsum?
            
           </p>
         </div>
@@ -39,7 +39,7 @@ const About = () => {
       <section className="w-full py-16">
         <div className=" px-6 text-center">
           <h2 className="text-3xl font-bold text-[#fa961d] mb-8">Our Values</h2>
-          <div className="grid md:grid-cols-3 gap-10 ">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 ">
             <div data-aos="fade-right" className="p-7 border-1 hover:-translate-y-3 border-[#fa961d]  rounded-xl shadow hover:shadow-lg transition">
               <div  className="flex items-center gap-2 mb-2  justify-center">
                 <span className="text-lg font-bold text-[#fa961d]"><FaRegClock/></span>

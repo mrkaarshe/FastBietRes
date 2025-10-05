@@ -5,7 +5,7 @@ import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
 const Layout = () => {
   return (
-    <div className=''>
+    <div className='overflow-x-hidden px-1'>
         <main className=''>
             <Header/>
                 <div className='  ' >

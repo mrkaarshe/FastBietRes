@@ -68,10 +68,10 @@ const handleAddToCart = (item) => {
 
   return (
     <>
-      <div className=" lg:mx-10 w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col justify-around items-center mt-10   lg:flex-row ">
+      <div className="  w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col justify-around items-center mt-10   lg:flex-row ">
 
         
-        <div data-aos="fade-right" className=" mt-30 w-full md:w-1/1 lg:w-1/2 md:px-10 ">
+        <div data-aos="fade-right" className=" mt-30 w-screen md:w-1/1 lg:w-1/2 mx-0 md:mx-5 ">
           <p className="text-[#fa961d] text-4xl md:text-6xl lg:text-8xl font-bold font-mono ">FastBite</p>
           <p className="text-xl mb-3 font-bold lg:text-6xl max-w-3xl text-gray-300">
             The Fastest Food Delivery in <span className="text-[#fa961d]">Somalia</span>
@@ -80,8 +80,8 @@ const handleAddToCart = (item) => {
             Where speed meets flavor – enjoy chef-crafted dishes delivered with passion and quality, right to your doorstepion.
           </p>
          <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-5 lg:mt-10 lg:w-1/2'>
-           <Link to={'/menu'} className=' bg-[#fa961d] w-full py-2 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 border-[#fa961d] '>View Menu</Link>
-           <button className='border-2  border-[#fa961d] w-full py-2 rounded-lg font-bold hover:bg-[#fa961d] text-white transition-colors duration-300 hover:border-0'>Sea More</button>
+           <Link to={'/menu'} className=' bg-[#fa961d] w-[95%] py-2 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 border-[#fa961d] '>View Menu</Link>
+           <button className='border-2  border-[#fa961d] w-[95%] py-2 rounded-lg font-bold hover:bg-[#fa961d] text-white transition-colors duration-300 hover:border-0'>Sea More</button>
          </div>
         </div>
 

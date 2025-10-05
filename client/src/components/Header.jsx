@@ -237,7 +237,7 @@ const Header = () => {
   return (
     <>
     <div className=''>
-      <div className="py-4  w-sm sm:w-[90%] md:w-[97%]  mx-auto m shadow-sm shadow-[#fa961d]  backdrop-blur-xl flex justify-between items-center   px-2 rounded-lg fixed top-5 left-4 text-gray-700 font-bold z-100">
+      <div className="py-4  w-[97%] md:w-full mx-auto shadow-sm shadow-[#fa961d]  backdrop-blur-xl flex gap-x-10 justify-between items-center   px-5 rounded-lg fixed top-0.5 left-2 text-gray-700 font-bold z-100">
 
         {/* Logo */}
         <div className="text-[#fa961d] font-mono font-extralight text-xl">
@@ -281,8 +281,8 @@ const Header = () => {
                 </div>
 
                 <div
-                  className={`absolute top-17 right-0 bg-[#212e39] rounded-2xl p-5 min-w-[250px] min-h-[120px] shadow-2xl flex flex-col gap-2 transform transition-all ease-in-out duration-300 ${
-                    togelProfile ? "translate-x-0 opacity-100" : "translate-x-[200px] opacity-0 pointer-events-none"
+                  className={`absolute top-17 right-2 bg-[#212e39] rounded-2xl p-5 min-w-[250px] min-h-[120px] shadow-2xl flex flex-col gap-2 transform transition-all ease-in-out duration-300 ${
+                    togelProfile ? "translate-x-0 opacity-100" : "translate-x-[1000px] opacity-0 pointer-events-none"
                   }`}
                 >
                   <div className="text-lg py-2 rounded-lg flex gap-2 items-center text-white">
@@ -324,7 +324,7 @@ const Header = () => {
           <div
             className={`${
               togel ? "translate-x-[1000px]" : "translate-x-0"
-            } absolute bg-[#212e39]/90 shadow-2xl backdrop-blur-3xl top-17 -right-2 w-sm rounded-md z-[100] transition-transform duration-300`}
+            } absolute bg-[#212e39]/90 shadow-2xl backdrop-blur-3xl top-17 right-2 min-w-[320px] rounded-md z-[100] transition-transform duration-300`}
           >
             <ul className="flex flex-col gap-2 py-4">
               <Link to={'/home'} className="text-gray-300 hover:text-[#fa961d] text-center px-10 py-2 rounded-lg">Home</Link>
@@ -338,7 +338,7 @@ const Header = () => {
         {/* Cart sidebar */}
         <div className="absolute right-0 top-20 z-[100]">
           <div
-            className={`absolute min-h-[70vh] min-w-[320px] right-0 rounded-xl bg-[#212e39] text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+            className={`absolute min-h-[70vh] min-w-[300px] right-2 rounded-xl bg-[#212e39] text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${
               open ? "translate-x-0" : "translate-x-[1000px]"
             }`}
           >
@@ -351,7 +351,7 @@ const Header = () => {
             </div>
 
             {/* Items */}
-            <div className="max-h-[430px] w-sm overflow-auto p ">
+            <div className="max-h-[430px] w-[350px] overflow-auto p ">
               <div className="p-4 flex flex-col gap-4 rounded-lg">
                 <Cart />
               </div>
