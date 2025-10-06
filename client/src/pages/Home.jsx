@@ -71,7 +71,7 @@ const handleAddToCart = (item) => {
       <div className="  w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col justify-around items-center mt-10   lg:flex-row ">
 
         
-        <div data-aos="fade-right" className=" mt-30 w-screen md:w-1/1 lg:w-1/2 mx-0 md:mx-5 ">
+        <div data-aos="fade-right" className=" mt-15 w-screen md:w-1/1 lg:w-1/2 mx-2 px-2 md:mx-5 ">
           <p className="text-[#fa961d] text-4xl md:text-6xl lg:text-8xl font-bold font-mono ">FastBite</p>
           <p className="text-xl mb-3 font-bold lg:text-6xl max-w-3xl text-gray-300">
             The Fastest Food Delivery in <span className="text-[#fa961d]">Somalia</span>

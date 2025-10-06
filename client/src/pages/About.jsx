@@ -16,7 +16,7 @@ const About = () => {
      <h2 className="text-[#f1961d] py-10 text-4xl font-bold">about us</h2>
      
       <section className=" max-w-7xl mx-auto pt-10 grid grid-cols-1 md:grid-cols-2 gap-10   "> 
-         <img data-aos="fade-right" src={hero} className="w-1/1 rounded-2xl h-100" alt="" />
+         <img data-aos="fade-right" src={hero} className="h-100 w-1/1 rounded-2xl" alt="" />
         <div data-aos="fade-left" className="flex flex-col w-1/1  gap-2 justify-start ">
          
           <h2 className="text-3xl  font-bold text-[#fa961d] mb-2">Our Story</h2>
