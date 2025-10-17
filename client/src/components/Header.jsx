@@ -32,7 +32,7 @@ const Header = () => {
   useEffect(() => {
     const fetchFood = async () => {
       try {
-        const res = await fetch("https://fastbietres.onrender.com/api/foods/getfood");
+        const res = await fetch("https://fastbietres-1.onrender.com/api/foods/getfood");
         if (!res.ok) throw new Error(`HTTP error ${res.status}`);
         const data = await res.json();
         setProducts(data);

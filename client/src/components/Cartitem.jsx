@@ -6,12 +6,12 @@ const Cartitem = ({ product, quantity, onIncrease, onDecrease, onRemove }) => {
 
   const imageUrl = product.image.startsWith("http")
     ? product.image
-    : `https://fastbietres.onrender.com/${product.image}`; // sax URL backend
+    : `https://fastbietres-1.onrender.com/${product.image}`; // sax URL backend
 
   return (
     <div className="flex items-center justify-between border-1 border-slate-600 rounded-xl my-2 p-2">
       <div className="flex items-center gap-3">
-        <img src={`https://fastbietres.onrender.com${product.image}`} alt={product.title} className="w-16 h-16 object-cover rounded" />
+        <img src={`https://fastbietres-1.onrender.com${product.image}`} alt={product.title} className="w-16 h-16 object-cover rounded" />
         <div>
           <h3 className="font-semibold text-gray-300">{product.title}</h3>
           <p className="text-gray-300">${product.price}</p>

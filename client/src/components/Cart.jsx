@@ -11,7 +11,7 @@ const Cart = () => {
     const fetchCartProducts = async () => {
       const productsData = await Promise.all(
         cart.map(async (item) => {
-          const res = await fetch(`https://fastbietres.onrender.com/api/foods/${item.productId}`);
+          const res = await fetch(`https://fastbietres-1.onrender.com/api/foods/${item.productId}`);
           return await res.json();
         })
       );

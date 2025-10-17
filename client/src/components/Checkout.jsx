@@ -24,7 +24,7 @@ const Checkout = () => {
       try {
         const productsData = await Promise.all(
           cart.map(async (item) => {
-            const res = await fetch(`https://fastbietres.onrender.com/api/foods/${item.productId}`);
+            const res = await fetch(`https://fastbietres-1.onrender.com/api/foods/${item.productId}`);
             return await res.json();
           })
         );
@@ -134,7 +134,7 @@ const Checkout = () => {
             if (!product) return null;
             return (
               <div key={item.productId} className="flex justify-between items-center gap-2 mb-2 border-1 border-slate-600 rounded-lg p-2">
-                <img src={`https://fastbietres.onrender.com${product.image}`} className="w-20 h-20 rounded-lg" alt={product.title} />
+                <img src={`https://fastbietres-1.onrender.com${product.image}`} className="w-20 h-20 rounded-lg" alt={product.title} />
                 <div className="text-white">{product.title} x {item.quantity}</div>
                 <div className="text-cyan-500 font-bold">${(product.price * item.quantity).toFixed(2)}</div>
               </div>

@@ -19,8 +19,8 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   try {
     const url = mode === "login"
-      ? "https://fastbietres.onrender.com/api/auth/login"
-      : "https://fastbietres.onrender.com/api/auth/register";
+      ? "https://fastbietres-1.onrender.com/api/auth/login"
+      : "https://fastbietres-1.onrender.com/api/auth/register";
 
     const res = await fetch(url, {
       method: "POST",

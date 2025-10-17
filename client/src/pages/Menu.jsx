@@ -17,7 +17,7 @@ const Menu = ({onRemove}) => {
  const { user } = useSelector((state) => state.user);
   const fetchFoods = async () => {
     try {
-      const response = await fetch('https://fastbietres.onrender.com/api/foods/getfood');
+      const response = await fetch('https://fastbietres-1.onrender.com/api/foods/getfood');
       if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
       const data = await response.json();
       setFoods(data);
@@ -51,7 +51,7 @@ const handleDelete = async (id) => {
   }
 
   try {
-    const res = await fetch(`https://fastbietres.onrender.com/api/foods/delete/${id}`, {
+    const res = await fetch(`https://fastbietres-1.onrender.com/api/foods/delete/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -105,7 +105,7 @@ const handleDelete = async (id) => {
       {/* Image Section */}
       <div className="relative w-full overflow-hidden">
         <img
-          src={`https://fastbietres.onrender.com${item.image}`}
+          src={`https://fastbietres-1.onrender.com${item.image}`}
           alt={item.title}
           className="object-cover w-full h-40 rounded-t-xl transition-transform duration-500 group-hover:scale-110"
         />
