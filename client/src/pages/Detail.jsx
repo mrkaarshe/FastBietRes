@@ -34,7 +34,7 @@ const Detail = () => {
     fetchFood();
   }, [id, navigate]);
 
-  if (!product) return <div className="my-50 max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-x-4  border-teal-300 animate-spin"></div>;
+  if (!product) return <div className="my-50 max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-t-4  border-cyan-400 animate-spin"></div>;
 
   const handleAddToCart = () => {
     dispatch(addToCart({ productId: product._id, quantity }));
@@ -42,7 +42,7 @@ const Detail = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto min-h-[75vh] my-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-20">
+    <div className="max-w-7xl mx-auto min-h-[100vh] my-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-20">
       <img data-aos="fade-right" src={`https://fastbietres-1.onrender.com${product.image}`} alt={product.title} className="h-88 w-88 md:h-140 md:w-150 object-center rounded-2xl" />
       <div data-aos="fade-left">
         <h1 className="text-6xl text-cyan-500 font-bold">{product.title}</h1>

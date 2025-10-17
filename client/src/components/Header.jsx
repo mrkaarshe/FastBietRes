@@ -139,19 +139,19 @@ const Header = () => {
 
         {/* Cart sidebar */}
         <div className="absolute right-0 top-20 z-[100]">
-          <div className={`absolute h-[60vh] min-h-96 min-w-[300px]  right-1 rounded-xl bg-slate-900 text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${open ? "translate-x-0" : "translate-x-[1000px]"}`}>
+          <div className={`absolute h-[60vh] min-h-96 min-w-[300px] right-1 rounded-xl bg-slate-900 text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${open ? "translate-x-0" : "translate-x-[1000px]"}`}>
             <div className="flex justify-between items-center p-4 bg-slate-950/95 rounded-t-xl h-20 text-white">
               <h2 className="text-xl font-bold">Cart</h2>
               <button onClick={() => setOpen(false)} className="text-gray-100 text-2xl"><IoMdClose /></button>
             </div>
 
-            <div className="w-[350px] max-w-300 max-h-[60vh] overflow-auto mb-10">
+            <div className="w-[350px] max-w-300 max-h-70 overflow-auto mb-10">
               <div className="p-4 flex flex-col gap-4 rounded-lg">
                 <Cart products={products} fallbackLink="#" />
               </div>
             </div>
 
-            <div className="mt-2 absolute right-0 left-0 bottom-0 bg-slate-950/70 px-3 text-white rounded-b-xl p-4">
+            <div className="mt-2 absolute right-0 left-0 bottom-0 bg-slate-950/100 px-3 text-white rounded-b-xl p-4">
               <p className="flex justify-between"><span>Subtotal</span> <span>${subtotal.toFixed(2)}</span></p>
               <p className="flex justify-between"><span>Delivery</span> <span>${delivery.toFixed(2)}</span></p>
               <p className="flex justify-between font-bold text-lg"><span>Total</span> <span>${total.toFixed(2)}</span></p>

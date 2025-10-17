@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className="font-Poppins bg-slate-900 border-t-2 border-cyan-500 rounded-t-lg shadow-2xl text-gray-300 pt-12">
-      <div className=" px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="font-Poppins bg-slate-900/70 border-t-2 border-slate-600 rounded-t-lg shadow-2xl text-gray-300 pt-12">
+      <div className=" px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* About */}
         <div>
-          <h2 className="text-xl font-bold text-gray-400 font-bol mb-4">🍴 <span className='text-cyan-500'>FastBite</span> Restaurant <span>& Delivery</span></h2>
-          <p className="text-gray-400 font-bol text-xs leading-relaxed">
-            Bringing you the best burgers, drinks, and desserts with love. 
-            Fresh ingredients, bold flavors, and unforgettable taste.
+          <h2 className="text-xl font-bold text-gray-200 font-bol mb-4"><span className='text-cyan-500 text-xl md:text-7xl lg:text-9xl'>FastBite</span> Restaurant <span>& Delivery</span></h2>
+          <p className="text-gray-300 font-bol text-xs leading-relaxed">
+           Where speed meets flavor — enjoy chef-crafted dishes prepared with passion and delivered with perfection. Every bite is a blend of freshness, flavor, and quality — from our kitchen to your doorstep. Whether you’re craving something spicy, sweet, or savory, our chefs bring restaurant-quality meals straight to your home — hot, fast, and full of love.
           </p>
         </div>
 
@@ -43,7 +42,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t-2 border-cyan-500 mt-10 py-4 text-center text-gray-300 font-bol text-sm">
+      <div className="border-t-2 border-slate-600 mt-10 py-4 text-center text-gray-300 font-bol text-sm">
         © 2025 FastBite Restaurant. All Rights Reserved.
       </div>
     </footer>
