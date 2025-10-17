@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaAlignRight, FaShopify, FaUser } from "react-icons/fa";
+import { IoFastFoodOutline } from "react-icons/io5";
 import { CiUser, CiLogout } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { PiSignIn } from "react-icons/pi";
@@ -93,8 +94,8 @@ const Header = () => {
         <div className="relative flex justify-between items-center gap-8">
           {/* Cart icon */}
           <button onClick={() => setOpen(!open)} className="text-3xl text-cyan-500 relative">
-            <span className="absolute text-sm -top-2 -right-3 bg-cyan-500 text-white px-1 rounded-full">{TotalQuantity}</span>
-            <FaShopify />
+            <span className="absolute text-[20px] -top-3 -right-4  text-gray-300 px-1 rounded-full">{TotalQuantity}</span>
+            <IoFastFoodOutline />
           </button>
 
           {/* Profile dropdown */}
