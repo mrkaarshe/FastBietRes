@@ -4,9 +4,11 @@ import { FaTrash } from "react-icons/fa6";
 const Cartitem = ({ product, quantity, onIncrease, onDecrease, onRemove }) => {
   if (!product) return null;
 
-  const imageUrl = product.image.startsWith("http")
+const imageUrl = product?.image
+  ? product.image.startsWith("http")
     ? product.image
-    : `https://fastbietres-1.onrender.com/${product.image}`; // sax URL backend
+    : `https://fastbietres-1.onrender.com/${product.image}`
+  : "https://via.placeholder.com/150"; // fallback image haddii image ma jiro
 
   return (
     <div className="flex items-center justify-between border-1 border-slate-600 rounded-xl my-2 p-2">
