@@ -10,11 +10,11 @@ import toast from 'react-hot-toast';
 import { logout } from '../Store/userSlice';
 
 const Header = () => {
-  const [togel, setTogle] = useState(true); // Mobile menu toggle
-  const [open, setOpen] = useState(false);   // Cart sidebar
-  const [togelProfile, setTogelProfile] = useState(false); // Profile dropdown
-
+  const [togel, setTogle] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [togelProfile, setTogelProfile] = useState(false);
   const [products, setProducts] = useState([]);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
@@ -49,11 +49,8 @@ const Header = () => {
     const handleClickOutside = (e) => {
       const menu = document.getElementById("mobile-menu");
       const toggleBtn = document.getElementById("mobile-toggle");
-      if (
-        menu && !menu.contains(e.target) &&
-        toggleBtn && !toggleBtn.contains(e.target)
-      ) {
-        setTogle(true); // Close menu
+      if (menu && !menu.contains(e.target) && toggleBtn && !toggleBtn.contains(e.target)) {
+        setTogle(true);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -70,7 +67,7 @@ const Header = () => {
   };
 
   return (
-    <div className=''>
+    <div>
       <div className="py-4 w-[97%] md:w-full mx-auto shadow-sm shadow-slate-600 backdrop-blur-xl flex gap-x-10 justify-between items-center px-5 rounded-lg fixed top-2 left-1.5 text-gray-700 font-bold z-90">
         {/* Logo */}
         <div className="text-cyan-500 font-mono font-extralight text-xl">FastBite</div>
@@ -105,7 +102,7 @@ const Header = () => {
 
               <div className={`fixed top-19 right-2 border-b-2 bg-slate-900/95 rounded-2xl p-5 min-w-[250px] min-h-[120px] shadow-2xl flex flex-col gap-2 transform transition-all ease-in-out duration-300 ${togelProfile ? "translate-x-0 opacity-100" : "translate-x-[1000px] opacity-0 pointer-events-none"}`}>
                 <div className="flex justify-between items-center text-white">
-                  <div className="flex items-center gap-2"><CiUser className="text-cyan-500 text-2xl" />@{user?.name}</div>
+                  <div className="flex items-center gap-2"><CiUser className="text-cyan-500 text-2xl" />@{user?.name || 'User'}</div>
                   <div className="flex items-center gap-2"><CiLogout className="text-cyan-500 text-2xl" /><button onClick={handleLogout} className="text-white font-bold">Log Out</button></div>
                 </div>
               </div>
@@ -146,7 +143,7 @@ const Header = () => {
 
             <div className="w-[350px] max-w-300 max-h-[60vh] overflow-auto mb-10">
               <div className="p-4 flex flex-col gap-4 rounded-lg">
-                <Cart products={products} />
+                <Cart products={products} fallbackLink="#" />
               </div>
             </div>
 
@@ -165,4 +162,4 @@ const Header = () => {
   );
 };
 
-export default Header
+export default Header;
