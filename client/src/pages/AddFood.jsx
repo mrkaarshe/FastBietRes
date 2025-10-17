@@ -41,7 +41,7 @@ const AddFood = () => {
       formData.append("category", form.category);
       formData.append("image", form.image);
 
-      const res = await fetch("https://fastbietres.onrender.com/api/foods/addFood", {
+      const res = await fetch("https://fastbietres-1.onrender.com/api/foods/addFood", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
