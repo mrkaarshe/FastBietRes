@@ -81,8 +81,8 @@ const handleAddToCart = (item) => {
             Where speed meets flavor — enjoy chef-crafted dishes prepared with passion and delivered with perfection. Every bite is a blend of freshness, flavor, and quality — from our kitchen to your doorstep. Whether you’re craving something spicy, sweet, or savory, our chefs bring restaurant-quality meals straight to your home — hot, fast, and full of love.
           </p>
          <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-5 lg:mt-10 lg:w-1/1'>
-           <Link to={'/menu'} className=' bg-cyan-600  border-slate-600 w-1/1 md:w-1/1 py-4 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 '>View Menu</Link>
-           <button className='border-2  border-slate-600 w-1/1 md:w-1/1 py-4 rounded-lg font-bold hover:bg-sky-600 text-white transition-colors duration-300 hover:border-0'>Sea More</button>
+           <Link to={'/menu'} className='bg-gradient-to-r from-cyan-500 to-blue-500  border-slate-600 w-[95%] md:w-1/1 py-4 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 '>View Menu</Link>
+           <button className='border-2  border-slate-600 w-[95%] md:w-1/1 py-4 rounded-lg font-bold bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 text-white transition-colors duration-300 hover:border-0'>Sea More</button>
          </div>
                    <div className="flex gap-4 justify-start items-center mt-4">
                      <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-cyan-500 border-2 border-slate-600  rounded-full text-white text-xl"><FaFacebook /></a>

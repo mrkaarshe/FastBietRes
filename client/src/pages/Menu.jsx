@@ -8,7 +8,8 @@ import { addToCart } from '../Store/Cart';
 import { Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-const Menu = ({onRemove}) => {
+import { remove } from '../Store/Cart';
+const Menu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [foods, setFoods] = useState([]);
@@ -40,10 +41,7 @@ const Menu = ({onRemove}) => {
     activeCategory === "All"
       ? foods
       : foods.filter(item => item.category === activeCategory);
-
 const handleDelete = async (id) => {
-  if (!window.confirm("Are you sure you want to delete this food?")) return;
-
   const token = user?.token;
   if (!token) {
     toast.error("Please login first!");
@@ -58,7 +56,12 @@ const handleDelete = async (id) => {
 
     if (!res.ok) throw new Error("Failed to delete food");
 
+    // Remove from menu
     setFoods(prev => prev.filter(f => f._id !== id));
+
+    // Remove from cart
+    dispatch(remove(id));
+
     toast.success("Food deleted successfully!");
   } catch (err) {
     console.error(err);
@@ -69,7 +72,7 @@ const handleDelete = async (id) => {
 
   return (
     <div className="lg:px-15 pt-16 pb-6 w-screen sm:w-sm md:w-1/1 mt-30 m mx-auto font-Poppins mb-6 rounded-2xl">
-      <Toaster position="top-right" reverseOrder={false} />
+      
 
       <h2 className="text-4xl text-center md:text-6xl font-extrabold mb-12 text-cyan-500">
         Our Hot Dishes
@@ -92,12 +95,12 @@ const handleDelete = async (id) => {
       </div>
 
       {/* Food Items */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
        {filteredItems.map((item) => (
     <div
       key={item._id}
       data-aos="fade-up"
-      className="relative group flex flex-col justify-between items-center max-w-lg mr-2 rounded-xl overflow-hidden
+      className="relative group flex flex-col justify-between items-center w-[97%] mr-2 rounded-xl overflow-hidden
                 bg-gradient-to-br from-slate-900/60 via-slate-800/70 to-slate-900/60
                 backdrop-blur-lg shadow-xl hover:shadow-cyan-500/20
                 transition-all duration-500 "
@@ -107,7 +110,7 @@ const handleDelete = async (id) => {
         <img
           src={`https://fastbietres-1.onrender.com${item.image}`}
           alt={item.title}
-          className="object-cover w-full h-40 rounded-t-xl transition-transform duration-500 group-hover:scale-110"
+          className="object-cover w-full h-60 rounded-t-xl transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500"></div>
       </div>

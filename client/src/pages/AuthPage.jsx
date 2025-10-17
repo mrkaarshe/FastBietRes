@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+
 import toast from "react-hot-toast";
 import * as jwt_decode from "jwt-decode";
 
-
+import {useState} from "react"
 import { useNavigate } from "react-router-dom"; 
 import { loginSuccess } from "../Store/userSlice";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 export default function AuthPage() {
   const [mode, setMode] = useState("login");
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [loading , setloading] = useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const handleChange = (e) =>
@@ -17,6 +18,7 @@ export default function AuthPage() {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
+  setloading(true); // Start loading immediately
   try {
     const url = mode === "login"
       ? "https://fastbietres-1.onrender.com/api/auth/login"
@@ -31,16 +33,16 @@ const handleSubmit = async (e) => {
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Something went wrong");
 
-    // Save user & token correctly
-    dispatch(loginSuccess(data)); 
+    dispatch(loginSuccess(data));
     localStorage.setItem("user", JSON.stringify(data));
     localStorage.setItem("token", data.token);
-
     toast.success(mode === "login" ? "Login successful!" : "Registration successful!");
     navigate("/");
   } catch (err) {
     console.error(err);
     toast.error(err.message);
+  } finally {
+    setloading(false); // Stop loading regardless of success or error
   }
 };
 
@@ -88,7 +90,7 @@ const handleSubmit = async (e) => {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                className="w-full bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none transition"
+                className="w-full bg-slate-800  focus:bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none transition"
                 placeholder="Your Name"
                 required
               />
@@ -102,7 +104,7 @@ const handleSubmit = async (e) => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none transition"
+              className="w-full bg-slate-800  focus:bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none transition"
               placeholder="Email"
               required
             />
@@ -115,7 +117,7 @@ const handleSubmit = async (e) => {
               name="password"
               value={form.password}
               onChange={handleChange}
-              className="w-full bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none transition"
+              className="w-full bg-slate-800  focus:bg-slate-800  text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none transition"
               placeholder="••••••••"
               required
             />
@@ -125,7 +127,9 @@ const handleSubmit = async (e) => {
             type="submit"
             className="w-full py-3 mt-2 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-900 transition-all duration-200 shadow-md shadow-cyan-600/30"
           >
-            {mode === "login" ? "Login" : "Register"}
+           {loading ? "Loading" : mode === "login" ? "Login" : "Register"}
+
+
           </button>
         </form>
 

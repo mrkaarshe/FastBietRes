@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddFood = () => {
   const navigate = useNavigate();
-
-  // ✅ Admin check
+  const [loading , setloading] = useState(false)
   const user = JSON.parse(localStorage.getItem("user"));
   if (!user || user.role !== "admin") {
     navigate("/"); // redirect if not admin
@@ -27,43 +26,39 @@ const AddFood = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setloading(true); // Start loading
 
-    try {
-      const token = user.token;
-      const formData = new FormData();
+  try {
+    const token = user.token;
+    const formData = new FormData();
+    formData.append("title", form.title);
+    formData.append("subtitle", form.subtitle);
+    formData.append("price", form.price);
+    formData.append("category", form.category);
+    formData.append("image", form.image);
 
-      // ✅ FormData waa in la isticmaalaa file upload
-      formData.append("title", form.title);
-      formData.append("subtitle", form.subtitle);
-      formData.append("price", form.price);
-      formData.append("category", form.category);
-      formData.append("image", form.image);
+    const res = await fetch("https://fastbietres-1.onrender.com/api/foods/addFood", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
 
-      const res = await fetch("https://fastbietres-1.onrender.com/api/foods/addFood", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Failed to add food");
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Failed to add food");
-      navigate('/')
-      toast.success("Food added successfully!");
-      setForm({
-        title: "",
-        subtitle: "",
-        price: "",
-        category: "",
-        image: null,
-      });
-    } catch (err) {
-      toast.error(err.message);
-    }
-  };
+    toast.success("Food added successfully!");
+    setForm({ title: "", subtitle: "", price: "", category: "", image: null });
+    navigate("/");
+  } catch (err) {
+    toast.error(err.message);
+  } finally {
+    setloading(false); // Stop loading regardless of outcome
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-800 px-4">
@@ -81,7 +76,7 @@ const AddFood = () => {
               value={form.title}
               onChange={handleChange}
               placeholder="Food Title"
-              className="w-full bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
+              className="w-full bg-slate-800 focus:bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
               required
             />
           </div>
@@ -94,7 +89,7 @@ const AddFood = () => {
               value={form.subtitle}
               onChange={handleChange}
               placeholder="Short description"
-              className="w-full bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
+              className="w-full bg-slate-800 focus:bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
               required
             />
           </div>
@@ -108,7 +103,7 @@ const AddFood = () => {
               onChange={handleChange}
               placeholder="Price"
               step="0.01"
-              className="w-full bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
+              className="w-full bg-slate-800 focus:bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
               required
             />
           </div>
@@ -119,7 +114,7 @@ const AddFood = () => {
               name="category"
               value={form.category}
               onChange={handleChange}
-              className="w-full bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
+              className="w-full bg-slate-800 focus:bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
               required
             >
               <option value="">Select Category</option>
@@ -138,7 +133,7 @@ const AddFood = () => {
               name="image"
               accept="image/*"
               onChange={handleChange}
-              className="w-full bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
+              className="w-full bg-slate-800 focus:bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none"
               required
             />
           </div>
@@ -147,7 +142,7 @@ const AddFood = () => {
             type="submit"
             className="w-full py-3 mt-2 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-900 shadow-md shadow-cyan-600/30 transition"
           >
-            Add Food
+            {loading ? "Loading..." : "Add Food"} 
           </button>
         </form>
       </div>

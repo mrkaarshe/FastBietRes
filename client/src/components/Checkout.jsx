@@ -41,9 +41,9 @@ const Checkout = () => {
     return sum + (product ? product.price * item.quantity : 0);
   }, 0);
 
-  const shipping = cart.length > 0 ? 1 : 0;
+  const delivery = cart.length > 0 ? 2 : 0;
   const taxes = subtotal * 0.0035;
-  const total = subtotal + shipping + taxes;
+  const total = subtotal + delivery + taxes;
 
   const handleInputChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
@@ -144,7 +144,7 @@ const Checkout = () => {
 
         <div className="mt-4 pt-2">
           <div className="text-gray-300 flex justify-between mb-1"><span>Subtotal</span> <span>${subtotal.toFixed(2)}</span></div>
-          <div className="text-gray-300 flex justify-between mb-1"><span>Shipping</span> <span>${shipping.toFixed(2)}</span></div>
+          <div className="text-gray-300 flex justify-between mb-1"><span>Delivery</span> <span>${delivery.toFixed(2)}</span></div>
           <div className="text-gray-300 flex justify-between mb-1"><span>Taxes</span> <span>${taxes.toFixed(2)}</span></div>
           <div className="flex justify-between font-bold text-lg mt-2"><span className="text-cyan-500">Total</span> <span className="text-cyan-500">${total.toFixed(2)}</span></div>
         </div>

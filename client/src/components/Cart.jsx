@@ -11,14 +11,21 @@ const Cart = () => {
     const fetchCartProducts = async () => {
       const productsData = await Promise.all(
         cart.map(async (item) => {
-          const res = await fetch(`https://fastbietres-1.onrender.com/api/foods/${item.productId}`);
-          return await res.json();
+          try {
+            const res = await fetch(`https://fastbietres-1.onrender.com/api/foods/${item.productId}`);
+            if (!res.ok) return null; // skip missing product
+            const data = await res.json();
+            return { ...data, quantity: item.quantity }; // attach quantity here
+          } catch {
+            return null; // skip errors
+          }
         })
       );
-      setCartProducts(productsData);
+      setCartProducts(productsData.filter(p => p !== null)); // remove nulls
     };
 
     if (cart.length > 0) fetchCartProducts();
+    else setCartProducts([]);
   }, [cart]);
 
   return (
@@ -26,11 +33,11 @@ const Cart = () => {
       {cartProducts.length === 0 ? (
         <p className="text-gray-200 flex justify-center items-center">Your cart is empty</p>
       ) : (
-        cartProducts.map((product, i) => (
+        cartProducts.map((product) => (
           <Cartitem
             key={product._id}
             product={product}
-            quantity={cart[i].quantity}
+            quantity={product.quantity} // now safe
             onIncrease={() => dispatch({ type: "cart/increase", payload: product._id })}
             onDecrease={() => dispatch({ type: "cart/decrease", payload: product._id })}
             onRemove={() => dispatch({ type: "cart/remove", payload: product._id })}

@@ -5,6 +5,7 @@ import { CiUser, CiLogout } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { PiSignIn } from "react-icons/pi";
 import { useDispatch, useSelector } from 'react-redux';
+import {clearCart }from '../Store/Cart';
 import Cart from './Cart';
 import toast from 'react-hot-toast';
 import { logout } from '../Store/userSlice';
@@ -25,7 +26,7 @@ const Header = () => {
     const product = products.find(p => p._id === item.productId);
     return product ? acc + product.price * item.quantity : acc;
   }, 0);
-  const delivery = subtotal > 0 ? 5 : 0;
+  const delivery = subtotal > 0 ? 2 : 0;
   const total = subtotal + delivery;
 
   // Fetch products
@@ -61,16 +62,19 @@ const Header = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('cart');
+    dispatch(clearCart())
     dispatch(logout());
+  
     navigate('/login');
-    setTogle(true);
+    setTogelProfile(false);
+    toast.success("Logged out successfully");
   };
 
   return (
     <div>
       <div className="py-4 w-[97%] md:w-full mx-auto shadow-sm shadow-slate-600 backdrop-blur-xl flex gap-x-10 justify-between items-center px-5 rounded-lg fixed top-2 left-1.5 text-gray-700 font-bold z-90">
         {/* Logo */}
-        <div className="text-cyan-500 font-mono font-extralight text-xl">FastBite</div>
+        <div className="text-cyan-400 font-mono font-bold  text-xl">FastBite</div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:block relative">
@@ -100,15 +104,15 @@ const Header = () => {
                 <p className="text-2xl text-cyan-500">{togelProfile ? <IoMdClose /> : <FaUser />}</p>
               </div>
 
-              <div className={`fixed top-19 right-2 border-b-2 bg-slate-900/95 rounded-2xl p-5 min-w-[250px] min-h-[120px] shadow-2xl flex flex-col gap-2 transform transition-all ease-in-out duration-300 ${togelProfile ? "translate-x-0 opacity-100" : "translate-x-[1000px] opacity-0 pointer-events-none"}`}>
-                <div className="flex justify-between items-center text-white">
+              <div className={`fixed top-19 right-0 border-b-2 bg-slate-900/95 rounded-2xl p-5 min-w-[250px] min-h-[120px] shadow-2xl flex flex-col gap-2 transform transition-all ease-in-out duration-300 ${togelProfile ? "translate-x-0 opacity-100" : "translate-x-[1000px] opacity-0 pointer-events-none"}`}>
+                <div className="flex justify-between h-20 items-center text-white">
                   <div className="flex items-center gap-2"><CiUser className="text-cyan-500 text-2xl" />@{user?.name || 'User'}</div>
                   <div className="flex items-center gap-2"><CiLogout className="text-cyan-500 text-2xl" /><button onClick={handleLogout} className="text-white font-bold">Log Out</button></div>
                 </div>
               </div>
             </div>
           ) : (
-            <Link to="/login" className="text-white border-2 rounded-full border-cyan-500 hover:bg-cyan-500 transition-colors py-2 px-5 text-sm font-extrabold flex justify-center items-center gap-3">
+            <Link to="/login" className="text-white border-2 rounded-full border-slate-600 hover:border-cyan-500 hover:text-cyan-400 transition-colors py-2 px-5 text-sm font-extrabold flex justify-center items-center gap-3">
               <PiSignIn className="text-lg" />
               SignIn
             </Link>
@@ -135,8 +139,8 @@ const Header = () => {
 
         {/* Cart sidebar */}
         <div className="absolute right-0 top-20 z-[100]">
-          <div className={`absolute h-[60vh] min-h-96 min-w-[300px] right-2 rounded-xl bg-[#212e39] text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${open ? "translate-x-0" : "translate-x-[1000px]"}`}>
-            <div className="flex justify-between items-center p-4 bg-cyan-700 rounded-t-xl h-20 text-white">
+          <div className={`absolute h-[60vh] min-h-96 min-w-[300px]  right-1 rounded-xl bg-slate-900 text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${open ? "translate-x-0" : "translate-x-[1000px]"}`}>
+            <div className="flex justify-between items-center p-4 bg-slate-950/95 rounded-t-xl h-20 text-white">
               <h2 className="text-xl font-bold">Cart</h2>
               <button onClick={() => setOpen(false)} className="text-gray-100 text-2xl"><IoMdClose /></button>
             </div>
@@ -147,11 +151,11 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="mt-2 absolute right-0 left-0 bottom-0 bg-cyan-700 px-3 text-white rounded-b-xl p-4">
+            <div className="mt-2 absolute right-0 left-0 bottom-0 bg-slate-950/70 px-3 text-white rounded-b-xl p-4">
               <p className="flex justify-between"><span>Subtotal</span> <span>${subtotal.toFixed(2)}</span></p>
               <p className="flex justify-between"><span>Delivery</span> <span>${delivery.toFixed(2)}</span></p>
               <p className="flex justify-between font-bold text-lg"><span>Total</span> <span>${total.toFixed(2)}</span></p>
-              <Link to='/checkout' onClick={() => setOpen(false)} className="px-10 flex justify-center mt-4 py-2 bg-[#212e39] hover:bg-[#333] text-white rounded">
+              <Link to='/checkout' onClick={() => setOpen(false)} className="px-10 flex justify-center mt-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded">
                 Checkout ${total.toFixed(2)}
               </Link>
             </div>
