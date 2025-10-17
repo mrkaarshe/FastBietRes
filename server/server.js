@@ -1,49 +1,36 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 import express from "express";
+import dotenv from "dotenv";
+import path from "path";
 import cors from "cors";
-import cookieParser from "cookie-parser";
-import connectDB from "./config/mongoDB.js";
-import router from "./routers/authRout.js";
-import userRouter from "./routers/userRoutes.js";
+import fs from "fs";
+import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
+import foodRoutes from "./routes/foodRoutes.js";
 
-const app = express();
-
-const allowedOrigins = ['https://fast-biet-res.vercel.app'];
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS not allowed'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true,
-}));
-
-app.options('*', cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
-
-app.use(express.json());
-app.use(cookieParser());
-
-const port = process.env.PORT || 4000;
-
+dotenv.config();
 connectDB();
 
-app.get('/', (req, res) => {
-  res.send('hello from server');
-  console.log('hello from server');
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+
+app.use("/api/auth", authRoutes);
+app.use("/api/foods", foodRoutes);
+
+app.get("/", (req, res) => {
+  res.json({ message: "API running successfully!" });
 });
 
-app.use('/api/auth', router);
-app.use('/api/user', userRouter);
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+
+
+const uploadDir = "uploads";
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));

@@ -1,38 +1,81 @@
-import  aos from 'aos';
+import aos from 'aos';
 import 'aos/dist/aos.css';
+import { FaTrash } from "react-icons/fa"
+import React, { useState, useEffect } from 'react';
+import { MdAddShoppingCart } from "react-icons/md";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Store/Cart';
+import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+const Menu = ({onRemove}) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [foods, setFoods] = useState([]);
 
+  
+ const { user } = useSelector((state) => state.user);
+  const fetchFoods = async () => {
+    try {
+      const response = await fetch('https://fastbietres.onrender.com/api/foods/getfood');
+      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+      const data = await response.json();
+      setFoods(data);
+    } catch (error) {
+      console.error('Error fetching foods:', error);
+      toast.error("Failed to fetch foods");
+    }
+  };
 
-import React, { use, useState } from 'react'
-import { useEffect } from 'react';
-import { MdAddShoppingCart } from "react-icons/md"
-import { useSelector, useDispatch } from 'react-redux'
-import { addToCart } from '../Store/Cart'
-import { Link } from 'react-router-dom'
-import products from '../Products'
-const Menu = () => {
+  useEffect(() => {
+    fetchFoods();
+    aos.init({ duration: 1000 }, { once: true });
+    
+  }, []);
 
-    useEffect(()=>{
-      aos.init({duration:1000},{once:true})
-    })
-
-
-  const categories = ["All", "Burgers", "Drinks", "Desserts", "Others"]
-  const [activeCategory, setActiveCategory] = useState("All")
+  const categories = ["All", "Burgers", "Drinks", "Desserts", "Others"];
+  const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredItems =
     activeCategory === "All"
-      ? products
-      : products.filter(item => item.category === activeCategory)
+      ? foods
+      : foods.filter(item => item.category === activeCategory);
+
+const handleDelete = async (id) => {
+  if (!window.confirm("Are you sure you want to delete this food?")) return;
+
+  const token = user?.token;
+  if (!token) {
+    toast.error("Please login first!");
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://fastbietres.onrender.com/api/foods/delete/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (!res.ok) throw new Error("Failed to delete food");
+
+    setFoods(prev => prev.filter(f => f._id !== id));
+    toast.success("Food deleted successfully!");
+  } catch (err) {
+    console.error(err);
+    toast.error("Error deleting food");
+  }
+};
+
 
   return (
-    <div className="lg:px-15 
-    pt-16 pb-6  w-screen sm:w-sm md:w-1/1 mt-30 m mx-auto  mb-6 rounded-2xl">
-      {/* Title */}
-      <h2 className="text-4xl text-center md:text-6xl font-extrabold mb-12 text-[#fa961d] ">
+    <div className="lg:px-15 pt-16 pb-6 w-screen sm:w-sm md:w-1/1 mt-30 m mx-auto font-Poppins mb-6 rounded-2xl">
+      <Toaster position="top-right" reverseOrder={false} />
+
+      <h2 className="text-4xl text-center md:text-6xl font-extrabold mb-12 text-cyan-500">
         Our Hot Dishes
       </h2>
 
-      
+      {/* Categories */}
       <div className="flex flex-wrap justify-center gap-4 mb-10">
         {categories.map((cat, i) => (
           <button
@@ -40,57 +83,89 @@ const Menu = () => {
             onClick={() => setActiveCategory(cat)}
             className={`px-5 py-2 rounded-full font-medium shadow transition ${activeCategory === cat
               ? "bg-white text-black"
-              : "bg-[#fa961d] text-white hover:bg-transparent hover:border border-[#fa961d] "
-              }`}
+              : "bg-cyan-500 text-white hover:bg-transparent hover:border border-slate-600"
+            }`}
           >
             {cat}
           </button>
         ))}
       </div>
 
-    
-      <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-6  ">
-        {filteredItems.map((item) => (
-          <div key={item.id}  data-aos="fade-up" className="relative flex shadow-2xl   justify-between pr-10 rounded-full min-w-sm lg:min-w-[300px]  border-t-3 border-[#fa961d] p-5 ">
-            
-            <div className="">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-38 h-38 object-cover rounded-full shadow-lg border-4 border-[#fa961d] hover:scale-125 duration-300 transition-transform cursor-pointer"
-              />
-            </div>
+      {/* Food Items */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+       {filteredItems.map((item) => (
+    <div
+      key={item._id}
+      data-aos="fade-up"
+      className="relative group flex flex-col justify-between items-center max-w-lg mr-2 rounded-xl overflow-hidden
+                bg-gradient-to-br from-slate-900/60 via-slate-800/70 to-slate-900/60
+                backdrop-blur-lg shadow-xl hover:shadow-cyan-500/20
+                transition-all duration-500 "
+    >
+      {/* Image Section */}
+      <div className="relative w-full overflow-hidden">
+        <img
+          src={`https://fastbietres.onrender.com${item.image}`}
+          alt={item.title}
+          className="object-cover w-full h-40 rounded-t-xl transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500"></div>
+      </div>
 
-            
-            <div className=" z-10 ">
-              <div className="text-center ">
-                <h3 className="text-lg font-semibold text-gray-200 pt-10">{item.title}</h3>
-                <p className="mt-1 text-sm text-gray-300">{item.subtitle}</p>
+      {/* Content */}
+      <div className="z-10 text-start p-2 w-full space-y-">
+        <h3 className="text-xl font-bold text-cyan-500 group-hover:text-cyan-400 transition-colors duration-300">
+          {item.title}
+        </h3>
+        <p className="text-gray-300 text-md line-clamp-2">{item.subtitle}</p>
+      </div>
 
-                <div className="mt-4 flex items-center justify-betwee gap-4">
-                  <div>
-                    <span className="text-xl font-bold text-[#fa961d]">${item.price}</span>
-                  </div>
-                <Link
-                  to={`/details/${item.id}`}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#fa961d] text-white text-lg font-medium shadow hover:bg-transparent hover:border-1 border-[#fa961d] transition"
-                 
-                >
-                  <MdAddShoppingCart />
-                </Link>
+      {/* Bottom Section */}
+      <div className="flex items-center justify-between w-full px-4 pb-4 mt-auto">
+        <span className="text-3xl font-bold text-cyan-400">${item.price}</span>
 
+        <div className="flex items-center gap-3">
+          <Link
+            to={`/details/${item._id}`}
+            className="flex items-center justify-center gap-2 px-5 py-3 rounded-full 
+                      bg-cyan-600 text-white text-lg font-semibold shadow-md 
+                      hover:bg-transparent hover:border border-slate-600 hover:text-cyan-400
+                      transition-all duration-300"
+          >
+            <MdAddShoppingCart className="text-xl" />
+          </Link>
 
-                </div>
-              </div>
-            </div>
-
-            {/* Decorative Shadow */}
-            <div className="absolute inset-x-6 -bottom-4 h-4 rounded-ful opacity-60 filter blur-xl z-0"></div>
-          </div>
-        ))}
+          {user?.role === "admin" && (
+            <button
+              onClick={() => handleDelete(item._id)}
+              className="p-3 border border-slate-600 rounded-full text-white hover:text-cyan-500 
+                        transition-all duration-300"
+            >
+              <FaTrash className="text-xl" />
+            </button>
+          )}
+        </div>
       </div>
     </div>
-  )
-}
+  ))}
+ 
 
-export default Menu
+        {user?.role === "admin" && (
+          <div data-aos="fade-up" className="flex justify-center mb-8">
+            <button
+              onClick={() => navigate("/add-food")}
+              className="items-center flex justify-center  border border-slate-600  h-20 mt-20 rounded-full text-center px-8  
+                         text-white font-bold text-lg 
+                         hover:scale-105 transition-transform duration-300
+                         active:scale-95"
+            >
+              Add New Food
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Menu;

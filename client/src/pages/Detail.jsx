@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import  aos from 'aos';
+import aos from 'aos';
 import 'aos/dist/aos.css';
 import { useParams, useNavigate } from "react-router-dom";
-import products from "../Products";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Store/Cart";
 import { MdAddShoppingCart } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const Detail = () => {
   const { id } = useParams();
@@ -15,54 +15,52 @@ const Detail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    aos.init({duration:500},{once:true})
-    const found = products.find((p) => p.id === Number(id));
-    if (found) setProduct(found);
-    else navigate("/");
+    aos.init({ duration: 500 }, { once: true });
+
+    const fetchFood = async () => {
+      try {
+        const res = await fetch(`https://fastbietres.onrender.com/api/foods/${id}`);
+        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+        const data = await res.json();
+        setProduct(data);
+        console.log("Fetched food:", data);
+      } catch (err) {
+        console.error(err);
+        toast.error("Failed to fetch food");
+        navigate("/"); // redirect if not found
+      }
+    };
+
+    fetchFood();
   }, [id, navigate]);
 
-  if (!product) return <div className="my-50 max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-x-4  border-teal-300 animate-spin"></div>;;
+  if (!product) return <div className="my-50 max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-x-4  border-teal-300 animate-spin"></div>;
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ productId: product.id, quantity }));
+    dispatch(addToCart({ productId: product._id, quantity }));
     navigate("/home");
   };
-  
 
   return (
-    <div className="max-w-7xl mx-auto min-h-[75vh] my-40 px-2 py-6  rounded-lg flex flex-col md:flex-row gap-20">
-      <img data-aos="fade-right" src={product.image} alt={product.title} className="h-88 w-88 md:h-140 md:w-150  object-center rounded-2xl" />
+    <div className="max-w-7xl mx-auto min-h-[75vh] my-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-20">
+      <img data-aos="fade-right" src={`https://fastbietres.onrender.com${product.image}`} alt={product.title} className="h-88 w-88 md:h-140 md:w-150 object-center rounded-2xl" />
       <div data-aos="fade-left">
-        <h1 className="text-6xl text-[#fa961d] font-bold">{product.title}</h1>
+        <h1 className="text-6xl text-cyan-500 font-bold">{product.title}</h1>
         <p className="text-gray-300 text-xl font-bold mt-2">{product.subtitle}</p>
-        <p className="text-4xl font-semibold text-[#fa961d] mt-4">${product.price}</p>
+        <p className="text-4xl font-semibold text-cyan-500 mt-4">${product.price}</p>
+
         {/* Quantity */}
         <div className="flex items-center gap-4 mt-6">
-          <button
-            onClick={() => setQuantity((q) => (q > 1 ? q - 1 : 1))}
-            className="px-3 py-1 bg-[#fa961d] text-white rounded"
-          >
-            -
-          </button>
+          <button onClick={() => setQuantity(q => (q > 1 ? q - 1 : 1))} className="px-3 py-1 bg-cyan-500 text-white rounded">-</button>
           <span className="text-lg text-white">{quantity}</span>
-          <button
-            onClick={() => setQuantity((q) => q + 1)}
-            className="px-3 py-1 bg-[#fa961d] text-white rounded"
-          >
-            +
-          </button>
+          <button onClick={() => setQuantity(q => q + 1)} className="px-3 py-1 bg-cyan-500 text-white rounded">+</button>
         </div>
 
         {/* Add to Cart */}
-        <button
-          onClick={handleAddToCart}
-          className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#fa961d] text-white text-lg font-medium shadow hover:bg-transparent hover:border-1 border-[#fa961d] transition"
-        >
-          <MdAddShoppingCart />
-          Add to Cart
+        <button onClick={handleAddToCart} className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-500 text-white text-lg font-medium shadow hover:bg-transparent hover:border-1 border-cyan-500 transition">
+          <MdAddShoppingCart /> Add to Cart
         </button>
       </div>
-     
     </div>
   );
 };

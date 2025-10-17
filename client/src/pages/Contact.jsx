@@ -20,7 +20,7 @@ const Contact = () => {
       <div className="mt-25 mb-20 pb-5 "> 
         <div className=" px-2  lg:px-10">
           <div  className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-4xl font-bold text-[#fa961d]">Contact Us</h2>
+            <h2 className="text-4xl font-bold text-cyan-500">Contact Us</h2>
             <p className="text-gray-300 mt-4 text-xl max-w-2xl mx-auto">
              Get in touch with our team to order your favorite meals or ask about our delivery service.
             </p>
@@ -31,7 +31,7 @@ const Contact = () => {
             <div  data-aos="fade-right"  className="    md:w-1/1">
               <form
                 id="contact-form"
-                className="rounded-xl shadow-sm border border-[#fa961d] p-8"
+                className="rounded-xl shadow-sm border border-slate-600 p-8"
               >
                 <div className="mb-6">
                   <label htmlFor="name" className="block text-gray-300 font-medium mb-2">
@@ -42,8 +42,8 @@ const Contact = () => {
                     id="name"
                     name="name"
                     required
-                    className="w-full px-4 py-3 border border-[#fa961d] placeholder-white   rounded-lg 
-                               focus:outline-none focus:ring-2 focus:ring-[#fa961d] focus:border-transparent 
+                    className="w-full px-4 py-3 border border-slate-600 placeholder-white   rounded-lg 
+                               focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent 
                                text-gray-300"
                   />
                 </div>
@@ -57,8 +57,8 @@ const Contact = () => {
                     id="email"
                     name="email"
                     required
-                    className="w-full px-4 py-3 border border-[#fa961d] placeholder-white   rounded-lg 
-                               focus:outline-none focus:ring-2 focus:ring-[#fa961d] focus:border-transparent 
+                    className="w-full px-4 py-3 border border-slate-600 placeholder-white   rounded-lg 
+                               focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent 
                                text-gray-300"
                   />
                 </div>
@@ -71,8 +71,8 @@ const Contact = () => {
                     type="tel"
                     id="phone"
                     name="phone"
-                    className="w-full px-4 py-3 border border-[#fa961d] placeholder-white   rounded-lg 
-                               focus:outline-none focus:ring-2 focus:ring-[#fa961d] focus:border-transparent 
+                    className="w-full px-4 py-3 border border-slate-600 placeholder-white   rounded-lg 
+                               focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent 
                                text-gray-300"
                   />
                 </div>
@@ -86,8 +86,8 @@ const Contact = () => {
                     name="message"
                     rows="5"
                     required
-                    className="w-full px-4 py-3 border min-h-90 max-h-90 border-[#fa961d] placeholder-white   rounded-lg 
-                               focus:outline-none focus:ring-2 focus:ring-[#fa961d] focus:border-transparent 
+                    className="w-full px-4 py-3 border min-h-50 md:min-h-80 max-h-90 border-slate-600 placeholder-white   rounded-lg 
+                               focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent 
                                text-gray-300"
                   ></textarea>
                 </div>
@@ -95,7 +95,7 @@ const Contact = () => {
                 <div>
                   <button
                     type="submit"
-                    className="w-full bg-[#fa961d] hover:bg-transparent hover:border-1 border-[#fa961d] text-white font-bold py-3 px-6 
+                    className="w-full bg-cyan-500 hover:bg-transparent hover:border-1 border-slate-600 text-white font-bold py-3 px-6 
                                rounded-lg transition duration-300 shadow-md hover:shadow-lg"
                   >
                     Send Message
@@ -106,7 +106,7 @@ const Contact = () => {
 
             {/* Info Section */}
             <div data-aos="fade-left" className=" md:w-1/1">
-              <div className="rounded-xl shadow-sm border border-[#fa961d]   overflow-hidden h-full">
+              <div className="rounded-xl shadow-sm border border-slate-600   overflow-hidden h-full">
                 <div className="h-64">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.9601327172354!2d45.309051470227764!3d2.042475209763933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5843ffa8a16db3%3A0x909f40422de8119d!2sTaleex!5e0!3m2!1sen!2sso!4v1758471149260!5m2!1sen!2sso"
@@ -123,7 +123,7 @@ const Contact = () => {
                   <div className="space-y-6">
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 bg-[#fa961d] hover:bg-transparent hover:border border-[#fa961d] text-white rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-cyan-500 hover:bg-transparent hover:border border-slate-600 text-white rounded-full flex items-center justify-center">
                           <LuMapPin/>
                         </div>
                       </div>
@@ -135,7 +135,7 @@ const Contact = () => {
 
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 bg-[#fa961d] hover:bg-transparent hover:border border-[#fa961d] text-white rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-cyan-500 hover:bg-transparent hover:border border-slate-600 text-white rounded-full flex items-center justify-center">
                          <MdOutlineLocalPhone/>
                         </div>
                       </div>
@@ -147,7 +147,7 @@ const Contact = () => {
 
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 bg-[#fa961d] hover:bg-transparent hover:border border-[#fa961d]  text-white rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-cyan-500 hover:bg-transparent hover:border border-slate-600  text-white rounded-full flex items-center justify-center">
                         
                         <MdOutlineEmail/>
                         </div>
@@ -160,7 +160,7 @@ const Contact = () => {
 
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 bg-[#fa961d] hover:bg-transparent hover:border border-[#fa961d]  text-white rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-cyan-500 hover:bg-transparent hover:border border-slate-600  text-white rounded-full flex items-center justify-center">
                           <FaRegClock/>
                         </div>
                       </div>
@@ -175,33 +175,33 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-[#fa961d] placeholder-white  ">
+                  <div className="mt-8 pt-6 border-t border-slate-600 placeholder-white  ">
                     <h4 className="font-medium text-gray-300 mb-4">Connect With Me</h4>
                     <div className="flex space-x-4">
                       <a
                         href="#"
-                        className="w-10 h-10 bg-[#fa961d] hover:border border-[#fa961d]   text-white hover:bg-transparent rounded-full 
+                        className="w-10 h-10 bg-cyan-500 hover:border border-slate-600   text-white hover:bg-transparent rounded-full 
                                    flex items-center justify-center  transition-colors"
                       >
                        <FaFacebook/>  
                       </a>
                       <a
                         href="#"
-                        className="w-10 h-10 bg-[#fa961d] hover:border border-[#fa961d]  text-white  hover:bg-transparent rounded-full 
+                        className="w-10 h-10 bg-cyan-500 hover:border border-slate-600  text-white  hover:bg-transparent rounded-full 
                                    flex items-center justify-center  transition-colors"
                       >
                         <FaInstagram/>
                       </a>
                       <a
                         href="#"
-                        className="w-10 h-10 bg-[#fa961d] hover:border border-[#fa961d]  text-white hover:bg-transparent rounded-full 
+                        className="w-10 h-10 bg-cyan-500 hover:border border-slate-600  text-white hover:bg-transparent rounded-full 
                                    flex items-center justify-center  transition-colors"
                       >
                         <FaWhatsapp/>
                       </a>
                       <a
                         href="#"
-                        className="w-10 h-10 bg-[#fa961d] hover:border border-[#fa961d] text-white hover:bg-transparent rounded-full 
+                        className="w-10 h-10 bg-cyan-500 hover:border border-slate-600 text-white hover:bg-transparent rounded-full 
                                    flex items-center justify-center  transition-colors"
                       >
                         <FaTwitter/>

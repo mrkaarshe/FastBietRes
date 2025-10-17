@@ -1,180 +1,160 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { IoCartOutline } from "react-icons/io5";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaAlignRight, FaShopify, FaUser } from "react-icons/fa";
 import { CiUser, CiLogout } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { PiSignIn } from "react-icons/pi";
+import { useDispatch, useSelector } from 'react-redux';
 import Cart from './Cart';
-import { useSelector } from 'react-redux';
-import products from '../Products';
+import toast from 'react-hot-toast';
+import { logout } from '../Store/userSlice';
 
 const Header = () => {
-  const [togel, setTogle] = useState(true)
-  const [open, setOpen] = useState(false)
-  const [togelProfile, setTogelProfile] = useState(false)
-  const [user, setUser] = useState(null)
-  const navigate = useNavigate()
+  const [togel, setTogle] = useState(true); // Mobile menu toggle
+  const [open, setOpen] = useState(false);   // Cart sidebar
+  const [togelProfile, setTogelProfile] = useState(false); // Profile dropdown
 
-  const carts = useSelector(store => store.cart.items)
-  const TotalQuantity = carts.reduce((total, item) => total + item.quantity, 0)
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.user);
+  const carts = useSelector(state => state.cart.items);
+
+  const TotalQuantity = carts.reduce((total, item) => total + item.quantity, 0);
   const subtotal = carts.reduce((acc, item) => {
-    const product = products.find(p => p.id === item.productId);
+    const product = products.find(p => p._id === item.productId);
     return product ? acc + product.price * item.quantity : acc;
   }, 0);
-  const delivery = subtotal > 0 ? 5 : 0
-  const total = subtotal + delivery
+  const delivery = subtotal > 0 ? 5 : 0;
+  const total = subtotal + delivery;
 
+  // Fetch products
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) setUser(JSON.parse(storedUser));
-
-    const handleStorageChange = () => {
-      const updatedUser = localStorage.getItem("user");
-      setUser(updatedUser ? JSON.parse(updatedUser) : null);
+    const fetchFood = async () => {
+      try {
+        const res = await fetch("https://fastbietres.onrender.com/api/foods/getfood");
+        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        console.error(err);
+        toast.error("Failed to fetch food");
+      }
     };
+    fetchFood();
+  }, []);
 
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      const menu = document.getElementById("mobile-menu");
+      const toggleBtn = document.getElementById("mobile-toggle");
+      if (
+        menu && !menu.contains(e.target) &&
+        toggleBtn && !toggleBtn.contains(e.target)
+      ) {
+        setTogle(true); // Close menu
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('user')
-    localStorage.removeItem('token')
-    localStorage.removeItem('cart')
-    setUser(null)
-    navigate('/login')
-  }
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('cart');
+    dispatch(logout());
+    navigate('/login');
+    setTogle(true);
+  };
 
   return (
-    <>
     <div className=''>
-      <div className="py-4  w-[97%] md:w-full mx-auto shadow-sm shadow-[#fa961d]  backdrop-blur-xl flex gap-x-10 justify-between items-center   px-5 rounded-lg fixed top-2 left-1.5 text-gray-700 font-bold z-100">
-
+      <div className="py-4 w-[97%] md:w-full mx-auto shadow-sm shadow-slate-600 backdrop-blur-xl flex gap-x-10 justify-between items-center px-5 rounded-lg fixed top-2 left-1.5 text-gray-700 font-bold z-90">
         {/* Logo */}
-        <div className="text-[#fa961d] font-mono font-extralight text-xl">
-          FastBite
-        </div>
+        <div className="text-cyan-500 font-mono font-extralight text-xl">FastBite</div>
 
-        {/* Navigation */}
+        {/* Desktop Navigation */}
         <div className="hidden md:block relative">
           <ul className="flex gap-2">
-            <Link to={'/home'} className="text-gray-300 font-mono text-sm hover:scale-110">Home</Link>
-            <span className="text-[#fa961d] text-sm">/</span>
-            <Link to={'/about'} className="text-gray-300 font-mono text-sm hover:scale-110">About</Link>
-            <span className="text-[#fa961d] text-sm">/</span>
-            <Link to={'/menu'} className="text-gray-300 font-mono text-sm hover:scale-110">Menu</Link>
-            <span className="text-[#fa961d] text-sm">/</span>
-            <Link to={'/contact'} className="text-gray-300 font-mono text-sm hover:scale-110">ContactUs</Link>
+            <Link to='/home' className="text-gray-300 font-mono text-sm hover:scale-110">Home</Link>
+            <span className="text-cyan-500 text-sm">/</span>
+            <Link to='/about' className="text-gray-300 font-mono text-sm hover:scale-110">About</Link>
+            <span className="text-cyan-500 text-sm">/</span>
+            <Link to='/menu' className="text-gray-300 font-mono text-sm hover:scale-110">Menu</Link>
+            <span className="text-cyan-500 text-sm">/</span>
+            <Link to='/contact' className="text-gray-300 font-mono text-sm hover:scale-110">ContactUs</Link>
           </ul>
         </div>
 
         {/* Right icons */}
         <div className="relative flex justify-between items-center gap-8">
-          <div className="flex justify-between items-center gap-4">
-            {/* Cart icon */}
-            <button onClick={() => setOpen(!open)} className="text-3xl text-[#fa961d] relative">
-              <span className="absolute text-sm -top-2 -right-3 bg-[#fa961d] text-white px-1 rounded-full">
-                {TotalQuantity}
-              </span>
-              <FaShopify />
-            </button>
+          {/* Cart icon */}
+          <button onClick={() => setOpen(!open)} className="text-3xl text-cyan-500 relative">
+            <span className="absolute text-sm -top-2 -right-3 bg-cyan-500 text-white px-1 rounded-full">{TotalQuantity}</span>
+            <FaShopify />
+          </button>
 
-            {/* Profile dropdown */}
-            {user ? (
-              <>
-                <div
-                  className="border rounded-full p-2 cursor-pointer"
-                  onClick={() => setTogelProfile(!togelProfile)}
-                >
-                  <p className="text-2xl text-[#fa961d]">
-                    {togelProfile ? <IoMdClose /> : <FaUser />}
-                  </p>
+          {/* Profile dropdown */}
+          {user ? (
+            <div className="relative">
+              <div className="border rounded-full p-2 cursor-pointer" onClick={() => setTogelProfile(!togelProfile)}>
+                <p className="text-2xl text-cyan-500">{togelProfile ? <IoMdClose /> : <FaUser />}</p>
+              </div>
+
+              <div className={`fixed top-19 right-2 border-b-2 bg-slate-900/95 rounded-2xl p-5 min-w-[250px] min-h-[120px] shadow-2xl flex flex-col gap-2 transform transition-all ease-in-out duration-300 ${togelProfile ? "translate-x-0 opacity-100" : "translate-x-[1000px] opacity-0 pointer-events-none"}`}>
+                <div className="flex justify-between items-center text-white">
+                  <div className="flex items-center gap-2"><CiUser className="text-cyan-500 text-2xl" />@{user?.name}</div>
+                  <div className="flex items-center gap-2"><CiLogout className="text-cyan-500 text-2xl" /><button onClick={handleLogout} className="text-white font-bold">Log Out</button></div>
                 </div>
+              </div>
+            </div>
+          ) : (
+            <Link to="/login" className="text-white border-2 rounded-full border-cyan-500 hover:bg-cyan-500 transition-colors py-2 px-5 text-sm font-extrabold flex justify-center items-center gap-3">
+              <PiSignIn className="text-lg" />
+              SignIn
+            </Link>
+          )}
 
-                <div
-                  className={`absolute top-17 -right-5 bg-[#212e39] rounded-2xl p-5 min-w-[250px] min-h-[120px] shadow-2xl flex flex-col gap-2 transform transition-all ease-in-out duration-300 ${
-                    togelProfile ? "translate-x-0 opacity-100" : "translate-x-[1000px] opacity-0 pointer-events-none"
-                  }`}
-                >
-                  <div className="text-lg py-2 rounded-lg flex gap-2 items-center text-white">
-                    <CiUser className="text-[#fa961d] text-2xl" />
-                    <span>@{user?.username || "User"}</span>
-                  </div>
+          {/* Mobile menu toggle */}
+          <button id="mobile-toggle" onClick={() => setTogle(!togel)} className="block md:hidden text-2xl text-cyan-500">
+            {togel ? <FaAlignRight /> : <IoMdClose />}
+          </button>
+        </div>
 
-                  <div className="text-lg py-2 rounded-lg flex gap-2 items-center">
-                    <CiLogout className="text-[#fa961d] text-2xl" />
-                    <button
-                      className="text-center px-1 text-white rounded-lg font-bold text-lg flex py-2"
-                      onClick={handleLogout}
-                    >
-                      Log Out
-                    </button>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <Link
-                to={"/login"}
-                className="text-white border-2 rounded-full border-[#fa961d] hover:bg-[#fa961d] transition-colors py-2 px-5 text-sm font-extrabold flex justify-center items-center gap-3"
-              >
-                <PiSignIn className="text-lg" />
-                SignIn
-              </Link>
-            )}
-
-            {/* Mobile menu toggle */}
-            <button
-              onClick={() => setTogle(!togel)}
-              className="block md:hidden text-2xl text-[#fa961d]"
-            >
-              {togel ? <FaAlignRight /> : <IoMdClose />}
-            </button>
-          </div>
-
-          {/* Mobile nav */}
-          <div
-            className={`${
-              togel ? "translate-x-[1000px]" : "translate-x-0"
-            } absolute bg-[#212e39]/90 shadow-2xl backdrop-blur-3xl top-17 -right-5 min-w-[320px] rounded-md z-[100] transition-transform duration-300`}
-          >
-            <ul className="flex flex-col gap-2 py-4">
-              <Link to={'/home'} className="text-gray-300 hover:text-[#fa961d] text-center px-10 py-2 rounded-lg">Home</Link>
-              <Link to={'/about'} className="text-gray-300 hover:text-[#fa961d] text-center px-10 py-2 rounded-lg">About</Link>
-              <Link to={'/menu'} className="text-gray-300 hover:text-[#fa961d] text-center px-10 py-2 rounded-lg">Menu</Link>
-              <Link to={'/contact'} className="text-gray-300 hover:text-[#fa961d] text-center px-10 py-2 rounded-lg">Contact Us</Link>
-            </ul>
-          </div>
+        {/* Mobile Navigation */}
+        <div
+          id="mobile-menu"
+          className={`${togel ? "-translate-y-[1000px]" : "-translate-y-0"} fixed bg-slate-900/98 backdrop-blur-xl shadow-2xl top-19 left-0 right-0 min-w-[320px] max-w-full rounded-md z-10 transition-transform duration-300`}
+        >
+          <ul className="flex flex-col gap-2 py-4 text-cyan-500">
+            <Link to='/home' className="hover:text-white text-center px-10 py-2 rounded-lg">Home</Link>
+            <Link to='/about' className="hover:text-white text-center px-10 py-2 rounded-lg">About</Link>
+            <Link to='/menu' className="hover:text-white text-center px-10 py-2 rounded-lg">Menu</Link>
+            <Link to='/contact' className="hover:text-white text-center px-10 py-2 rounded-lg">Contact Us</Link>
+          </ul>
         </div>
 
         {/* Cart sidebar */}
         <div className="absolute right-0 top-20 z-[100]">
-          <div
-            className={`absolute min-h-96 min-w-[300px] right-2 rounded-xl bg-[#212e39] text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${
-              open ? "translate-x-0" : "translate-x-[1000px]"
-            }`}
-          >
-            {/* Header */}
-            <div className="flex justify-between items-center p-4 bg-[#fa961d] rounded-t-xl h-20 text-white">
+          <div className={`absolute h-[60vh] min-h-96 min-w-[300px] right-2 rounded-xl bg-[#212e39] text-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out ${open ? "translate-x-0" : "translate-x-[1000px]"}`}>
+            <div className="flex justify-between items-center p-4 bg-cyan-700 rounded-t-xl h-20 text-white">
               <h2 className="text-xl font-bold">Cart</h2>
-              <button onClick={() => setOpen(false)} className="text-gray-100 text-2xl">
-                <IoMdClose />
-              </button>
+              <button onClick={() => setOpen(false)} className="text-gray-100 text-2xl"><IoMdClose /></button>
             </div>
 
-            {/* Items */}
-            <div className=" w-[350px] max-h-100 overflow-auto mb-10 ">
+            <div className="w-[350px] max-w-300 max-h-[60vh] overflow-auto mb-10">
               <div className="p-4 flex flex-col gap-4 rounded-lg">
-                <Cart />
+                <Cart products={products} />
               </div>
             </div>
 
-            {/* Cart total */}
-            <div className="mt-2 absolute right-0 left-0 bottom-0 bg-[#fa961d] px-3 text-white rounded-b-xl p-4">
-              <p className="flex justify-between"><span>Subtotal</span> <span>$ {subtotal.toFixed(2)}</span></p>
-              <p className="flex justify-between"><span>Delivery</span> <span>$ {delivery.toFixed(2)}</span></p>
-              <p className="flex justify-between font-bold text-lg"><span>Total</span> <span>$ {total.toFixed(2)}</span></p>
-              <Link to={'/checkout'} className="px-10 flex justify-center mt-4 py-2 bg-[#212e39] hover:bg-[#333] text-white rounded">
+            <div className="mt-2 absolute right-0 left-0 bottom-0 bg-cyan-700 px-3 text-white rounded-b-xl p-4">
+              <p className="flex justify-between"><span>Subtotal</span> <span>${subtotal.toFixed(2)}</span></p>
+              <p className="flex justify-between"><span>Delivery</span> <span>${delivery.toFixed(2)}</span></p>
+              <p className="flex justify-between font-bold text-lg"><span>Total</span> <span>${total.toFixed(2)}</span></p>
+              <Link to='/checkout' onClick={() => setOpen(false)} className="px-10 flex justify-center mt-4 py-2 bg-[#212e39] hover:bg-[#333] text-white rounded">
                 Checkout ${total.toFixed(2)}
               </Link>
             </div>
@@ -182,9 +162,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-      
-    </>
-  )
-}
+  );
+};
 
 export default Header

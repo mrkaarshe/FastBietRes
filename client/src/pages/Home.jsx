@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 
 import Menu from './Menu'
 import { MdAddShoppingCart } from "react-icons/md";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa"
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from '../Store/Cart'
 import { Link } from 'react-router-dom';
@@ -68,38 +69,43 @@ const handleAddToCart = (item) => {
 
   return (
     <>
-      <div className="  w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col justify-around items-center mt-10   lg:flex-row ">
+      <div className="  w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col justify-around items-center mt-10 font-Poppins  lg:flex-row ">
 
         
-        <div data-aos="fade-right" className=" mt-15 w-screen md:w-1/1 lg:w-1/2 mx-2 px-2 md:mx-5 ">
-          <p className="text-[#fa961d] text-4xl md:text-6xl lg:text-8xl font-bold font-mono ">FastBite</p>
-          <p className="text-xl mb-3 font-bold lg:text-6xl max-w-3xl text-gray-300">
-            The Fastest Food Delivery in <span className="text-[#fa961d]">Somalia</span>
+        <div data-aos="fade-right" className=" mt-15 w-screen md:w-1/1 lg:w-1/2 mx-2 px-2 md:mx-5 flex flex-col  text-space-y-1 lg:space-y-2">
+          <p className="text-cyan-500 text-6xl md:text-7xl lg:text-8xl font-bold  ">FastBite</p>
+          <p className="text-3xl mb-3 font-bold lg:text-6xl max-w-4xl text-gray-300">
+            The Fastest Food Delivery in <span className="text-cyan-500 text-4xl">Somalia</span>
           </p>
-          <p className="text-gray-300 text-xs font-semibold sm:text-lg max-w-sm lg:max-w-2xl">
-            Where speed meets flavor – enjoy chef-crafted dishes delivered with passion and quality, right to your doorstepion.
+          <p className="text-gray-400 text-xs font-semibold sm:text-md md:text-[16px]  max-w-sm lg:max-w-3xl">
+            Where speed meets flavor — enjoy chef-crafted dishes prepared with passion and delivered with perfection. Every bite is a blend of freshness, flavor, and quality — from our kitchen to your doorstep. Whether you’re craving something spicy, sweet, or savory, our chefs bring restaurant-quality meals straight to your home — hot, fast, and full of love.
           </p>
-         <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-5 lg:mt-10 lg:w-1/2'>
-           <Link to={'/menu'} className=' bg-[#fa961d] w-[95%] py-2 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 border-[#fa961d] '>View Menu</Link>
-           <button className='border-2  border-[#fa961d] w-[95%] py-2 rounded-lg font-bold hover:bg-[#fa961d] text-white transition-colors duration-300 hover:border-0'>Sea More</button>
+         <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-5 lg:mt-10 lg:w-1/1'>
+           <Link to={'/menu'} className=' bg-cyan-600  border-slate-600 w-1/1 md:w-1/1 py-4 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 '>View Menu</Link>
+           <button className='border-2  border-slate-600 w-1/1 md:w-1/1 py-4 rounded-lg font-bold hover:bg-sky-600 text-white transition-colors duration-300 hover:border-0'>Sea More</button>
          </div>
+                   <div className="flex gap-4 justify-start items-center mt-4">
+                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-cyan-500 border-2 border-slate-600  rounded-full text-white text-xl"><FaFacebook /></a>
+                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-cyan-500 border-2 border-slate-600 rounded-full text-white text-xl"><FaInstagram /></a>
+                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-cyan-500 border-2 border-slate-600 rounded-full text-white text-xl"><FaTwitter /></a>
+                   </div>
         </div>
 
         {/* Cards Section */}
-      <div data-aos="fade-left" className=' bg-gradient-to-r from-[#1d242c] to-[#1a2129]  mt-30 rounded-xl w-screen sm:w-sm md:w-1/1 mx-10  lg:w-1/2  z-10  pb-10'>
+      <div data-aos="fade-left" className=' bg-gradient-to-r from-slate-700/10 to-slate-800  mt-30 rounded-xl w-screen sm:w-sm md:w-1/1 mx-10  lg:w-1/2  z-10  pb-10'>
        
           <div className="flex flex-col  md:felx-row   sm:mt-10 md:mt-20 sm:pt-5  ">
-         <h2 className='text-3xl text-[#fa961d] text-center font-bold '>our specialist</h2>
+         <h2 className='text-3xl text-cyan-300 text-center font-bold '>Our Specialist</h2>
             <div className='grid grid-cols-1  md:grid-cols-2  md:gap-5     p-2 lg:p-5 '>
             {items.map((item) => (
               <div data-aos="fade-up" key={item.id} className=" relative ">
 
-                <div className="mt-5 shadow-lg p-2 gap-1  rounded-full  flex justify-around  pt-2 min-w-sm lg:min-w-[300px]   lg:mx-2 border-t-4 border-[#fa961d] relative z-100">
+                <div className="mt-5 shadow-lg p-2 gap-1  rounded-full  flex justify-around  pt-2 min-w-sm lg:min-w-[300px]   lg:mx-2 border-t-4 border-slate-600 relative z-100">
                  <div className="">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-28 h-28 object-cover rounded-full shadow-lg border-4 border-[#fa961d] hover:scale-125 duration-300 transition-transform cursor-pointer"
+                    className="w-28 h-28 object-cover rounded-full shadow-lg border-4 border-slate-600 hover:scale-125 duration-300 transition-transform cursor-pointer"
                   />
                 </div>
                   <div className="text-center">
@@ -107,7 +113,7 @@ const handleAddToCart = (item) => {
                     <p className="mt-1 text-sm text-gray-300">{item.subtitle}</p>
 
                     <div className="">
-                      <span className="text-xl font-bold text-[#fa961d]">${item.price}</span>
+                      <span className="text-xl font-bold text-cyan-300">${item.price}</span>
                     </div>
                   </div>
                 </div>
