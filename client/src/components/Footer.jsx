@@ -1,6 +1,9 @@
 import React from 'react'
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa"
 import { Link } from 'react-router-dom'
+import { IoLocationOutline } from "react-icons/io5";
+import { AiOutlineMail } from "react-icons/ai";
+import { BsTelephone } from "react-icons/bs";
 
 const Footer = () => {
   return (
@@ -28,9 +31,9 @@ const Footer = () => {
         {/* Contact */}
         <div className="text-xs md:text-xl ">
           <h2 className="font-bold text-gray-400 font-bol mb-4">Contact Us</h2>
-          <p className="text-gray-400 font-bol ">📍 Mogadishu, Somalia</p>
-          <p className="text-gray-400 font-bol ">📞 +252 61 101 1973</p>
-          <p className="text-gray-400 font-bol ">✉️ FastBite@gmail.com</p>
+          <p className="text-gray-400 flex gap-2 "><span className='text-yellow-500 font-bold'><IoLocationOutline/></span> Mogadishu, Somalia</p>
+          <p className="text-gray-400 flex gap-2 "><span className='text-yellow-500 font-bold'><BsTelephone/></span>252 61 101 1973</p>
+          <p className="text-gray-400 flex gap-2 "><span className='text-yellow-500 font-bold'><AiOutlineMail/></span> FastBite@gmail.com</p>
 
           {/* Socials */}
           <div className="flex gap-4 mt-4">
