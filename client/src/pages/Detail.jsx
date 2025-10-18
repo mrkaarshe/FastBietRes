@@ -34,7 +34,7 @@ const Detail = () => {
     fetchFood();
   }, [id, navigate]);
 
-  if (!product) return <div className="my-50 max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-t-4  border-cyan-400 animate-spin"></div>;
+  if (!product) return <div className="my-50 max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-t-4  border-yellow-500 animate-spin"></div>;
 
   const handleAddToCart = () => {
     dispatch(addToCart({ productId: product._id, quantity }));
@@ -43,21 +43,21 @@ const Detail = () => {
 
   return (
     <div className="max-w-7xl mx-auto min-h-[100vh] my-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-20">
-      <img data-aos="fade-right" src={`https://fastbietres-1.onrender.com${product.image}`} alt={product.title} className="h-88 w-88 md:h-140 md:w-150 object-center rounded-2xl" />
+      <img data-aos="fade-right" src={`https://fastbietres-1.onrender.com${product.image}`} alt={product.title} className="h-88 w-1/1  md:h-140 md:w-150 object-center rounded-2xl" />
       <div data-aos="fade-left">
-        <h1 className="text-6xl text-cyan-500 font-bold">{product.title}</h1>
+        <h1 className="text-6xl text-yellow-500 font-bold">{product.title}</h1>
         <p className="text-gray-300 text-xl font-bold mt-2">{product.subtitle}</p>
-        <p className="text-4xl font-semibold text-cyan-500 mt-4">${product.price}</p>
+        <p className="text-4xl font-semibold text-yellow-500 mt-4">${product.price}</p>
 
         {/* Quantity */}
         <div className="flex items-center gap-4 mt-6">
-          <button onClick={() => setQuantity(q => (q > 1 ? q - 1 : 1))} className="px-3 py-1 bg-cyan-500 text-white rounded">-</button>
-          <span className="text-lg text-white">{quantity}</span>
-          <button onClick={() => setQuantity(q => q + 1)} className="px-3 py-1 bg-cyan-500 text-white rounded">+</button>
+          <button onClick={() => setQuantity(q => (q > 1 ? q - 1 : 1))} className="px-3 py-1  text-4xl text-white rounded">-</button>
+          <span className="text-3xl text-yellow-500">{quantity}</span>
+          <button onClick={() => setQuantity(q => q + 1)} className="px-3 py-1 text-4xl text-white rounded">+</button>
         </div>
 
         {/* Add to Cart */}
-        <button onClick={handleAddToCart} className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-500 text-white text-lg font-medium shadow hover:bg-transparent hover:border-1 border-cyan-500 transition">
+        <button onClick={handleAddToCart} className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-yellow-500 text-white text-lg font-medium shadow hover:bg-transparent hover:border-1 border-yellow-500 transition">
           <MdAddShoppingCart /> Add to Cart
         </button>
       </div>

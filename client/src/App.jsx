@@ -15,6 +15,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthPage from './pages/AuthPage'
 import AddFood from './pages/AddFood';
+import ErrorPage from './pages/ErrorPage';
 const App = () => {
   return (
     <BrowserRouter>
@@ -31,10 +32,8 @@ const App = () => {
            <Route path="/checkout" element={<Checkout />} />
            <Route path="/contact" element={<Contact />} />
            <Route path="/add-food" element={<AddFood />} />
-
-            
            <Route path="/order-confirmed" element={<OrderConfirmed />} />
-          <Route path='*' element={<div>404 page not founs</div>} />
+          <Route path='*' element={<ErrorPage/>} />
         </Route>
         
       </Routes>

@@ -47,8 +47,8 @@ const handleSubmit = async (e) => {
 };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-800 text-cyan-400 px-4">
-      <div className="w-full max-w-md bg-slate-800 rounded-2xl shadow-2xl backdrop-blur-lg p-8 transition-all duration-300 hover:shadow-cyan-600/30">
+    <div className="min-h-screen flex items-center justify-center  text-yellow-500 px-4">
+      <div className="w-full max-w-md bg-black rounded-2xl shadow-2xl backdrop-blur-lg p-8 transition-all duration-300 hover:shadow-yellow-500/30">
         {/* Title */}
         <h1 className="text-3xl font-bold text-center mb-8 tracking-tight">
           {mode === "login" ? "Login to your account" : "Register a new account"}
@@ -56,13 +56,13 @@ const handleSubmit = async (e) => {
 
         {/* Tabs */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-slate-800 rounded-xl p-1">
+          <div className="inline-flex  border border-slate-600  rounded-xl p-1">
             <button
               onClick={() => setMode("login")}
               className={`px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 mode === "login"
-                  ? "bg-cyan-600 text-white shadow-md shadow-cyan-500/40"
-                  : "text-cyan-400 hover:text-cyan-300"
+                  ? "bg-yellow-500 text-white shadow-md shadow-yellow-500/40"
+                  : "text-white hover:text-yellow-500"
               }`}
             >
               Login
@@ -71,8 +71,8 @@ const handleSubmit = async (e) => {
               onClick={() => setMode("register")}
               className={`px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 mode === "register"
-                  ? "bg-cyan-600 text-white shadow-md shadow-cyan-500/40"
-                  : "text-cyan-400 hover:text-cyan-300"
+                  ? "bg-yellow-500 text-white shadow-md shadow-yellow-500/40"
+                  : "text-white hover:text-yellow-500"
               }`}
             >
               Register
@@ -84,13 +84,13 @@ const handleSubmit = async (e) => {
         <form onSubmit={handleSubmit} className="space-y-5">
           {mode === "register" && (
             <div>
-              <label className="block text-sm mb-1">Name</label>
+              <label className="block text-sm mb-1 text-white">Name</label>
               <input
                 type="text"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                className="w-full bg-slate-800  focus:bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none transition"
+                className="w-full bg-black  focus:bg-black text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
                 placeholder="Your Name"
                 required
               />
@@ -98,36 +98,36 @@ const handleSubmit = async (e) => {
           )}
 
           <div>
-            <label className="block text-sm mb-1">Email</label>
+            <label className="block text-sm mb-1 text-white">Email</label>
             <input
               type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full bg-slate-800  focus:bg-slate-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none transition"
+              className="w-full bg-black  focus:bg-slate-950 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
               placeholder="Email"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm mb-1">Password</label>
+            <label className="block text-sm mb-1 text-white">Password</label>
             <input
               type="password"
               name="password"
               value={form.password}
               onChange={handleChange}
-              className="w-full bg-slate-800  focus:bg-slate-800  text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-cyan-500 outline-none transition"
-              placeholder="••••••••"
+              className="w-full bg-black  focus:bg-slate-950  text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
+              placeholder="******"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 mt-2 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-900 transition-all duration-200 shadow-md shadow-cyan-600/30"
+            className="w-full py-3 mt-2 rounded-lg font-semibold bg-yellow-500  hover:from-yellow-500 hover:bg-transparent hover:border border-slate-600 hover:text-white text-slate-900 transition-all duration-200 "
           >
-           {loading ? "Loading" : mode === "login" ? "Login" : "Register"}
+           {loading ? "Loading..." : mode === "login" ? "Login" : "Register"}
 
 
           </button>
@@ -139,7 +139,7 @@ const handleSubmit = async (e) => {
             <>
               Don't have an account?{" "}
               <span
-                className="text-cyan-400 cursor-pointer hover:underline"
+                className="text-yellow-500 cursor-pointer hover:underline"
                 onClick={() => setMode("register")}
               >
                 Register
@@ -149,7 +149,7 @@ const handleSubmit = async (e) => {
             <>
               Already have an account?{" "}
               <span
-                className="text-cyan-400 cursor-pointer hover:underline"
+                className="text-yellow-500 cursor-pointer hover:underline"
                 onClick={() => setMode("login")}
               >
                 Login

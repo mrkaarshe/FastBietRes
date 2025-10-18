@@ -20,7 +20,7 @@ const Contact = () => {
       <div className="mt-25 mb-20 pb-5 "> 
         <div className=" px-2  lg:px-10">
           <div  className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-4xl font-bold text-cyan-500">Contact Us</h2>
+            <h2 className="text-4xl font-bold text-yellow-500">Contact Us</h2>
             <p className="text-gray-300 mt-4 text-xl max-w-2xl mx-auto">
              Get in touch with our team to order your favorite meals or ask about our delivery service.
             </p>
@@ -43,7 +43,7 @@ const Contact = () => {
                     name="name"
                     required
                     className="w-full px-4 py-3 border border-slate-600 placeholder-white   rounded-lg 
-                               focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent 
+                               focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent 
                                text-gray-300"
                   />
                 </div>
@@ -58,7 +58,7 @@ const Contact = () => {
                     name="email"
                     required
                     className="w-full px-4 py-3 border border-slate-600 placeholder-white   rounded-lg 
-                               focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent 
+                               focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent 
                                text-gray-300"
                   />
                 </div>
@@ -72,7 +72,7 @@ const Contact = () => {
                     id="phone"
                     name="phone"
                     className="w-full px-4 py-3 border border-slate-600 placeholder-white   rounded-lg 
-                               focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent 
+                               focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent 
                                text-gray-300"
                   />
                 </div>
@@ -86,8 +86,8 @@ const Contact = () => {
                     name="message"
                     rows="5"
                     required
-                    className="w-full px-4 py-3 border min-h-50 md:min-h-80 max-h-90 border-slate-600 placeholder-white   rounded-lg 
-                               focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent 
+                    className="w-full px-4 py-3 border min-h-50 md:min-h-85 max-h-95 border-slate-600 placeholder-white   rounded-lg 
+                               focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent 
                                text-gray-300"
                   ></textarea>
                 </div>
@@ -95,7 +95,7 @@ const Contact = () => {
                 <div>
                   <button
                     type="submit"
-                    className="w-full bg-cyan-500 hover:bg-transparent hover:border-1 border-slate-600 text-white font-bold py-3 px-6 
+                    className="w-full bg-yellow-500 hover:bg-transparent hover:border-1 border-slate-600 text-white font-bold py-3 px-6 
                                rounded-lg transition duration-300 shadow-md hover:shadow-lg"
                   >
                     Send Message
@@ -123,7 +123,7 @@ const Contact = () => {
                   <div className="space-y-6">
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 bg-cyan-500 hover:bg-transparent hover:border border-slate-600 text-white rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-yellow-500 hover:bg-transparent hover:border border-slate-600 text-white rounded-full flex items-center justify-center">
                           <LuMapPin/>
                         </div>
                       </div>
@@ -135,7 +135,7 @@ const Contact = () => {
 
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 bg-cyan-500 hover:bg-transparent hover:border border-slate-600 text-white rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-yellow-500 hover:bg-transparent hover:border border-slate-600 text-white rounded-full flex items-center justify-center">
                          <MdOutlineLocalPhone/>
                         </div>
                       </div>
@@ -147,7 +147,7 @@ const Contact = () => {
 
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 bg-cyan-500 hover:bg-transparent hover:border border-slate-600  text-white rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-yellow-500 hover:bg-transparent hover:border border-slate-600  text-white rounded-full flex items-center justify-center">
                         
                         <MdOutlineEmail/>
                         </div>
@@ -160,7 +160,7 @@ const Contact = () => {
 
                     <div className="flex items-start">
                       <div className="flex-shrink-0 mt-1">
-                        <div className="w-10 h-10 bg-cyan-500 hover:bg-transparent hover:border border-slate-600  text-white rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-yellow-500 hover:bg-transparent hover:border border-slate-600  text-white rounded-full flex items-center justify-center">
                           <FaRegClock/>
                         </div>
                       </div>
@@ -180,28 +180,28 @@ const Contact = () => {
                     <div className="flex space-x-4">
                       <a
                         href="#"
-                        className="w-10 h-10 bg-cyan-500 hover:border border-slate-600   text-white hover:bg-transparent rounded-full 
+                        className="w-10 h-10 bg-yellow-500 hover:border border-slate-600   text-white hover:bg-transparent rounded-full 
                                    flex items-center justify-center  transition-colors"
                       >
                        <FaFacebook/>  
                       </a>
                       <a
                         href="#"
-                        className="w-10 h-10 bg-cyan-500 hover:border border-slate-600  text-white  hover:bg-transparent rounded-full 
+                        className="w-10 h-10 bg-yellow-500 hover:border border-slate-600  text-white  hover:bg-transparent rounded-full 
                                    flex items-center justify-center  transition-colors"
                       >
                         <FaInstagram/>
                       </a>
                       <a
                         href="#"
-                        className="w-10 h-10 bg-cyan-500 hover:border border-slate-600  text-white hover:bg-transparent rounded-full 
+                        className="w-10 h-10 bg-yellow-500 hover:border border-slate-600  text-white hover:bg-transparent rounded-full 
                                    flex items-center justify-center  transition-colors"
                       >
                         <FaWhatsapp/>
                       </a>
                       <a
                         href="#"
-                        className="w-10 h-10 bg-cyan-500 hover:border border-slate-600 text-white hover:bg-transparent rounded-full 
+                        className="w-10 h-10 bg-yellow-500 hover:border border-slate-600 text-white hover:bg-transparent rounded-full 
                                    flex items-center justify-center  transition-colors"
                       >
                         <FaTwitter/>

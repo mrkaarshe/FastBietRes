@@ -15,15 +15,15 @@ const imageUrl = product?.image
       <div className="flex items-center gap-3">
         <img src={`https://fastbietres-1.onrender.com${product.image}`} alt={product.title} className="w-16 h-16 object-cover rounded" />
         <div>
-          <h3 className="font-semibold text-gray-300">{product.title}</h3>
-          <p className="text-gray-300">${product.price}</p>
+          <h3 className="font-semibold text-xs text-gray-300">{product.title}</h3>
+          <p className="text-yellow-500">${product.price}</p>
         </div>
       </div>
       <div className="flex items-center gap-5">
-        <button onClick={onDecrease} className="px-2 bg-cyan-400 text-white rounded">-</button>
+        <button onClick={onDecrease} className="px-2 text-2xl text-white rounded">-</button>
         <span className="text-gray-300">{quantity}</span>
-        <button onClick={onIncrease} className="px-2 bg-cyan-400 text-white rounded">+</button>
-        <button onClick={onRemove} className="text-xl text-cyan-400 rounded"><FaTrash /></button>
+        <button onClick={onIncrease} className="px-2  text-white rounded">+</button>
+        <button onClick={onRemove} className="text-xl text-yellow-500 rounded"><FaTrash /></button>
       </div>
     </div>
   );
