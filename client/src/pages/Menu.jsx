@@ -74,7 +74,7 @@ const Menu = () => {
 
   return (
     <>
-      <div className="lg:px-15 pt-16 pb-6 w-screen mx-auto font-Poppins mb-6 rounded-2xl">
+      <div className="lg:px-15 pt-20 pb-6 w-screen min-h-screen mx-auto font-Poppins mb-6 rounded-2xl">
         <h2 className="text-4xl text-center md:text-6xl font-extrabold mb-12 text-yellow-500">
           Our Hot Dishes
         </h2>

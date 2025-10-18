@@ -128,7 +128,7 @@ const Checkout = () => {
       {/* Right: Order Summary */}
       <div data-aos="fade-left" className="min-w-[350px] max-w-lg p-6 sm:p-2 shadow rounded-lg">
         <h2 className="text-2xl font-bold mb-4 text-yellow-500">Order Summary</h2>
-        <div className="max-h-136 overflow-auto">
+        <div className="max-h-80 overflow-auto ">
           {cart.map((item) => {
             const product = cartProducts.find((p) => p._id === item.productId); // ✅ sax
             if (!product) return null;

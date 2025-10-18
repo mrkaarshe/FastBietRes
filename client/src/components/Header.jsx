@@ -79,7 +79,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:block relative">
-          <ul className="flex gap-4 text-md">
+          <ul className="flex gap-2 text-md">
             <span className="text-yellow-500 ">1</span>
             <Link to='/home' className="text-yellow-500 border-b-2 font-Poppins  hover:scale-110">Home</Link>
             <span className="text-gray-200 ">2</span>
@@ -159,7 +159,7 @@ const Header = () => {
               <button onClick={() => setOpen(false)} className="text-gray-100 text-2xl"><IoMdClose /></button>
             </div>
 
-            <div className="w-[350px] max-w-300 max-h-82 overflow-auto mb-10">
+            <div className="w-[350px] max-w-300 max-h-82 pb-10 overflow-auto mb-10">
               <div className="p-4 flex flex-col gap-4 rounded-lg">
                 <Cart products={products} fallbackLink="#" />
               </div>
