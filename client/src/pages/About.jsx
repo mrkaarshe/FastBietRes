@@ -26,7 +26,7 @@ const About = () => {
           data-aos="fade-right"
           src={hero}
           alt="Our restaurant"
-          className="h-150 w-1/1 rounded-2xl border border-slate-600 object-cover shadow-lg hover:shadow-cyan-500/20 transition"
+          className="h-150 w-[900px] rounded-2xl border border-slate-600 object-cover shadow-lg hover:shadow-cyan-500/20 transition"
         />
 
       <div data-aos="fade-left" className="flex flex-col gap-5">
