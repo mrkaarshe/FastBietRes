@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AuthPage from './pages/AuthPage'
 import AddFood from './pages/AddFood';
 import ErrorPage from './pages/ErrorPage';
+import Profile from './pages/Peofile';
 const App = () => {
   return (
     <BrowserRouter>
@@ -33,6 +34,7 @@ const App = () => {
            <Route path="/contact" element={<Contact />} />
            <Route path="/add-food" element={<AddFood />} />
            <Route path="/order-confirmed" element={<OrderConfirmed />} />
+           <Route path='/profile' element={<Profile />} />
           <Route path='*' element={<ErrorPage/>} />
         </Route>
         

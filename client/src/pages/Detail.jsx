@@ -37,20 +37,20 @@ const Detail = () => {
   if (!product) return <div className="my-50 max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-t-4  border-yellow-500 animate-spin"></div>;
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ productId: product._id, quantity }));
+    dispatch(addToCart({ productId: product._id, product: product , quantity }));
     navigate("/home");
   };
 
   return (
-    <div className="max-w-7xl mx-auto min-h-[100vh] my-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-20">
-      <img data-aos="fade-right" src={`https://fastbietres-1.onrender.com${product.image}`} alt={product.title} className="h-88 w-1/1  md:h-140 md:w-150 object-center rounded-2xl" />
+    <div className="max-w-7xl mx-auto min-h-[100vh] my-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-10">
+      <img data-aos="fade-right" src={`https://fastbietres-1.onrender.com${product.image}`} alt={product.title} className="h-110 w-1/1  md:h-140 md:w-150 object-center rounded-2xl" />
       <div data-aos="fade-left">
         <h1 className="text-6xl text-yellow-500 font-bold">{product.title}</h1>
-        <p className="text-gray-300 text-xl font-bold mt-2">{product.subtitle}</p>
-        <p className="text-4xl font-semibold text-yellow-500 mt-4">${product.price}</p>
+        <p className="text-gray-300 text-xl font-bold mt-1">{product.subtitle}</p>
+        <p className="text-4xl font-semibold text-yellow-500 ">${product.price}</p>
 
         {/* Quantity */}
-        <div className="flex items-center gap-4 mt-6">
+        <div className="flex items-center gap-4 mt-1">
           <button onClick={() => setQuantity(q => (q > 1 ? q - 1 : 1))} className="px-3 py-1  text-4xl text-white rounded">-</button>
           <span className="text-3xl text-yellow-500">{quantity}</span>
           <button onClick={() => setQuantity(q => q + 1)} className="px-3 py-1 text-4xl text-white rounded">+</button>

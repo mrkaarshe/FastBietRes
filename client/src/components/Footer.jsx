@@ -18,28 +18,40 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="text-xs md:text-xl">
+        <div className="text-xs md:text-sm">
           <h2 className="text-sm font-bold text-gray-400 f mb-4">Quick Links</h2>
-          <ul className="space-y-1   text-gray-400 font-bol">
-            <li><Link to={'/home'} className="hover:text-yellow-500 text-white ">Home</Link></li>
-            <li><Link  to={'/about'} className="hover:text-yellow-500 text-white ">About</Link></li>
-            <li><Link to={'/menu'}  className="hover:text-yellow-500 text-white ">Menu</Link></li>
-            <li><Link  to={'/contact'} className="hover:text-yellow-500 text-white ">Contact Us</Link></li>
+          <ul className="flex flex-col gap-2  px-4 max-w-1/1 mx-auto text-gray-300">
+            <div className="flex gap-3 jusfty-center">
+            <span className="">1</span>
+            <Link to='/home' className="  font-Poppins  hover:scale-110 hover:text-yellow-500">Home</Link>
+            </div>
+            <div className="flex gap-3 jusfty-center">
+            <span className="text-gray-300 ">2</span>
+            <Link to='/about' className="text-gray-300 font-Poppins  hover:scale-110 hover:text-yellow-500">About</Link>
+            </div>
+              <div className="flex gap-3 jusfty-center">
+            <span className="text-gray-300 ">3</span>
+            <Link to='/menu' className="text-gray-300 font-Poppins  hover:scale-110 hover:text-yellow-500">Menu</Link>
+            </div>
+                        <div className="flex gap-3 jusfty-center">
+            <span className="text-gray-300 ">4</span>
+            <Link to='/contact' className="text-gray-300 font-Poppins  hover:scale-110 hover:text-yellow-500">Contact</Link>
+            </div>
           </ul>
         </div>
 
         {/* Contact */}
-        <div className="text-xs md:text-xl ">
+        <div className="text-xs md:text-sm ">
           <h2 className="font-bold text-gray-400 font-bol mb-4">Contact Us</h2>
           <p className="text-gray-400 flex gap-2 "><span className='text-yellow-500 font-bold'><IoLocationOutline/></span> Mogadishu, Somalia</p>
           <p className="text-gray-400 flex gap-2 "><span className='text-yellow-500 font-bold'><BsTelephone/></span>252 61 101 1973</p>
           <p className="text-gray-400 flex gap-2 "><span className='text-yellow-500 font-bold'><AiOutlineMail/></span> FastBite@gmail.com</p>
 
           {/* Socials */}
-          <div className="flex gap-4 mt-4">
-            <a href="#" className=" bg-yellow-500 w-10 h-10 flex justify-center items-center hover:bg-transparent hover:border-2 border-yellow-500  rounded-full text-white text-xl"><FaFacebook /></a>
-            <a href="#" className=" bg-yellow-500 w-10 h-10 flex justify-center items-center hover:bg-transparent hover:border-2 border-yellow-500 rounded-full text-white text-xl"><FaInstagram /></a>
-            <a href="#" className=" bg-yellow-500 w-10 h-10 flex justify-center items-center hover:bg-transparent hover:border-2 border-yellow-500 rounded-full text-white text-xl"><FaTwitter /></a>
+          <div className="flex gap-4 mt-3">
+            <a href="#" className="border hover:border-yellow-500 w-10 h-10 flex justify-center items-center hover:bg-transparent hover:border-2 border-gray-400  rounded-full text-white text-xl"><FaFacebook /></a>
+            <a href="#" className="border hover:border-yellow-500 w-10 h-10 flex justify-center items-center hover:bg-transparent hover:border-2 border-gray-400 rounded-full text-white text-xl"><FaInstagram /></a>
+            <a href="#" className="border hover:border-yellow-500 w-10 h-10 flex justify-center items-center hover:bg-transparent hover:border-2 border-gray-400 rounded-full text-white text-xl"><FaTwitter /></a>
           </div>
         </div>
       </div>

@@ -81,13 +81,13 @@ const handleAddToCart = (item) => {
             Where speed meets flavor — enjoy chef-crafted dishes prepared with passion and delivered with perfection. Every bite is a blend of freshness, flavor, and quality — from our kitchen to your doorstep. Whether you’re craving something spicy, sweet, or savory, our chefs bring restaurant-quality meals straight to your home — hot, fast, and full of love.
           </p>
          <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-5 lg:mt-10 lg:w-1/1'>
-           <Link to={'/menu'} className='bg-yellow-500 border-slate-600 w-[95%] md:w-1/1 py-4 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 '>View Menu</Link>
-           <button className='border-2  border-slate-600 w-[95%] md:w-1/1 py-4 rounded-lg font-bold hover:bg-yellow-500 text-white transition-colors duration-300 hover:border-0'>Sea More</button>
+           <Link to={'/menu'} className='bg-yellow-500 border-gray-800 w-[95%] md:w-1/1 py-4 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 '>View Menu</Link>
+           <button className='border-2  border-gray-800 w-[95%] md:w-1/1 py-4 rounded-lg font-bold hover:bg-yellow-500 text-white transition-colors duration-300 hover:border-0'>Sea More</button>
          </div>
                    <div className="flex gap-4 justify-start items-center mt-4">
-                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-yellow-500 border-2 border-slate-600  rounded-full text-white text-xl"><FaFacebook /></a>
-                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-yellow-500 border-2 border-slate-600 rounded-full text-white text-xl"><FaInstagram /></a>
-                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-yellow-500 border-2 border-slate-600 rounded-full text-white text-xl"><FaTwitter /></a>
+                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-yellow-500 border-2 border-gray-800  rounded-full text-white text-xl"><FaFacebook /></a>
+                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-yellow-500 border-2 border-gray-800 rounded-full text-white text-xl"><FaInstagram /></a>
+                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-yellow-500 border-2 border-gray-800 rounded-full text-white text-xl"><FaTwitter /></a>
                    </div>
         </div>
 
@@ -105,7 +105,7 @@ const handleAddToCart = (item) => {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-35 h-35 object-cover rounded-full shadow-lg border-4 border-slate-600 hover:scale-125 duration-300 transition-transform cursor-pointer"
+                    className="w-35 h-35 object-cover rounded-full shadow-lg border-4 border-gray-800 hover:scale-125 duration-300 transition-transform cursor-pointer"
                   />
                 </div>
                   <div className="text-center">

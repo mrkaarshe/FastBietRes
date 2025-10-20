@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaAlignRight, FaShopify, FaUser } from "react-icons/fa";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { CiUser, CiLogout } from "react-icons/ci";
+import { FiUser } from "react-icons/fi"
 import { IoMdClose } from "react-icons/io";
 import { PiSignIn } from "react-icons/pi";
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,21 +60,11 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('cart');
-    dispatch(clearCart())
-    dispatch(logout());
-  
-    navigate('/login');
-    setTogelProfile(false);
-    toast.success("Logged out successfully");
-  };
+
 
   return (
     <div>
-      <div className="py-4 w-[97%] md:w-full mx-auto shadow-sm shadow-slate-600 backdrop-blur-xl flex gap-x-10 justify-between items-center px-5 rounded-lg fixed top-[1px] left-1.5 text-gray-700 font-bold z-90">
+      <div className="py-4 w-[97%] md:w-full mx-auto shadow-sm shadow-slate-900 backdrop-blur-xl flex gap-x-10 justify-between items-center rounded-lg fixed top-[1px] px-2 md:px-7 left-1.5 text-gray-700 font-bold z-90">
         {/* Logo */}
         <div className="text-yellow-500 font-Poppins font-bold  text-xl">FastBite</div>
 
@@ -92,37 +83,31 @@ const Header = () => {
         </div>
 
         {/* Right icons */}
-        <div className="relative flex justify-between items-center gap-8">
+        <div className="relative flex justify-between items-center gap-6">
           {/* Cart icon */}
-          <button onClick={() => setOpen(!open)} className="text-3xl  text-yellow-500 hover:text-white relative">
-            <span className="absolute text-[20px] -top-3 -right-4  text-gray-300 px-1 rounded-full">{TotalQuantity}</span>
-            <IoFastFoodOutline />
+          <button onClick={() => setOpen(!open)} className="text-3xl  text-white hover:text-yellow-500 relative">
+            <span className="absolute text-[20px] -top-3 -right-4  text-yellow-500 px-1 rounded-full">{TotalQuantity}</span>
+            <IoFastFoodOutline className='font-extralight' size={23}/>
           </button>
 
           {/* Profile dropdown */}
           {user ? (
             <div className="relative">
-              <div className="border-2 rounded-full p-2 cursor-pointer" onClick={() => setTogelProfile(!togelProfile)}>
-                <p className="text-2xl text-yellow-500 hover:text-white">{togelProfile ? <IoMdClose /> : <FaUser />}</p>
-              </div>
-
-              <div className={`fixed top-19 right-0 border bg-gray-950 rounded-2xl p-5 min-w-[250px] min-h-[120px] shadow-2xl flex flex-col gap-2 transform transition-all ease-in-out duration-300 ${togelProfile ? "translate-x-0 opacity-100" : "translate-x-[1000px] opacity-0 pointer-events-none"}`}>
-                <div className="flex justify-between h-20 items-center text-white">
-                  <div className="flex items-center gap-2"><CiUser className="text-yellow-500 text-2xl" />@{user?.name || 'User'}</div>
-                  <div className="flex items-center gap-2"><CiLogout className="text-yellow-500 text-2xl" /><button onClick={handleLogout} className="text-white font-bold">Log Out</button></div>
-                </div>
-              </div>
+              <Link to={'/profile'}  className="flex justify-center items-center  text-black px-2 p-1" >
+                <p className="text-2xl hover:text-yellow-500 text-white">{togelProfile ? <IoMdClose /> : <FiUser size={28}/> }</p>
+                
+              </Link>
             </div>
           ) : (
-            <Link to="/login" className="text-white border-2 rounded-full border-slate-600 hover:border-yellow-500 hover:text-yellow-400 transition-colors py-2 px-5 text-sm font-extrabold flex justify-center items-center gap-3">
-              <PiSignIn className="text-lg text-yellow-500" />
+            <Link to="/login" className="text-white rounded border-yellow-500 hover:border-yellow-500 hover:text-yellow-400 transition-colors py-2 px-5 text-sm font-extrabold flex justify-center items-center gap-3">
+              <PiSignIn className='font-extralight' size={23} />
               SignIn
             </Link>
           )}
 
           {/* Mobile menu toggle */}
-          <button id="mobile-toggle" onClick={() => setTogle(!togel)} className="block md:hidden text-2xl text-yellow-500 hover:text-white">
-            {togel ? <FaAlignRight /> : <IoMdClose />}
+          <button id="mobile-toggle" onClick={() => setTogle(!togel)} className="block md:hidden text-2xl hover:text-yellow-500 text-white">
+            {togel ? <FaAlignRight className='font-extralight' size={23} /> : <IoMdClose className='font-extralight' size={23}/>}
           </button>
         </div>
 

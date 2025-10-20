@@ -28,13 +28,13 @@ const Contact = () => {
 
           <div className="grid grid-cols-1  lg:grid-cols-2 gap-12">
 
-    <div id='contact' className='flex   px-3 gap-10'>
+    <div id='contact' className='flex flex-col  px-3 gap-10'>
 
-    <div  data-aos="fade-up" className='w-full flex flex-col  md:flex-row gap-10 '>
+    <div  data-aos="fade-up" className='w-full grid grid-cols-1 md:grid-cols-2 gap-10 '>
     <div  data-aos="fade-right" className='flex flex-col gap-5 w-full sm:w-1/1 md:w-1/1 lg:w-1/2'>
                 <h2 className='text-yellow-500 my-'>CONTACT-INFO</h2>
             <div className='flex gap-3'>
-                <div className=' border-1 border-slate-600 rounded-lg hover:border-white hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
+                <div className=' border-1 border-gray-800 rounded-lg hover:border-white hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
                 < LuMapPin />
             </div>
             <div className='h-5'>
@@ -46,7 +46,7 @@ const Contact = () => {
             </div>
 
             <div className='flex gap-3'>
-                <div className=' border-1 border-slate-600 rounded-lg hover:border-green-500 hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
+                <div className=' border-1 border-gray-800 rounded-lg hover:border-green-500 hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
                 <MdOutlineLocalPhone />
             </div>
             <div className='h-5'>
@@ -60,7 +60,7 @@ const Contact = () => {
          
 
             <div className='flex gap-3'>
-                <div className=' border-1 border-slate-600 rounded-lg hover:border-red-400 hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-400'>
+                <div className=' border-1 border-gray-800 rounded-lg hover:border-red-400 hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-400'>
                <FaRegClock />
             </div>
             <div className='h-5'>
@@ -76,29 +76,54 @@ const Contact = () => {
             </div>
 
             <div className='flex gap-3'>
-                    <p className='h-20 rounded-full flex justify-center items-center w-20 text-white border-1 border-slate-600 hover:border-white'>< FaEnvelope size={20}/></p>
-                    <p className='h-20 rounded-full flex justify-center items-center w-20 text-white border-1 border-slate-600 hover:border-green-500'><FaWhatsapp  size={20}/></p>
-                    <p className='h-20 rounded-full flex justify-center items-center w-20 text-white border-1 border-slate-600 hover:border-red-400'><FaFacebook size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-white'>< FaEnvelope size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-green-500'><FaWhatsapp  size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-blue-400'><FaFacebook  size={20}/></p>
             </div>
 
         </div>
 
         <div className=' w-full rounded-2xl  p- flex flex-col gap-5'>
-                <h2 className='text-white text-2xl'>Lets Work <span className='text-yellow-500'>To Gether</span></h2>
+                <h2 className='text-white text-2xl'>We’d Love to Hear From <span className='text-yellow-500'>You</span></h2>
             <form  className='flex flex-col gap-5'>
-                    <input type="text" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-slate-700  focus:ring-yellow-500 outline-0  ' required placeholder='Your Name' />
-                    <input type="email" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-slate-700 focus:ring-yellow-500  outline-0 ' required placeholder='Your Email' />
-                    <input type="text" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-slate-700 focus:ring-yellow-500 outline-0 ' required placeholder='Your Phone' />
-                    <textarea name="" className=' min-h-40 min-w-focus:ring-yellow-500ull text-white  max-h-40 border-2 border-slate-700 focus:ring-yellow-500 outline-0  rounded-lg placeholder-[#14ca8d p-5' placeholder='type---' id=""></textarea>
-                    <button  className='w-full hover:border-2 bg-yellow-500 border-slate-600 text-white rounded-lg py-4 hover:bg-transparent transform-colors duration-300'>Send</button>
+                    <input type="text" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-gray-800 focus:ring-yellow-500 outline-0  ' required placeholder='Your Name' />
+                    <input type="email" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-gray-800 focus:ring-yellow-500  outline-0 ' required placeholder='Your Email' />
+                    <input type="text" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-gray-800 focus:ring-yellow-500 outline-0 ' required placeholder='Your Phone' />
+                    <textarea name="" className=' min-h-40 min-w-focus:ring-yellow-500ull text-white  max-h-40 border-2 border-gray-800 focus:ring-yellow-500 outline-0  rounded-lg placeholder-[#14ca8d p-5' placeholder='type---' id=""></textarea>
+                    <button  className='w-full hover:border-2 bg-yellow-500 border-gray-800 text-white rounded-lg py-4 hover:bg-transparent transform-colors duration-300'>Send</button>
             </form>
+        </div>
+ 
+            
+    </div>
+           <div className='border border-gray-800 text-gray-300 p-7 rounded-lg w-1/1 '>
+          <div>Reservations</div>
+              <div>For the best dining experience, we recommend making a reservation.</div>
+            
+            
+              <div className="space-y-4">
+                <p className="text-muted-foreground">
+                  Call us at <span className="font-semibold text-yellow-500">(+252611011973) FAST-BITE</span> 
+                </p>
+                <div className="space-y-2 text-gray-300">
+                  <p className="text-sm">
+                    <strong>Party Size:</strong> We accommodate parties of 1-12 guests
+                  </p>
+                  <p className="text-sm">
+                    <strong>Cancellation:</strong> Please provide 24-hour notice
+                  </p>
+                  <p className="text-sm">
+                    <strong>Special Occasions:</strong> Let us know about birthdays, anniversaries, or special dietary
+                    needs
+                  </p>
+                </div>
+
+              </div>
+
         </div>
 
     </div>
-    
-
-    </div>
-      <div className="h-[465px] w-full rounded-lg overflow-hidden" data-aos="fade-left">
+      <div className="h-[720px] w-full rounded-lg overflow-hidden" data-aos="fade-left">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.9601327172354!2d45.309051470227764!3d2.042475209763933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5843ffa8a16db3%3A0x909f40422de8119d!2sTaleex!5e0!3m2!1sen!2sso!4v1758471149260!5m2!1sen!2sso"
                     width="100%"
