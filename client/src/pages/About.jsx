@@ -21,7 +21,7 @@ const About = () => {
       </h2>
 
       {/* OUR STORY */}
-      <section className=" mx-auto pt-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <section className=" mx-auto pt-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-10 items-center">
         <img
           data-aos="fade-right"
           src={hero}

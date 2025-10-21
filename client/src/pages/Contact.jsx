@@ -26,7 +26,7 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1  lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-1 xl:grid-cols-2 gap-12">
 
     <div id='contact' className='flex flex-col  px-3 gap-10'>
 
@@ -67,9 +67,9 @@ const Contact = () => {
          
                         <h4 className="font-medium text-gray-300">Working Hours</h4>
                         <p className="text-gray-400 mt-1 text-xs">
-                          Saturday - Wednesday: 9am - 6pm <br />
-                          Saturday: 10am - 4pm <br />
-                          Friday: Closed
+                          Saturday - Wednesday: 9am - 12pm <br />
+                          Saturday: 10am - 12pm <br />
+                          Friday: Morning Closed
                         </p>
             </div>
             
@@ -123,7 +123,7 @@ const Contact = () => {
         </div>
 
     </div>
-      <div className="h-[720px] w-full rounded-lg overflow-hidden" data-aos="fade-left">
+      <div className="h-[400px] md:h-[720px] w-full rounded-lg overflow-hidden" data-aos="fade-left">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.9601327172354!2d45.309051470227764!3d2.042475209763933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5843ffa8a16db3%3A0x909f40422de8119d!2sTaleex!5e0!3m2!1sen!2sso!4v1758471149260!5m2!1sen!2sso"
                     width="100%"

@@ -6,7 +6,7 @@ import 'aos/dist/aos.css';
 
 import Menu from './Menu'
 import { MdAddShoppingCart } from "react-icons/md";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa"
+import { FaFacebook, FaEnvelope, FaWhatsapp } from "react-icons/fa"
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from '../Store/Cart'
 import { Link } from 'react-router-dom';
@@ -82,17 +82,17 @@ const handleAddToCart = (item) => {
           </p>
          <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-5 lg:mt-10 lg:w-1/1'>
            <Link to={'/menu'} className='bg-yellow-500 border-gray-800 w-[95%] md:w-1/1 py-4 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 '>View Menu</Link>
-           <button className='border-2  border-gray-800 w-[95%] md:w-1/1 py-4 rounded-lg font-bold hover:bg-yellow-500 text-white transition-colors duration-300 hover:border-0'>Sea More</button>
+           <button className='border-2  border-gray-800 w-[95%] md:w-1/1 py-4 rounded-lg font-bold hover:bg-yellow-500 text-white transition-colors duration-300 hover:border-0'>See More</button>
          </div>
-                   <div className="flex gap-4 justify-start items-center mt-4">
-                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-yellow-500 border-2 border-gray-800  rounded-full text-white text-xl"><FaFacebook /></a>
-                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-yellow-500 border-2 border-gray-800 rounded-full text-white text-xl"><FaInstagram /></a>
-                     <a href="#" className=" w-15 h-15 flex justify-center items-center hover:text-yellow-500 border-2 border-gray-800 rounded-full text-white text-xl"><FaTwitter /></a>
-                   </div>
+            <div className='flex gap-3 mt-5'>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-white'>< FaEnvelope size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-green-500'><FaWhatsapp  size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-blue-400'><FaFacebook  size={20}/></p>
+            </div>
         </div>
 
         {/* Cards Section */}
-      <div data-aos="fade-left" className=' bg-gradient-to-r from-slate-900/20 to-slate-950/30  mt-30 rounded-xl w-screen sm:w-sm md:w-1/1 mx-10  lg:w-1/2  z-10  pb-10'>
+      <div data-aos="fade-left" className=' bg-gradient-to-r from-slate-950/70 to-slate-950/30  mt-30 rounded-xl w-screen sm:w-sm md:w-1/1 mx-10  lg:w-1/2  z-10  pb-10'>
        
           <div className="flex flex-col  md:felx-row   sm:mt-10 md:mt-15 sm:pt-5  ">
          <h2 className='text-5xl text-yellow-300 text-center font-bold '>Our Specialist</h2>

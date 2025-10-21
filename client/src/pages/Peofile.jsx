@@ -78,9 +78,17 @@ const Profile = () => {
     navigate('/home');
     toast.success("Logged out successfully");
   };
+  const handleClearCart = () => {
+    if(cart.length ===0){
+      toast.info("Cart is already empty");
+      return;
+    }
+    dispatch(clearCart());
+    toast.success("Cart cleared successfully");
+  }
 
   return (
-    <div className="p-6 text-gray-300 space-y-6 min-h-[95vh] font-Poppins px-4 md:px-10 lg:px-20">
+    <div className="p-6 text-gray-300 space-y-6 min-h-[95vh] font-Poppins px-4 max-w-7xl mx-auto">
       <div className="mt-30">
         <p className="text-xl text-gray-300">
           Welcome, <strong className="text-yellow-500 text-2xl">@{user.name}</strong>
@@ -93,7 +101,7 @@ const Profile = () => {
       {/* Grid top */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Profile Info */}
-        <div className="p-4 bg-black border border-gray-800 rounded-lg">
+        <div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl">
           <h3 className="text-xl font-semibold mb-3 text-yellow-500">Profile Information</h3>
           <p className="text-yellow-500 font-light flex  items-center gap-2 mb-2">
             <FiUser/> <strong className="text-gray-300">@{user.name}</strong>
@@ -107,7 +115,7 @@ const Profile = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="p-4 bg-black border border-gray-800 rounded-lg">
+        <div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl">
           <h3 className="text-xl font-semibold mb-3 text-yellow-500">Quick Actions</h3>
           <div className="flex flex-col gap-2 mt-5">
             <button
@@ -116,8 +124,14 @@ const Profile = () => {
             >
               View Menu
             </button>
+              <button
+              onClick={()=>handleClearCart()}
+              className="px-4 py-2 rounded bg-transparent  border  border-gray-800 hover:text-yellow-500 transition"
+            >
+              Clear Cart
+            </button>
             <button
-              onClick={handleLogout}
+              onClick={()=>handleLogout()}
               className="px-4 py-2 text-red-500 border border-gray-800 rounded hover:text-gray-300 transition"
             >
               Sign Out
@@ -126,7 +140,7 @@ const Profile = () => {
         </div>
 
         {/* Order Summary */}
-        <div className="p-4 bg-black border border-gray-800 rounded-lg">
+        <div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl">
           <h3 className="text-xl text-yellow-500 font-semibold mb-3">Order Summary</h3>
           <div className="flex flex-col justify-center items-center pt-5">
             {loading && <p className="text-slate-400">Loading products...</p>}
@@ -142,7 +156,7 @@ const Profile = () => {
       </div>
 
       {/* Order History */}
-      <div className="p-4 bg-black border border-gray-800 rounded-lg md:col-span-3 max-h-90 py-10 overflow-auto">
+      <div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl md:col-span-3 max-h-90 py-10 overflow-auto">
         <h3 className="text-xl font-semibold mb-3 text-yellow-500">Order History</h3>
         {loading && <p className="text-slate-400">Loading products...</p>}
         {error && <p className="text-red-500">{error}</p>}
@@ -175,7 +189,7 @@ const Profile = () => {
                           if (!item.createdAt) return "Time not available";
                           const diffMins = Math.floor((Date.now() - new Date(item.createdAt)) / 60000);
                           return diffMins <= 1 ? "Just now" : `${diffMins} minutes ago`;
-                        })()} – {item.quantity} item(s) – ${(
+                        })()} – {item.quantity}  item() – ${(
                           item.price * item.quantity
                         ).toFixed(2)}
                       </p>
@@ -189,7 +203,7 @@ const Profile = () => {
                         }
                         className={`px-3 py-1 text-xs rounded transition ${
                           item.status === "Pending"
-                            ? "border border-green-500 text-green-500 hover:bg-green-600 hover:text-white"
+                            ? "border border-green-500 text-green-500 hover:text-white "
                             : "text-green-500"
                         }`}
                         disabled={item.status !== "Pending"}

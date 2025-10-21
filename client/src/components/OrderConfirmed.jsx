@@ -14,9 +14,15 @@ const OrderConfirmed = () => {
         </p>
         <Link
           to="/home"
-          className="inline-block bg-yellow-500 hover:bg-transparent hover:border border-slate-600 text-white px-6 py-3 rounded-full font-semibold transition"
+          className="inline-block mr-5 bg-yellow-500 hover:bg-transparent hover:border border-slate-600 text-white px-6 py-3 rounded-full font-semibold transition"
         >
           Back to Home
+        </Link>
+                <Link
+          to="/profile"
+          className="inline-block  border border-slate-600 text-white px-6 py-3 rounded-full font-semibold transition"
+        >
+          view your orders 
         </Link>
       </div>
     </div>

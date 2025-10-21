@@ -55,7 +55,6 @@ const Checkout = () => {
       return;
     }
 
-    dispatch(clearCart());
     navigate("/order-confirmed");
   };
 
@@ -119,7 +118,7 @@ const Checkout = () => {
             Sign In First ${total.toFixed(2)}
           </button>
         ) : (
-          <button onClick={handlePlaceOrder} className="mt-6 w-full py-3 bg-yellow-500 hover:bg-transparent hover:border-1 border-slate-600 text-white rounded-lg font-bold">
+          <button onClick={()=>handlePlaceOrder()} className="mt-6 w-full py-3 bg-yellow-500 hover:bg-transparent hover:border-1 border-slate-600 text-white rounded-lg font-bold">
             Place Order ${total.toFixed(2)}
           </button>
         )}

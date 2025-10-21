@@ -8,7 +8,7 @@ import { BsTelephone } from "react-icons/bs";
 const Footer = () => {
   return (
     <footer className="font-Poppins bg-black border-t-2 border-slate-600 rounded-t-lg shadow-2xl text-gray-300 pt-12">
-      <div className=" px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className=" px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
         {/* About */}
         <div>
           <h2 className="text-xl font-bold text-gray-200 font-bol mb-4"><span className='text-yellow-500 text-xl md:text-7xl lg:text-9xl'>FastBite</span> Restaurant <span>& Delivery</span></h2>
@@ -18,8 +18,9 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="text-xs md:text-sm">
-          <h2 className="text-sm font-bold text-gray-400 f mb-4">Quick Links</h2>
+        <div className="text-xs md:text-sm flex gap-10 justify-start sm:justify-around md:justify-end">
+          <div className=''>
+             <h2 className="text-sm font-bold text-gray-400 f mb-4">Quick Links</h2>
           <ul className="flex flex-col gap-2  px-4 max-w-1/1 mx-auto text-gray-300">
             <div className="flex gap-3 jusfty-center">
             <span className="">1</span>
@@ -38,7 +39,9 @@ const Footer = () => {
             <Link to='/contact' className="text-gray-300 font-Poppins  hover:scale-110 hover:text-yellow-500">Contact</Link>
             </div>
           </ul>
-        </div>
+          </div>
+         
+       
 
         {/* Contact */}
         <div className="text-xs md:text-sm ">
@@ -55,6 +58,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+       </div>
 
       {/* Bottom Bar */}
       <div className="border-t-2 border-slate-600 mt-10 py-4 text-center text-gray-300 font-bol text-sm">
