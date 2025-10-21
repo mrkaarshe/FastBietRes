@@ -6,26 +6,22 @@ import { toast } from "react-toastify";
 const AdminDashboard = () => {
   const dispatch = useDispatch();
   const { orders, loading, error } = useSelector((state) => state.adminOrders);
-  const { user } = useSelector(state => state.user);
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (user?.role !== "admin") {
       toast.error("Access denied. Admins only.");
-      // Redirect logic here if you want
+      // You can add redirect here if needed
       return;
     }
     dispatch(fetchAllOrders());
   }, [dispatch, user]);
 
-  const handleConfirmOrder = (orderId) => {
-    dispatch(updateOrderStatus({ orderId, status: "Confirmed" }))
+  const handleStatusChange = (orderId, newStatus) => {
+    dispatch(updateOrderStatus({ orderId, status: newStatus }))
       .unwrap()
-      .then(() => {
-        toast.success("Order confirmed!");
-      })
-      .catch(() => {
-        toast.error("Failed to update order status");
-      });
+      .then(() => toast.success("Order status updated!"))
+      .catch(() => toast.error("Failed to update order status."));
   };
 
   if (!user || user.role !== "admin") {
@@ -42,13 +38,14 @@ const AdminDashboard = () => {
       {!loading && !error && orders.length === 0 && <p>No orders found.</p>}
 
       {!loading && !error && orders.length > 0 && (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {orders.map((order) => (
             <div
               key={order._id}
-              className="border border-gray-700 rounded p-4 bg-black text-gray-300 flex justify-between items-center"
+              className="border border-gray-700 rounded p-6 bg-black text-gray-300 flex justify-between items-start gap-6"
             >
-              <div>
+              {/* Order Info */}
+              <div className="flex flex-col gap-2 flex-1 min-w-0">
                 <p>
                   <strong>Order ID:</strong> {order._id.slice(-6)}
                 </p>
@@ -56,29 +53,53 @@ const AdminDashboard = () => {
                   <strong>User:</strong> {order.userName || order.userEmail || "Unknown"}
                 </p>
                 <p>
-                  <strong>Status:</strong>{" "}
-                  <span className={`px-2 py-1 rounded ${
-                    order.status === "Pending" ? "bg-yellow-500 text-black" :
-                    order.status === "Confirmed" ? "bg-green-500 text-white" :
-                    "bg-gray-500 text-white"
-                  }`}>
-                    {order.status}
+                  <strong>Items:</strong>{" "}
+                  <span className="inline-block max-w-full overflow-x-auto whitespace-nowrap">
+                    {order.items.map((item) => `${item.title} (x${item.quantity})`).join(", ")}
                   </span>
-                </p>
-                <p>
-                  <strong>Items:</strong> {order.items.map(item => `${item.title} (x${item.quantity})`).join(", ")}
                 </p>
               </div>
 
-              <div>
-                {order.status === "Pending" && (
-                  <button
-                    onClick={() => handleConfirmOrder(order._id)}
-                    className="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-white"
+              {/* Status Badge and Update */}
+              <div className="flex flex-col items-end gap-4 min-w-[160px]">
+                <p>
+                  <strong>Status:</strong>{" "}
+                  <span
+                    className={`px-3 py-1 rounded text-sm font-semibold ${
+                      order.status === "Pending"
+                        ? "bg-yellow-500 text-black"
+                        : order.status === "Confirmed"
+                        ? "bg-green-600 text-white"
+                        : order.status === "Delivered"
+                        ? "bg-blue-500 text-white"
+                        : order.status === "Cancelled"
+                        ? "bg-red-500 text-white"
+                        : "bg-gray-500 text-white"
+                    }`}
                   >
-                    Confirm Order
-                  </button>
-                )}
+                    {order.status}
+                  </span>
+                </p>
+
+                <div className="flex flex-col items-end">
+                  <label
+                    htmlFor={`status-${order._id}`}
+                    className="mb-1 text-sm text-gray-400"
+                  >
+                    Update Status
+                  </label>
+                  <select
+                    id={`status-${order._id}`}
+                    value={order.status}
+                    onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                    className="bg-gray-800 text-white border border-gray-600 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
+                </div>
               </div>
             </div>
           ))}

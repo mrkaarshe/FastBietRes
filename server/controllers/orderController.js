@@ -1,5 +1,5 @@
 import Order from "../models/order.js";
-
+import Food from "../models/Food.js";
 
 // Update order status by productId
 // controllers/ordersController.js
@@ -20,28 +20,34 @@ import Order from "../models/order.js";
   }
 };
 
-export const createOrder = async (req, res) => {
+
+export const getAllOrders = async (req, res) => {
   try {
-    const { userId, items, subtotal, delivery, taxes, total } = req.body;
+    const orders = await Order.find();
 
-    const order = new Order({
-      userId,
-      items,
-      subtotal,
-      delivery,
-      taxes,
-      total,
-      status: "Pending"
-    });
+    // Populate items with food info
+    const enrichedOrders = await Promise.all(orders.map(async (order) => {
+      const itemsWithTitles = await Promise.all(order.items.map(async (item) => {
+        const product = await Food.findById(item.productId).lean();
+        return {
+          ...item,
+          title: product?.title || "Unknown",
+          price: product?.price || 0,
+        };
+      }));
 
-    await order.save();
-    res.status(201).json({ message: "Order placed", order });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Failed to place order" });
+      return {
+        ...order.toObject(),
+        items: itemsWithTitles,
+      };
+    }));
+
+    res.json(enrichedOrders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error fetching orders" });
   }
-};
-
+}
 
 const getAllOrders = async (req, res) => {
   try {

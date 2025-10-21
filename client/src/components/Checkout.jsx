@@ -49,55 +49,44 @@ const Checkout = () => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
 
- const handlePlaceOrder = async () => {
+const handlePlaceOrder = async () => {
   if (!info.email || !info.address || !info.city || !info.phone) {
-    toast.error("Please fill all fields");
+    toast.error("Please fill in all required fields");
     return;
   }
 
-  // Prepare order data
-  const items = cart.map(item => {
-    const prod = cartProducts.find(p => p._id === item.productId);
-    return {
-      productId: item.productId,
-      title: prod?.title || "",
-      quantity: item.quantity,
-      price: prod?.price || 0
-    };
-  });
-
-  const orderData = {
-    userId: user._id,           // user kaaga Redux/localStorage
-    items,
-    subtotal,
-    delivery,
-    taxes,
-    total
-  };
-
   try {
-    const response = await fetch('https://fastbietres-1.onrender.com/api/history/orders', {
-      method: 'POST',
+    // Diyaarinta order
+    const orderData = {
+      userId: user._id, // ama email, sidaad u doorato
+      items: cart.map(item => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        status: "Pending",
+      })),
+      contact: info,
+    };
+
+    const res = await fetch("https://fastbietres-1.onrender.com/api/history/orders", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(orderData)
+      body: JSON.stringify(orderData),
     });
 
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.message || 'Order failed');
-    }
+    if (!res.ok) throw new Error("Failed to create order");
 
-    // Success: clear cart, navigate, toast
+    toast.success("Order placed successfully!");
     dispatch(clearCart());
-    toast.success("Order placed successully!");
     navigate("/order-confirmed");
+
   } catch (err) {
-    console.error("Order error:", err);
-    toast.error("Failed to place order");
+    toast.error("Something went wrong while placing the order.");
+    console.error(err);
   }
 };
+
 
   return (
     <div className="max-w-6xl min-w-sm mx-auto mt-34 p-6 flex flex-col md:flex-row gap-5">
