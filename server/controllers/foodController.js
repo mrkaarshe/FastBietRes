@@ -41,7 +41,7 @@ export const deleteFood = async (req, res) => {
   }
 };
 
-// controllers/foodController.js
+
 export const getFoodById = async (req, res) => {
   try {
     const food = await Food.findById(req.params.id);

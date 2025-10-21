@@ -19,7 +19,6 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch product info from backend
   useEffect(() => {
     if (cart.length === 0) {
       setProducts([]);
@@ -48,7 +47,6 @@ const Profile = () => {
     fetchProducts();
   }, [cart]);
 
-  // Combine cart item + product info
   const cartWithDetails = cart.map((item) => {
     const product = products.find((p) => p._id === item.productId);
     return {
@@ -58,16 +56,20 @@ const Profile = () => {
     };
   });
 
-  // Totals
   const totalOrders = cart.length;
   const totalAmount = cartWithDetails.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
-  // Confirm order
-  const handleConfirmOrder = (productId) => {
-    dispatch(statusUpdate({ productId, status: "Confirmed" }));
+  // UPDATED: Handle Confirm Order with async dispatch & toast
+  const handleConfirmOrder = async (productId) => {
+    try {
+      await dispatch(statusUpdate({ productId, status: "Confirmed" })).unwrap();
+      toast.success("Order confirmed successfully!");
+    } catch (error) {
+      toast.error("Failed to confirm order.");
+    }
   };
 
   const handleLogout = () => {
@@ -78,14 +80,15 @@ const Profile = () => {
     navigate('/home');
     toast.success("Logged out successfully");
   };
+
   const handleClearCart = () => {
-    if(cart.length ===0){
+    if (cart.length === 0) {
       toast.info("Cart is already empty");
       return;
     }
     dispatch(clearCart());
     toast.success("Cart cleared successfully");
-  }
+  };
 
   return (
     <div className="p-6 text-gray-300 space-y-6 min-h-[95vh] font-Poppins px-4 max-w-7xl mx-auto">
@@ -104,13 +107,13 @@ const Profile = () => {
         <div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl">
           <h3 className="text-xl font-semibold mb-3 text-yellow-500">Profile Information</h3>
           <p className="text-yellow-500 font-light flex  items-center gap-2 mb-2">
-            <FiUser/> <strong className="text-gray-300">@{user.name}</strong>
+            <FiUser /> <strong className="text-gray-300">@{user.name}</strong>
           </p>
           <p className="text-yellow-500 font-light flex  items-center gap-2 mb-2">
-            <AiOutlineMail/> <strong className="text-gray-300">{user.email}</strong>
+            <AiOutlineMail /> <strong className="text-gray-300">{user.email}</strong>
           </p>
           <p className="text-yellow-500 font-light flex  items-center gap-2 mb-2">
-            <MdOutlineManageAccounts/> <strong className="text-gray-300">{user.role}</strong>
+            <MdOutlineManageAccounts /> <strong className="text-gray-300">{user.role}</strong>
           </p>
         </div>
 
@@ -120,18 +123,18 @@ const Profile = () => {
           <div className="flex flex-col gap-2 mt-5">
             <button
               onClick={() => navigate('/menu')}
-              className="px-4 py-2 rounded bg-transparent  border  border-gray-800 hover:text-yellow-500 transition"
+              className="px-4 py-2 rounded bg-transparent border border-gray-800 hover:text-yellow-500 transition"
             >
               View Menu
             </button>
-              <button
-              onClick={()=>handleClearCart()}
-              className="px-4 py-2 rounded bg-transparent  border  border-gray-800 hover:text-yellow-500 transition"
+            <button
+              onClick={handleClearCart}
+              className="px-4 py-2 rounded bg-transparent border border-gray-800 hover:text-yellow-500 transition"
             >
               Clear Cart
             </button>
             <button
-              onClick={()=>handleLogout()}
+              onClick={handleLogout}
               className="px-4 py-2 text-red-500 border border-gray-800 rounded hover:text-gray-300 transition"
             >
               Sign Out
@@ -175,7 +178,7 @@ const Profile = () => {
                       <p className="font-semibold text-sm">
                         Order #{item.title}
                         <span
-                          className={`ml-2 px-2 py-1   gap-3 max-w-23 text-xs rounded ${
+                          className={`ml-2 px-2 py-1 gap-3 max-w-23 text-xs rounded ${
                             item.status === "Pending"
                               ? "bg-green-300 gap-3 text-black"
                               : "bg-yellow-300 text-black"
@@ -189,7 +192,7 @@ const Profile = () => {
                           if (!item.createdAt) return "Time not available";
                           const diffMins = Math.floor((Date.now() - new Date(item.createdAt)) / 60000);
                           return diffMins <= 1 ? "Just now" : `${diffMins} minutes ago`;
-                        })()} – {item.quantity}  item() – ${(
+                        })()} – {item.quantity} item(s) – ${(
                           item.price * item.quantity
                         ).toFixed(2)}
                       </p>

@@ -17,6 +17,8 @@ import AuthPage from './pages/AuthPage'
 import AddFood from './pages/AddFood';
 import ErrorPage from './pages/ErrorPage';
 import Profile from './pages/Peofile';
+import AdminOrders from './pages/AdminDashboard';
+import AdminDashboard from './pages/AdminDashboard';
 const App = () => {
   return (
     <BrowserRouter>
@@ -35,6 +37,7 @@ const App = () => {
            <Route path="/add-food" element={<AddFood />} />
            <Route path="/order-confirmed" element={<OrderConfirmed />} />
            <Route path='/profile' element={<Profile />} />
+           <Route path='/admin' element={<AdminDashboard />} />
           <Route path='*' element={<ErrorPage/>} />
         </Route>
         
