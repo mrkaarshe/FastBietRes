@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const statusUpdateAsync = createAsyncThunk(
+ const statusUpdateAsync = createAsyncThunk(
   'cart/statusUpdateAsync',
   async ({ productId, status }) => {
-    const response = await fetch(`https://fastbietres-1.onrender.com/api/orders/${productId}`, {
+    const response = await fetch(`https://fastbietres-1.onrender.com/api/history/orders/${productId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status }),
@@ -46,6 +46,5 @@ const cartSlice = createSlice({
   }
 });
 
-export const { addToCart, increase, decrease, remove , clearCart, statusUpdate } = cartSlice.actions;
-
+export const { addToCart, increase, decrease, remove, clearCart, statusUpdate } = cartSlice.actions;
 export default cartSlice.reducer;

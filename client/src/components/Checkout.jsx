@@ -49,14 +49,55 @@ const Checkout = () => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
 
-  const handlePlaceOrder = () => {
-    if (!info.email || !info.address || !info.city || !info.phone) {
-      
-      return;
+ const handlePlaceOrder = async () => {
+  if (!info.email || !info.address || !info.city || !info.phone) {
+    toast.error("Please fill all fields");
+    return;
+  }
+
+  // Prepare order data
+  const items = cart.map(item => {
+    const prod = cartProducts.find(p => p._id === item.productId);
+    return {
+      productId: item.productId,
+      title: prod?.title || "",
+      quantity: item.quantity,
+      price: prod?.price || 0
+    };
+  });
+
+  const orderData = {
+    userId: user._id,           // user kaaga Redux/localStorage
+    items,
+    subtotal,
+    delivery,
+    taxes,
+    total
+  };
+
+  try {
+    const response = await fetch('https://fastbietres-1.onrender.com/api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(orderData)
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message || 'Order failed');
     }
 
+    // Success: clear cart, navigate, toast
+    dispatch(clearCart());
+    toast.success("Order placed successully!");
     navigate("/order-confirmed");
-  };
+  } catch (err) {
+    console.error("Order error:", err);
+    toast.error("Failed to place order");
+  }
+};
 
   return (
     <div className="max-w-6xl min-w-sm mx-auto mt-34 p-6 flex flex-col md:flex-row gap-5">

@@ -20,6 +20,27 @@ import Order from "../models/order.js";
   }
 };
 
+export const createOrder = async (req, res) => {
+  try {
+    const { userId, items, subtotal, delivery, taxes, total } = req.body;
+
+    const order = new Order({
+      userId,
+      items,
+      subtotal,
+      delivery,
+      taxes,
+      total,
+      status: "Pending"
+    });
+
+    await order.save();
+    res.status(201).json({ message: "Order placed", order });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to place order" });
+  }
+};
 
 
 const getAllOrders = async (req, res) => {
