@@ -1,163 +1,146 @@
-
-import toast from "react-hot-toast";
-import * as jwt_decode from "jwt-decode";
-
-import {useState} from "react"
-import { useNavigate } from "react-router-dom"; 
-import { loginSuccess } from "../Store/userSlice";
-import { useDispatch } from "react-redux";
-
-export default function AuthPage() {
-  const [mode, setMode] = useState("login");
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
-  const [loading , setloading] = useState(false)
-  const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setloading(true); // Start loading immediately
-  try {
-    const url = mode === "login"
-      ? "https://fastbietres-1.onrender.com/api/auth/login"
-      : "https://fastbietres-1.onrender.com/api/auth/register";
-
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Something went wrong");
-
-    dispatch(loginSuccess(data));
-    localStorage.setItem("user", JSON.stringify(data));
-    localStorage.setItem("token", data.token);
-    toast.success(mode === "login" ? "Login successful!" : "Registration successful!");
-    navigate("/");
-  } catch (err) {
-    console.error(err);
-    toast.error(err.message);
-  } finally {
-    setloading(false); // Stop loading regardless of success or error
-  }
-};
-
+import React from 'react'
+import  aos from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
+import { LuMapPin } from "react-icons/lu";
+import { MdOutlineEmail } from "react-icons/md";
+import { MdOutlineLocalPhone } from "react-icons/md";
+import { FaRegClock } from "react-icons/fa";
+import { FaFacebook ,FaLinkedin ,FaGithub  ,FaEnvelope} from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+const Contact = () => {
+  useEffect(()=>{
+    aos.init({duration:1000},{once:true})
+  })
   return (
-    <div className="min-h-screen flex items-center justify-center  text-yellow-500 px-4">
-      <div className="w-full border border-gray-900 max-w-md bg-black rounded-2xl shadow-2xl backdrop-blur-lg p-8 transition-all duration-300 hover:shadow-yellow-500/30">
-        {/* Title */}
-        <h1 className="text-3xl font-bold text-center mb-8 tracking-tight">
-          {mode === "login" ? "Login to your account" : "Register a new account"}
-        </h1>
-
-        {/* Tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex  border border-slate-600  rounded-xl p-1">
-            <button
-              onClick={() => setMode("login")}
-              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                mode === "login"
-                  ? "bg-yellow-500 text-white shadow-md shadow-yellow-500/40"
-                  : "text-white hover:text-yellow-500"
-              }`}
-            >
-              Login
-            </button>
-            <button
-              onClick={() => setMode("register")}
-              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                mode === "register"
-                  ? "bg-yellow-500 text-white shadow-md shadow-yellow-500/40"
-                  : "text-white hover:text-yellow-500"
-              }`}
-            >
-              Register
-            </button>
+    <>
+    
+      <div className="mt-25 mb-20 pb-5 "> 
+        <div className=" px-2  lg:px-10">
+          <div  className="text-center mb-16 animate-on-scroll">
+            <h2 className="text-4xl font-bold text-yellow-500">Contact Us</h2>
+            <p className="text-gray-300 mt-4 text-xl max-w-2xl mx-auto">
+             Get in touch with our team to order your favorite meals or ask about our delivery service.
+            </p>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-1 xl:grid-cols-2 gap-12">
+
+    <div id='contact' className='flex flex-col  px-3 gap-10'>
+
+    <div  data-aos="fade-up" className='w-full grid grid-cols-1 md:grid-cols-2 gap-10 '>
+    <div  data-aos="fade-right" className='flex flex-col gap-5 w-full sm:w-1/1 md:w-1/1 lg:w-1/2'>
+                <h2 className='text-yellow-500 my-'>CONTACT-INFO</h2>
+            <div className='flex gap-3'>
+                <div className=' border-1 border-gray-800 rounded-lg hover:border-white hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
+                < LuMapPin />
+            </div>
+            <div className='h-5'>
+    <h4 className="font-medium text-gray-300">Address</h4>
+                        <p className="text-gray-400 mt-1">Mogadishu/Talex</p>
+                
+            </div>
+            
+            </div>
+
+            <div className='flex gap-3'>
+                <div className=' border-1 border-gray-800 rounded-lg hover:border-green-500 hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
+                <MdOutlineLocalPhone />
+            </div>
+            <div className='h-5'>
+                        <h4 className="font-medium text-gray-300">Phone</h4>
+                        <p className="text-gray-400 mt-1">(+252)611011973</p>
+                
+            </div>
+            
+            </div>
+
+         
+
+            <div className='flex gap-3'>
+                <div className=' border-1 border-gray-800 rounded-lg hover:border-red-400 hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-400'>
+               <FaRegClock />
+            </div>
+            <div className='h-5'>
+         
+                        <h4 className="font-medium text-gray-300">Working Hours</h4>
+                        <p className="text-gray-400 mt-1 text-xs">
+                          Saturday - Wednesday: 9am - 12pm <br />
+                          Saturday: 10am - 12pm <br />
+                          Friday: Morning Closed
+                        </p>
+            </div>
+            
+            </div>
+
+            <div className='flex gap-3'>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-white'>< FaEnvelope size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-green-500'><FaWhatsapp  size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-blue-400'><FaFacebook  size={20}/></p>
+            </div>
+
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {mode === "register" && (
-            <div>
-              <label className="block text-sm mb-1 text-white">Name</label>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                className="w-full bg-black  focus:bg-black text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
-                placeholder="Your Name"
-                required
-              />
-            </div>
-          )}
-
-          <div>
-            <label className="block text-sm mb-1 text-white">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              className="w-full bg-black  focus:bg-slate-950 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
-              placeholder="Email"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm mb-1 text-white">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              className="w-full bg-black  focus:bg-slate-950  text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
-              placeholder="******"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-3 mt-2 rounded-lg font-semibold bg-yellow-500  hover:from-yellow-500 hover:bg-transparent hover:border border-slate-600 hover:text-white text-slate-900 transition-all duration-200 "
-          >
-           {loading ? "Loading..." : mode === "login" ? "Login" : "Register"}
-
-
-          </button>
-        </form>
-
-        {/* Footer links */}
-        <p className="text-sm text-center text-slate-400 mt-8">
-          {mode === "login" ? (
-            <>
-              Don't have an account?{" "}
-              <span
-                className="text-yellow-500 cursor-pointer hover:underline"
-                onClick={() => setMode("register")}
-              >
-                Register
-              </span>
-            </>
-          ) : (
-            <>
-              Already have an account?{" "}
-              <span
-                className="text-yellow-500 cursor-pointer hover:underline"
-                onClick={() => setMode("login")}
-              >
-                Login
-              </span>
-            </>
-          )}
-        </p>
-      </div>
+        <div className=' w-full rounded-2xl  p- flex flex-col gap-5'>
+                <h2 className='text-white text-2xl'>We’d Love to Hear From <span className='text-yellow-500'>You</span></h2>
+            <form  className='flex flex-col gap-5'>
+                    <input type="text" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-gray-800 focus:ring-yellow-500 outline-0  ' required placeholder='Your Name' />
+                    <input type="email" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-gray-800 focus:ring-yellow-500  outline-0 ' required placeholder='Your Email' />
+                    <input type="text" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-gray-800 focus:ring-yellow-500 outline-0 ' required placeholder='Your Phone' />
+                    <textarea name="" className=' min-h-40 min-w-focus:ring-yellow-500ull text-white  max-h-40 border-2 border-gray-800 focus:ring-yellow-500 outline-0  rounded-lg placeholder-[#14ca8d p-5' placeholder='type---' id=""></textarea>
+                    <button  className='w-full hover:border-2 bg-yellow-500 border-gray-800 text-white rounded-lg py-4 hover:bg-transparent transform-colors duration-300'>Send</button>
+            </form>
+        </div>
+ 
+            
     </div>
-  );
+           <div className='border border-gray-800 text-gray-300 p-7 rounded-lg w-1/1 '>
+          <div>Reservations</div>
+              <div>For the best dining experience, we recommend making a reservation.</div>
+            
+            
+              <div className="space-y-4">
+                <p className="text-muted-foreground">
+                  Call us at <span className="font-semibold text-yellow-500">(+252611011973) FAST-BITE</span> 
+                </p>
+                <div className="space-y-2 text-gray-300">
+                  <p className="text-sm">
+                    <strong>Party Size:</strong> We accommodate parties of 1-12 guests
+                  </p>
+                  <p className="text-sm">
+                    <strong>Cancellation:</strong> Please provide 24-hour notice
+                  </p>
+                  <p className="text-sm">
+                    <strong>Special Occasions:</strong> Let us know about birthdays, anniversaries, or special dietary
+                    needs
+                  </p>
+                </div>
+
+              </div>
+
+        </div>
+
+    </div>
+      <div className="h-[400px] md:h-[720px] w-full rounded-lg overflow-hidden" data-aos="fade-left">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.9601327172354!2d45.309051470227764!3d2.042475209763933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5843ffa8a16db3%3A0x909f40422de8119d!2sTaleex!5e0!3m2!1sen!2sso!4v1758471149260!5m2!1sen!2sso"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+
+            {/* Info Section */}
+           </div>
+        </div>
+      </div>
+    </>
+  )
 }
+
+export default Contact
