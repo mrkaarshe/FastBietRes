@@ -69,10 +69,10 @@ const handleAddToCart = (item) => {
 
   return (
     <>
-      <div className="  w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col justify-around items-center mt-10 font-Poppins  lg:flex-row ">
+      <div className="  w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col   mt-10 font-Poppins  lg:flex-col xl:flex-row  justify-around items-center px-2 md:px-10 lg:px-20  ">
 
         
-        <div data-aos="fade-right" className=" mt-15 w-screen md:w-1/1 lg:w-1/2 mx-2 px-2 md:mx-5 flex flex-col  text-space-y-1 lg:space-y-2">
+        <div data-aos="fade-right" className=" mt-15 w-screen md:w-1/1 lg:w-1/1 xl:w-1/2 mx-2 px-2 md:mx-5 flex justify-start flex-col  text-space-y-1 lg:space-y-2">
           <p className="text-yellow-500 text-6xl md:text-7xl lg:text-8xl font-bold  ">FastBite</p>
           <p className="text-3xl mb-3 font-bold lg:text-6xl max-w-4xl text-gray-300">
             The Fastest Food Delivery in <span className="text-yellow-500 text-4xl">Somalia</span>
@@ -92,7 +92,7 @@ const handleAddToCart = (item) => {
         </div>
 
         {/* Cards Section */}
-      <div data-aos="fade-left" className=' bg-gradient-to-r from-slate-950/70 to-slate-950/30  mt-30 rounded-xl w-screen sm:w-sm md:w-1/1 mx-10  lg:w-1/2  z-10  pb-10'>
+      <div data-aos="fade-left" className=' bg-gradient-to-r from-slate-950/70 to-slate-950/30  mt-30 rounded-xl w-screen sm:w-sm md:w-1/1 mx-10  lg:w-1/1 xl:w-1/2  z-10  pb-10'>
        
           <div className="flex flex-col  md:felx-row   sm:mt-10 md:mt-15 sm:pt-5  ">
          <h2 className='text-5xl text-yellow-300 text-center font-bold '>Our Specialist</h2>

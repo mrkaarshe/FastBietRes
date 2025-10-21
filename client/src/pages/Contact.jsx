@@ -26,11 +26,11 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-1 xl:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-1  lg:grid-cols-1 xl:grid-cols-2 gap-12">
 
     <div id='contact' className='flex flex-col  px-3 gap-10'>
 
-    <div  data-aos="fade-up" className='w-full grid grid-cols-1 md:grid-cols-2 gap-10 '>
+    <div  data-aos="fade-up" className='w-full grid grid-cols-1 md:grid-cols-1 gap-10 '>
     <div  data-aos="fade-right" className='flex flex-col gap-5 w-full sm:w-1/1 md:w-1/1 lg:w-1/2'>
                 <h2 className='text-yellow-500 my-'>CONTACT-INFO</h2>
             <div className='flex gap-3'>

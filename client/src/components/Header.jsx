@@ -71,13 +71,13 @@ const Header = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:block relative">
           <ul className="flex gap-2 text-md">
-            <span className="text-yellow-500 ">1</span>
+            
             <Link to='/home' className="text-yellow-500 border-b-2 font-Poppins  hover:scale-110">Home</Link>
-            <span className="text-gray-200 ">2</span>
+            
             <Link to='/about' className="text-gray-300 font-Poppins  hover:scale-110">About</Link>
-            <span className="text-gray-200 ">3</span>
+           
             <Link to='/menu' className="text-gray-300 font-Poppins  hover:scale-110">Menu</Link>
-            <span className="text-gray-200 ">4</span>
+          
             <Link to='/contact' className="text-gray-300 font-Poppins  hover:scale-110">ContactUs</Link>
           </ul>
         </div>
@@ -118,19 +118,19 @@ const Header = () => {
         >
           <ul className="flex flex-col gap-2 py-4 px-4 max-w-1/1 mx-auto text-gray-300">
             <div className="flex gap-3 jusfty-center">
-            <span className="text-yellow-500 ">1</span>
+            
             <Link to='/home' className="text-yellow-500 border-b-2 font-Poppins  hover:scale-110">Home</Link>
             </div>
             <div className="flex gap-3 jusfty-center">
-            <span className="text-gray-300 ">2</span>
+           
             <Link to='/about' className="text-gray-300 font-Poppins  hover:scale-110">About</Link>
             </div>
               <div className="flex gap-3 jusfty-center">
-            <span className="text-gray-300 ">3</span>
+            
             <Link to='/menu' className="text-gray-300 font-Poppins  hover:scale-110">Menu</Link>
             </div>
                         <div className="flex gap-3 jusfty-center">
-            <span className="text-gray-300 ">4</span>
+           
             <Link to='/contact' className="text-gray-300 font-Poppins  hover:scale-110">Contact</Link>
             </div>
           </ul>
