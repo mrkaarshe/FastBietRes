@@ -125,7 +125,7 @@ const About = () => {
               </div>
               <div className="text-sm md:text-base text-gray-400 space-y-2">
                 <p> taleex Street, fastbite City</p>
-                <p>456 Gourmet Ave, Taste Town</p>
+                <p>Mogadishu somalia</p>
                
               </div>
             </div>
