@@ -5,7 +5,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../Store/Cart";
 import { useNavigate, Link } from "react-router-dom";
-
+import toast from "react-hot-toast";
 const Checkout = () => {
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
@@ -76,7 +76,7 @@ const Checkout = () => {
   };
 
   try {
-    const response = await fetch('https://fastbietres-1.onrender.com/api/orders', {
+    const response = await fetch('https://fastbietres-1.onrender.com/api/history/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
