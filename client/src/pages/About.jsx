@@ -124,9 +124,9 @@ const About = () => {
                 </h3>
               </div>
               <div className="text-sm md:text-base text-gray-400 space-y-2">
-                <p>123 Flavor Street, Foodie City</p>
+                <p> taleex Street, fastbite City</p>
                 <p>456 Gourmet Ave, Taste Town</p>
-                <p>789 Culinary Blvd, Dishville</p>
+               
               </div>
             </div>
 
@@ -140,7 +140,7 @@ const About = () => {
                 <h3 className="text-xl font-semibold text-white">Contact</h3>
               </div>
               <div className="text-sm md:text-base text-gray-400 space-y-1">
-                <p>(333) 123-FOODY</p>
+                <p>611011973 fastbiet</p>
                 <p>fastbite@gmail.com</p>
                 <p>Instagram: @FastBite</p>
               </div>
