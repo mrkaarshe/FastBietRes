@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-
+import Food from "../models/Food.js";
 export const protect = async (req, res, next) => {
   let token;
 
@@ -35,3 +35,6 @@ export const deleteFood = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
+

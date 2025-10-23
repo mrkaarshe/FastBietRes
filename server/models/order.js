@@ -1,14 +1,21 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   items: [
     {
       productId: String,
+      productTitle: String,
       quantity: Number,
-      status: { type: String, default: "Pending" },
+      status: { type: String, default: "Pending" }, // item-level status
     }
   ],
+status: {
+  type: String,
+  enum: ["Pending", "Delivered", "Confirmed", "Cancelled"], // note the capital "P"!
+  default: "Pending",
+},
+
   contact: {
     email: String,
     address: String,

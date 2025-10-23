@@ -1,19 +1,22 @@
-import aos from 'aos';
-import 'aos/dist/aos.css';
-import { useEffect, useState } from 'react';
+import aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect, useState } from "react";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../Store/Cart";
 import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { createUserOrder } from "../Store/userOrdersSlice";
+
 const Checkout = () => {
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   const [cartProducts, setCartProducts] = useState([]);
   const [info, setInfo] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const userExisting = localStorage.getItem("user");
-  const user = JSON.parse(userExisting);
+  const user = userExisting ? JSON.parse(userExisting) : null;
 
   useEffect(() => {
     aos.init({ duration: 1000, once: true });
@@ -37,7 +40,7 @@ const Checkout = () => {
   }, [cart]);
 
   const subtotal = cart.reduce((sum, item) => {
-    const product = cartProducts.find((p) => p._id === item.productId); // ✅ sax
+    const product = cartProducts.find((p) => p._id === item.productId);
     return sum + (product ? product.price * item.quantity : 0);
   }, 0);
 
@@ -49,43 +52,61 @@ const Checkout = () => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
 
-const handlePlaceOrder = async () => {
-  if (!info.email || !info.address || !info.city || !info.phone) {
-    toast.error("Please fill in all required fields");
-    return;
-  }
+  const handlePlaceOrder = async () => {
+    if (!info.email || !info.address || !info.city || !info.phone) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+    if (cart.length === 0) {
+      toast.error("Your cart is empty");
+      return;
+    }
+    setLoading(true);
+    try {
+      const orderData = {
+        userId: user._id,
+        items: cart.map((item) => ({
+          productId: item.productId,
+          productTitle: cartProducts.find((p) => p._id === item.productId)?.title || "Unknown Product",
+          quantity: item.quantity,
+          status: "Pending",
+        })),
+        contact: info,
+      };
 
-  try {
-    // Diyaarinta order
-    const orderData = {
-      userId: user._id, // ama email, sidaad u doorato
-      items: cart.map(item => ({
-        productId: item.productId,
-        quantity: item.quantity,
-        status: "Pending",
-      })),
-      contact: info,
-    };
+      const token = user?.token;
 
-    const res = await fetch("https://fastbietres-1.onrender.com/api/history/orders", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(orderData),
-    });
+      const res = await fetch("https://fastbietres-1.onrender.com/api/history/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(orderData),
+      });
 
-    if (!res.ok) throw new Error("Failed to create order");
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Failed to create order");
+      }
 
-    toast.success("Order placed successfully!");
+
     dispatch(clearCart());
-    navigate("/order-confirmed");
 
-  } catch (err) {
-    toast.error("Something went wrong while placing the order.");
-    console.error(err);
-  }
-};
+
+      // Redirect to confirmation page
+    toast.success("Order placed successfully!");
+
+      navigate("/order-confirmed");
+    } catch (err) {
+      toast.error(err.message || "Something went wrong while placing the order.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
 
 
   return (
