@@ -5,7 +5,7 @@ import { authenticateUser, isAuthenticated } from "../middleware/usreOrderMiddle
 const router = express.Router();
 
 router.post("/orders", authenticateUser, createUserOrder);
-router.delete("/orders/:id", isAuthenticated, deleteOrder);
+router.delete("/orders/:orderId", authenticateUser, deleteOrder);
 
 
 router.get("/getOrders", authenticateUser, getUserOrders);

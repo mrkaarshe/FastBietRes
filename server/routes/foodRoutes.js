@@ -8,7 +8,7 @@ import { deleteFood } from "../controllers/foodController.js";
 const router = express.Router();
 
 router.get("/getfood", getFoods);
-router.delete("/delete/:id", protect, adminOnly, deleteFood);
+router.delete("/delete/:id", deleteFood);
 
 router.post("/addFood", protect, adminOnly, upload.single("image"), addFood);
 router.get("/:id", getFoodById);

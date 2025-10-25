@@ -19,6 +19,7 @@ const Profile = () => {
 
   const { user } = useSelector((state) => state.user);
   const { orders, loading, error } = useSelector((state) => state.userOrders);
+  
 
   // Fetch user orders on mount
   useEffect(() => {
@@ -120,31 +121,38 @@ const Profile = () => {
       </div>
 
       {/* ORDER HISTORY */}
-<div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl md:col-span-3 max-h-[400px] overflow-auto">
-  <h3 className="text-xl font-semibold mb-3 text-yellow-500">Order History</h3>
+<div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl md:col-span-3 max-h-80 overflow-auto">
+  <h3 className="text-3xl border-b pb-3 border-white mb-5 max-w-sm mx-auto font-semibold text-center text-yellow-500">Order History</h3>
 
-  {loading && <p className="text-slate-400">Loading your orders...</p>}
+  {loading && <p className="text-slate-400 text-center" >Loading your orders...</p>}
   {error && <p className="text-red-500">{error}</p>}
   {!loading && !error && orders.length === 0 && (
-    <p className="text-slate-400">No orders found.</p>
+    <p className="text-slate-400 text-center">No orders found.</p>
   )}
 
   {!loading && !error && orders.length > 0 && (
-  <div className="space-y-4">
+  <div className="space-y-4 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
   {orders.map((order) => (
     <div
       key={order._id}
-      className="p-3 border  border-gray-800 rounded"
+      className="p-3 border flex flex-col h-50  border-gray-800 rounded"
     >
-      <p className="font-semibold text-sm mb-1">
+      <p className="font-semibold text-sm mb-1 text-yellow-500">
         Order ID: {order._id.slice(21)}
       </p>
-      <p className="text-slate-400 text-xs mb-1">
-        Ordred: {new Date(order.createdAt).toLocaleString()}
-      </p>
+
 
       {/* ORDER STATUS */}
-      <p className="text-gray-300 text-sm">
+      
+        <div className="space-y-1">
+        {order.items.map((item, idx) => (
+          <p key={idx} className="text-gray-50 text-md">
+           Food : <span className="text-gray-400">{item.productTitle} x {item.quantity}</span>
+          </p>
+        ))}
+     
+         <p className="text-gray-100 text-md">
+           Status :
         <span
           className={`ml-2 px-2 py-0.5 rounded text-xs ${
             order.status === "Pending"
@@ -160,24 +168,25 @@ const Profile = () => {
         </span>
       </p>
 
+     
+         
+        <p className="text-slate-100 text-md mb-1">
+        Ordred: <span className="text-xs text-gray-400">{new Date(order.createdAt).toLocaleString()}</span>
+      </p>
+ 
+
       {/* ITEMS */}
-      <div className="space-y-1">
-        {order.items.map((item, idx) => (
-          <p key={idx} className="text-gray-300 text-sm">
-            {item.productTitle} x {item.quantity}
-          </p>
-        ))}
-      </div>
+
 
       {/* Delete button - only for orders with status "Pending" */}
-      {order.status === "Pending" && (
+      
         <button
           onClick={() => handleDeleteOrder(order._id)}
-          className="mt-3 px-3 py-1 text-xs rounded border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition"
+          className="mt-3 px-3 py-2 text-xs w-full rounded border border-red-500 text-gray-100 hover:bg-red-500 hover:text-white transition"
         >
           Delete Order
         </button>
-      )}
+  </div>
     </div>
   ))}
 </div>

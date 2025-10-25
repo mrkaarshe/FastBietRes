@@ -3,26 +3,30 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateOrder } from "../Store/orderSlice";
 import { toast } from "react-toastify";
 import { FaTrash } from "react-icons/fa";
+
 const AdminDashboard = () => {
   const dispatch = useDispatch();
-  const [order, setOrder] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [loadingOrders, setLoadingOrders] = useState(false);
 
   const { error } = useSelector((state) => state.adminOrders);
   const { user } = useSelector((state) => state.user);
 
-  // Fetch orders from backend
+  // Fetch orders
   const fetchData = async () => {
     setLoadingOrders(true);
     try {
-      const res = await fetch("https://fastbietres-1.onrender.com/api/history/admin/orders", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const res = await fetch(
+        "https://fastbietres-1.onrender.com/api/history/admin/orders",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       if (!res.ok) throw new Error("Failed to fetch orders");
       const data = await res.json();
-      setOrder(data); // or setOrder(data.data) if response is { data: [...] }
+      setOrders(data);
     } catch (err) {
       console.error("Failed to fetch orders:", err);
       toast.error("Failed to fetch orders");
@@ -31,7 +35,6 @@ const AdminDashboard = () => {
     }
   };
 
-  // Run on mount
   useEffect(() => {
     if (!user || user.role !== "admin") {
       toast.error("Access denied. Admins only.");
@@ -45,7 +48,7 @@ const AdminDashboard = () => {
       .unwrap()
       .then(() => {
         toast.success("Order status updated!");
-        fetchData(); // refresh after update
+        fetchData();
       })
       .catch(() => toast.error("Failed to update order status."));
   };
@@ -54,17 +57,20 @@ const AdminDashboard = () => {
     if (!window.confirm("Are you sure you want to delete this order?")) return;
 
     try {
-      const res = await fetch(`https://fastbietres-1.onrender.com/history/admin/orders/${orderId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const res = await fetch(
+        `https://fastbietres-1.onrender.com/api/history/admin/orders/${orderId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
       if (!res.ok) throw new Error("Failed to delete order");
 
       toast.success("Order deleted successfully!");
-      fetchData(); // Refresh list
+      fetchData();
     } catch (err) {
       console.error(err);
       toast.error("Failed to delete order.");
@@ -80,98 +86,101 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="p-6 mx-auto min-h-[70vh] mt-20">
+    <div className="p-6 mx-auto min-h-[70vh] mt-20 max-w-7xl">
       <h1 className="text-4xl font-bold mb-8 text-yellow-400 text-center">
         Admin Dashboard - Orders
       </h1>
 
-      {loadingOrders && <p className="text-center text-white">Loading orders...</p>}
-      {error && <p className="text-red-500 text-center">{error}</p>}
-      {!loadingOrders && !error && order.length === 0 && (
-        <p className="text-gray-400 text-center">No orders found.</p>
-      )}
-
-      <div className="overflow-x-auto relative rounded-xl">
+      <div className="flex justify-center mb-6">
         <button
           onClick={fetchData}
-          className="bg-blue-500 hover:bg-blue-600 flex flex-1 text-white px-4 py-2 rounded-md mt-4"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-md"
         >
           Refresh Orders
         </button>
-        <table className="min-w-full text-white border-2 max-h-[70vh] overflow-auto rounded-xl border-gray-600 ">
-          <thead className="bg-gray-200 text-gray-800 h-20 rounded-xl">
-            <tr>
-              <th className="px-4 py-2 text-left">Order ID</th>
-              <th className="px-4 py-2 text-left">Name</th>
-              <th className="px-4 py-2 text-left">Email</th>
-              <th className="px-4 py-2 text-left">Phone</th>
-              <th className="px-4 py-2 text-left">Address</th>
-              <th className="px-4 py-2 text-left">Items</th>
-              <th className="px-4 py-2 text-left">Placed</th>
-              <th className="px-4 py-2 text-left">Status</th>
-              <th className="px-4 py-2 text-left">Change Status</th>
-              <th className="px-4 py-2 text-left">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {order.map((order) => (
-              <tr key={order._id}>
-                <td className="px-4 py-2">{order._id.slice(3)}_</td>
-                <td className="px-4 py-2">
-                  {order.contact?.firstName || ""} {order.contact?.lastName || ""}
-                </td>
-                <td className="px-4 py-2">{order.contact?.email || "N/A"}</td>
-                <td className="px-4 py-2">{order.contact?.phone || "N/A"}</td>
-                <td className="px-4 py-2">
-                  {order.contact?.address}, {order.contact?.city}
-                </td>
-                <td className="px-4 py-2">
-                  {order.items
-                    .map((item) => `${item.productTitle || "Food"} (x${item.quantity})`)
-                    .join(", ")}
-                </td>
-                <td className="px-4 py-2">{new Date(order.createdAt).toLocaleString()}</td>
-                <td className="px-4 py-2">
-                  <span
-                    className={`px-2 py-1 rounded-full text-sm font-semibold ${
-                      order.status === "Pending"
-                        ? "bg-yellow-500 text-black"
-                        : order.status === "Confirmed"
-                        ? "bg-green-500 text-white"
-                        : order.status === "Delivered"
-                        ? "bg-blue-500 text-white"
-                        : order.status === "Cancelled"
-                        ? "bg-red-500 text-white"
-                        : "bg-gray-500 text-white"
-                    }`}
-                  >
-                    {order.status}
-                  </span>
-                </td>
-                <td className="px-4 py-2">
-                  <select
-                    value={order.status}
-                    onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                    className="bg-gray-800 text-white border border-gray-600 rounded px-3 py-1 focus:outline-none"
-                  >
-                    <option value="Pending">Pending</option>
-                    <option value="Confirmed">Confirmed</option>
-                    <option value="Delivered">Delivered</option>
-                    <option value="Cancelled">Cancelled</option>
-                  </select>
-                </td>
-                <td className="px-4 py-2">
-                  <button
-                    onClick={() => handleDeleteOrder(order._id)}
-                    className="hover:text-red-600 text-white px-3 py-1 rounded"
-                  >
-                    <FaTrash/>
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      </div>
+
+      {loadingOrders && (
+        <p className="text-center text-white">Loading orders...</p>
+      )}
+      {error && <p className="text-red-500 text-center">{error}</p>}
+      {!loadingOrders && !error && orders.length === 0 && (
+        <p className="text-gray-400 text-center">No orders found.</p>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 border border-gray-700 p-4 rounded-lg max-w-7xl min-h-[50vh] max-h-100 my-10 overflow-auto mx-auto">
+        {orders.map((order) => (
+          <div
+            key={order._id}
+            className="p-6 rounded-xl shadow-lg border border-gray-700 h-80 flex flex-col justify-between"
+          >
+            <div>
+              <h2 className="text-yellow-400 font-semibold mb-2 text-lg truncate">
+                Order ID: {order._id.slice(21)}...
+              </h2>
+              <p className="text-gray-300 mb-1">
+                <strong>Name:</strong> {order.contact?.firstName}{" "}
+                {order.contact?.lastName}
+              </p>
+              <p className="text-gray-300 mb-1">
+                <strong>Email:</strong> {order.contact?.email || "N/A"}
+              </p>
+              <p className="text-gray-300 mb-1">
+                <strong>Phone:</strong> {order.contact?.phone || "N/A"}
+              </p>
+              <p className="text-gray-300 mb-1">
+                <strong>Address:</strong> {order.contact?.address},{" "}
+                {order.contact?.city}
+              </p>
+              <p className="text-gray-300 mb-2">
+                <strong>Items:</strong>{" "}
+                {order.items
+                  .map((item) => `${item.productTitle} (x${item.quantity})`)
+                  .join(", ")}
+              </p>
+              <p className="text-gray-400 text-sm mb-4">
+                Placed: {new Date(order.createdAt).toLocaleString()}
+              </p>
+            </div>
+
+            <div className="flex items-center justify-between mt-auto">
+              <span
+                className={`px-3 py-2 rounded text-sm font-semibold ${
+                  order.status === "Pending"
+                    ? "bg-yellow-500 text-black"
+                    : order.status === "Confirmed"
+                    ? "bg-green-600 text-white"
+                    : order.status === "Delivered"
+                    ? "bg-blue-600 text-white"
+                    : order.status === "Cancelled"
+                    ? "bg-red-600 text-white"
+                    : "bg-gray-500 text-white"
+                }`}
+              >
+                {order.status}
+              </span>
+
+              <select
+                value={order.status}
+                onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                className="bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 focus:outline-none"
+              >
+                <option value="Pending">Pending</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+
+              <button
+                onClick={() => handleDeleteOrder(order._id)}
+                className="text-red-500 hover:text-red-700 ml-2"
+                title="Delete Order"
+              >
+                <FaTrash size={20} />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

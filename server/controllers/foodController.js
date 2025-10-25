@@ -14,6 +14,8 @@ export const addFood = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
 export const getFoods = async (req, res) => {
   try {
     const foods = await Food.find().sort({ createdAt: -1 });

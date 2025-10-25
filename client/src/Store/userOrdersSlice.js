@@ -66,7 +66,7 @@ export const deleteUserOrder = createAsyncThunk(
 
       console.log("Deleting order with ID:", orderId);  // Debugging line
 
-      const res = await fetch(`https://fastbietres-1.onrender.com/api/userOrders/orders/${orderId}`, {
+      const res = await fetch(`http://localhost:3000/api/userOrders/orders/${orderId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

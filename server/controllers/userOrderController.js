@@ -1,19 +1,20 @@
-import order from "../models/order.js";
+import Order from "../models/order.js";
 
 // Create a new order for the logged-in user
 export const createUserOrder = async (req, res) => {
   try {
-    const { items, contact } = req.body;
+    const { items, contact , totalPrice } = req.body;
 
-    // Create a new order
-    const newOrder = await order.create({
-      userId: req.user._id,  // Assuming userId is part of the request from JWT middleware
+    // Create a new order, make sure to save user under "user" field (matches schema)
+    const newOrder = await Order.create({
+      user: req.user._id,  // Correct field name for user
       items,
       contact,
+      totalPrice,
       status: "Pending",
     });
 
-    res.status(201).json({ message: "Order created", order: newOrder });
+    res.status(201).json({ message: "Order created", Order: newOrder });
   } catch (error) {
     console.error("Error creating order:", error);
     res.status(500).json({ message: "Failed to create order", error: error.message });
@@ -22,8 +23,11 @@ export const createUserOrder = async (req, res) => {
 
 // Get all orders for the logged-in user
 export const getUserOrders = async (req, res) => {
+  const userId = req.user._id;
+  console.log('userId', userId)
+
   try {
-    const orders = await order.find({ user: req.user._id }).sort({ createdAt: -1 });
+    const orders = await Order.find({ userId: req.user._id }).sort({ createdAt: -1 });
     res.status(200).json(orders);
   } catch (error) {
     console.error("Error fetching orders:", error);
@@ -31,19 +35,33 @@ export const getUserOrders = async (req, res) => {
   }
 };
 
-// Delete an order for a specific user
+// Delete an order for the logged-in user
+
 export const deleteOrder = async (req, res) => {
   try {
-    const orderId = req.params.orderId; // Make sure this matches :orderId in your route
-    const userId = req.user._id;   // Assuming you have JWT authentication
-    
-    const orderToDelete = await order.findOne({ _id: orderId, user: userId });
+    const orderId = req.params.orderId;
+    const userId = req.user._id;
+    const userRole = req.user.role; 
+    console.log('userId', userId)
+    console.log('orderId', orderId)
+    console.log('userRole', userRole)
+     // Assuming req.user.role is set by your auth middleware
+
+    let orderToDelete;
+
+    if (userRole === "admin") {
+      // Admin can delete any order
+      orderToDelete = await Order.findById(orderId);
+    } else {
+      // Regular user can delete only their own orders
+      orderToDelete = await Order.findOne({ _id: orderId, user: userId });
+    }
 
     if (!orderToDelete) {
       return res.status(404).json({ message: "Order not found or you do not have permission to delete this order." });
     }
 
-    await orderToDelete.deleteOne();  // Delete the order
+    await orderToDelete.deleteOne();
 
     res.status(200).json({ message: "Order deleted successfully!" });
   } catch (error) {
