@@ -3,10 +3,6 @@
 import { useState, useEffect } from "react"
 import { TrendingUp, Package, ShoppingCart, DollarSign } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
-
-
-
-
 import { ShoppingBag, CheckCircle, Clock, List, XCircle } from "lucide-react"
 
 import { Button } from "../components/ui/button"
@@ -74,21 +70,24 @@ const totalPrice = data.reduce((sum, order) => {
     })
   }
 
+  {loading && <div className="flex justify-center items-center h-screen w-screen">
+    <div className="border w-10 h-10 border-yellow-500"></div>
+  </div>}
   return (
-    <div className="p-6">
+    <div className="flex flex-col gap-4">
        <div className="mb-8">
         <h1 className="text-3xl mt-0 sm:mt-10 md:mt-0 font-bold text-white mb-2">Dashboard</h1>
         <p className="text-gray-400">Welcome back! Here's your restaurant overview.</p>
       </div>
       {/* 🔹 Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
         <Card className="bg-black border-zinc-800 p-5 hover:border-zinc-700 transition">
           <CardContent className="p-6 flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Total Orders</p>
-              <h2 className="text-3xl font-bold text-white">{totalOrders}</h2>
+              <h2 className="text-3xl font-bold text-rose-500">{totalOrders}</h2>
             </div>
-            <ShoppingBag className="h-10 w-10 text-yellow-500" />
+            <ShoppingBag className="h-10 w-10 text-rose-500" />
           </CardContent>
         </Card>
 
@@ -108,7 +107,7 @@ const totalPrice = data.reduce((sum, order) => {
               <p className="text-gray-400 text-sm">Confirmed Orders</p>
               <h2 className="text-3xl font-bold text-green-400">{confirmedOrders}</h2>
             </div>
-            <CheckCircle className="h-10 w-10 text-green-400" />
+            <CheckCircle className="h-10 w-10 rounded-full  text-green-400" />
           </CardContent>
         </Card>
 
@@ -125,7 +124,7 @@ const totalPrice = data.reduce((sum, order) => {
           <CardContent className="p-6 flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Total Food Items</p>
-              <h2 className="text-3xl font-bold text-purple-500">{totalPrice}</h2>
+              <h2 className="text-3xl font-bold text-purple-500">${totalPrice.toFixed()}</h2>
             </div>
             <DollarSign className="h-10 w-10 text-purple-500" />
           </CardContent>
@@ -135,46 +134,71 @@ const totalPrice = data.reduce((sum, order) => {
 
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className=" border-zinc-800  max-h-[400px] pb-5 overflow-auto bg-">
+        <Card className=" border-zinc-800   bg-">
           <CardHeader>
             <CardTitle className="text-white">Recent Orders</CardTitle>
           </CardHeader>
           <CardContent>
-<div className="space-y-4 ">
-  {data.map((item) => (
-    <div
-      key={item._id}
-      className="flex items-center justify-between p-4 bg-black rounded-lg border border-zinc-800"
-    >
-      <div>
-        <p className="font-medium text-white">Order #{item._id.slice(-6)}</p>
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-h-[400px]  overflow-auto">
+  {data.map((item) => {
+    const total = item.items.reduce((sum, f) => sum + (f.totalPrice || 0), 0)
 
-        {/* items badankood */}
-        {item.items.map((food, i) => (
-          <p key={i} className="text-sm text-gray-400">
-            {food.productTitle} x {food.quantity}
-          </p>
-        ))}
-
-        {/* Contact name (Optional, looks nice) */}
-        <p className="text-xs text-gray-300 mt-1">
-         Ordred: <span className="text-xs text-gray-400">{new Date  (item.createdAt).toLocaleString()}</span>
-        </p>
-        <p className="text-xs text-gray-300">peyment <span className="text-xs text-gray-400">{item.paymentMethod}</span></p>
-      </div>
-
-      <span
-        className={`px-3 py-1 text-xs font-semibold rounded-full border ${
-          item.status === "Pending"
-            ? "bg-yellow-400/10 text-yellow-400 border-yellow-400/20"
-            : "bg-green-400/10 text-green-400 border-green-400/20"
-        }`}
+    return (
+      <div
+        key={item._id}
+        className="bg-zinc-950 border border-zinc-800 rounded-2xl p-5 hover:border-yellow-400/40 transition-all duration-300 shadow-md hover:shadow-yellow-400/10"
       >
-        {item.status}
-      </span>
-    </div>
-  ))}
+        {/* Order Header */}
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-lg font-semibold text-white">
+            Order #{item._id.slice(21)}
+          </h3>
+
+          <span
+            className={`px-3 py-1 text-xs font-semibold rounded-full border transition ${
+              item.status === "Pending"
+                ? "bg-yellow-400/10 text-yellow-400 border-yellow-400/30"
+                : "bg-green-400/10 text-green-400 border-green-400/30"
+            }`}
+          >
+            {item.status}
+          </span>
+        </div>
+
+        {/* Order Items */}
+        <div className="space-y-1 mb-4">
+          {item.items.map((food, i) => (
+            <p
+              key={i}
+              className="text-sm text-gray-300 flex justify-between"
+            >
+              {food.productTitle} 
+              <span className="text-gray-400">x{food.quantity}</span>
+            </p>
+          ))}
+        </div>
+
+        {/* Info */}
+        <div className="text-xs text-gray-400 space-y-1 border-t border-zinc-800 pt-3">
+          <p>
+            Ordered:{" "}
+            <span className="text-gray-300">
+              {new Date(item.createdAt).toLocaleString()}
+            </span>
+          </p>
+          <p>
+            Payment:{" "}
+            <span className="text-gray-300">{item.paymentMethod}</span>
+          </p>
+          <p className="text-sm font-semibold text-yellow-400 pt-1">
+            Total: ${total.toFixed(2)}
+          </p>
+        </div>
+      </div>
+    )
+  })}
 </div>
+
 
           </CardContent>
         </Card>

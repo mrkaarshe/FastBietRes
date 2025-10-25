@@ -8,38 +8,33 @@ import AddFood from "./pages/AddFood"
 import ManageFoods from "./pages/ManageFoods"
 import Orders from "./pages/Orders"
 import Layout from "./components/Layout"
-import { Toaster } from "./components/ui/toaster"
+
+import { Toaster } from "react-hot-toast"
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
-    const user = localStorage.getItem("token")
-    setIsAuthenticated(!!user)
+    const token = localStorage.getItem("token")
+    setIsAuthenticated(!!token)
   }, [])
-
-  const handleLogin = () => {
-    setIsAuthenticated(true)
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem("token")
-    setIsAuthenticated(false)
-  }
 
   return (
     <Router>
       <Toaster />
       <Routes>
+        {/* Public route */}
         <Route
           path="/login"
-          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />}
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login onLogin={() => setIsAuthenticated(true)} />}
         />
+
+        {/* Protected routes */}
         <Route
           path="/*"
           element={
             isAuthenticated ? (
-              <Layout onLogout={handleLogout}>
+              <Layout onLogout={() => setIsAuthenticated(false)}>
                 <Routes>
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/add-food" element={<AddFood />} />

@@ -70,7 +70,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:block relative">
-          <ul className="flex gap-2 text-md">
+          <ul className="flex gap-5 text-lg">
             
             <Link to='/home' className="text-yellow-500 border-b-2 font-Poppins  hover:scale-110">Home</Link>
             

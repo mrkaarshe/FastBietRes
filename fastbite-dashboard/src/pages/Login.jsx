@@ -6,13 +6,14 @@ import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { useToast } from "../hooks/use-toast"
+import toast from "react-hot-toast";
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  const { toast } = useToast()
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,27 +24,25 @@ export default function Login({ onLogin }) {
   
       const res = await fetch(url,{
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type":
+           "application/json" },
         body: JSON.stringify(form),
       });
   
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Something went wrong");
-  
+      onLogin();
+      navigate("/dashboard");
 
       localStorage.setItem("user", JSON.stringify(data));
       localStorage.setItem("token", data.token);
-            toast({
-          title: "Success",
-          description: "Logged in successfully!",
-        })
-      
-     navigate("/dashboard");
+      toast.success("Login successful!");
+    
     } catch (err) {
       console.error(err);
-      toast.error(err.message);
+      toast.error(err.message || "Login failed");
     } finally {
-      setLoading(false); // Stop loading regardless of success or error
+      setLoading(false); 
     }
   };
   
@@ -57,7 +56,7 @@ export default function Login({ onLogin }) {
           <p className="text-gray-400">Admin Dashboard</p>
         </div>
 
-        <div className=" border border-zinc-800  p-10 shadow-2xl backdrop-blur-lg bg-black/70 rounded-lg">
+        <div className=" border border-zinc-800  p-10 shadow-2xl backdrop-blur-lg bg-black/70 rounded-2xl">
           <h2 className="text-2xl font-semibold text-white mb-6">Sign In</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -71,7 +70,7 @@ export default function Login({ onLogin }) {
                 placeholder="admin@fastbite.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-black border-zinc-700 text-white placeholder:text-gray-500 focus:border-yellow-400"
+                className="bg-black border-zinc-700 text-white placeholder:text-gray-500 rounded-2xl focus:border-yellow-400"
                 required
               />
             </div>
@@ -86,14 +85,14 @@ export default function Login({ onLogin }) {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="bg-black border-zinc-700 text-white placeholder:text-gray-500 focus:border-yellow-400"
+                className="bg-black border-zinc-700 text-white placeholder:text-gray-500 rounded-2xl focus:border-yellow-400"
                 required
               />
             </div>
 
             <Button
               type="submit"
-              className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold"
+              className="w-full bg-yellow-400 hover:bg-yellow-500 rounded-2xl text-black font-semibold"
               disabled={loading}
             >
               {loading ? "Signing in..." : "Sign In"}

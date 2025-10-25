@@ -20,14 +20,17 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
+.collapse-smooth {
+  transition: all 0.3s ease-in-out;
+}
+
 
 ::-webkit-scrollbar-track {
   background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #fbbf24;
-  border-radius: 4px;
+  display: hidden;
 }
 
 ::-webkit-scrollbar-thumb:hover {

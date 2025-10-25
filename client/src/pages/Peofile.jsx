@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../Store/userSlice";
+import { FiRefreshCcw } from "react-icons/fi";
 import { clearCart } from "../Store/Cart";
+import { LuLayoutDashboard } from "react-icons/lu";
 import {
   fetchUserOrders,
   deleteUserOrder,
@@ -83,6 +85,9 @@ const Profile = () => {
             <MdOutlineManageAccounts />{" "}
             <strong className="text-gray-300">{user.role}</strong>
           </p>
+          <p className="text-yellow-500 font-light flex items-center gap-2 mb-2">
+           <LuLayoutDashboard/> <a className="text-white" href="https://fast-biet-res-dashboar-g96p.vercel.app/login">Admin Dashboard</a>
+          </p>
         </div>
 
         {/* Quick Actions */}
@@ -113,7 +118,7 @@ const Profile = () => {
         {/* Summary */}
         <div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl">
           <h3 className="text-xl text-yellow-500 font-semibold mb-3">Summary</h3>
-          <p>
+          <p className="text-3xl">
             Total Orders:{" "}
             <span className="text-yellow-500 font-bold">{orders.length}</span>
           </p>
@@ -122,8 +127,17 @@ const Profile = () => {
 
       {/* ORDER HISTORY */}
 <div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl md:col-span-3 max-h-80 overflow-auto">
-  <h3 className="text-3xl border-b pb-3 border-white mb-5 max-w-sm mx-auto font-semibold text-center text-yellow-500">Order History</h3>
+<div className="flex justify-center relative">
+    <h3 className="text-3xl border-b pb-3 border-white mb-5 m mx-auto font-semibold text-center text-yellow-500">Order History</h3>
+  <button
+  onClick={() => dispatch(fetchUserOrders())}
+  className={`h-10 w-10 flex items-center justify-center absolute right-0 
+    ${loading ? "animate-spin" : ""}`}
+>
+  <FiRefreshCcw size={20} />
+</button>
 
+</div>
   {loading && <p className="text-slate-400 text-center" >Loading your orders...</p>}
   {error && <p className="text-red-500">{error}</p>}
   {!loading && !error && orders.length === 0 && (
@@ -135,7 +149,7 @@ const Profile = () => {
   {orders.map((order) => (
     <div
       key={order._id}
-      className="p-3 border flex flex-col h-50  border-gray-800 rounded"
+      className="p-3 border flex flex-col min-h-40 max-h-40 bg-zinc-950 rounded-xl  border-gray-800 "
     >
       <p className="font-semibold text-sm mb-1 text-yellow-500">
         Order ID: {order._id.slice(21)}
@@ -174,18 +188,6 @@ const Profile = () => {
         Ordred: <span className="text-xs text-gray-400">{new Date(order.createdAt).toLocaleString()}</span>
       </p>
  
-
-      {/* ITEMS */}
-
-
-      {/* Delete button - only for orders with status "Pending" */}
-      
-        <button
-          onClick={() => handleDeleteOrder(order._id)}
-          className="mt-3 px-3 py-2 text-xs w-full rounded border border-red-500 text-gray-100 hover:bg-red-500 hover:text-white transition"
-        >
-          Delete Order
-        </button>
   </div>
     </div>
   ))}
