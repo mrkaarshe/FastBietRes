@@ -85,9 +85,10 @@ const Profile = () => {
             <MdOutlineManageAccounts />{" "}
             <strong className="text-gray-300">{user.role}</strong>
           </p>
-          <p className="text-yellow-500 font-light flex items-center gap-2 mb-2">
-           <LuLayoutDashboard/> <a className="text-white" href="https://fast-biet-res-dashboar-g96p.vercel.app/login">Admin Dashboard</a>
-          </p>
+          {user.role === 'admin' ? (   
+              <p className="text-yellow-500 font-light flex items-center gap-2 mb-2">
+           <LuLayoutDashboard/> <a className="text-white" href="https://fast-biet-res-admin-dahshboard.vercel.app/login">Admin Dashboard</a>
+          </p>) : ''}
         </div>
 
         {/* Quick Actions */}

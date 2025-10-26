@@ -94,10 +94,10 @@ export default function AdminOrders() {
   }
 
   return (
-    <div className="p-6 min-h-[70vh]">
+    <div className="p-6 min-h-[20vh] ">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-white">Orders</h1>
-        <Button onClick={fetchOrders} className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg">
+        <Button onClick={fetchOrders} className="bg-zinc-700  text-white rounded-2xl">
           Refresh Orders
         </Button>
       </div>
@@ -108,8 +108,8 @@ export default function AdminOrders() {
         <p className="text-center text-gray-400">No orders found.</p>
       ) : (
         <div className="overflow-x-auto rounded-lg border border-zinc-800">
-          <table className="w-full text-left text-sm border-collapse">
-            <thead className="bg-zinc-900 text-gray-400 uppercase text-xs">
+          <table className="w-full text-left text-sm border-collapse rounded-lg">
+            <thead className="bg-zinc-900 text-gray-400 uppercase text-sm">
               <tr>
                 <th className="px-4 py-3">Order ID</th>
                 <th className="px-4 py-3">Name</th>

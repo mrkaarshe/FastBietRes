@@ -19,7 +19,7 @@ export default function Login({ onLogin }) {
     e.preventDefault();
     setLoading(true); // Start loading immediately
     try {
-      const url  = "https://fastbietres-1.onrender.com/api/auth/login"
+      const url  = "https://fastbietresdashboar-1.onrender.com/api/user/login"
       const form = { email, password };
   
       const res = await fetch(url,{
@@ -31,7 +31,7 @@ export default function Login({ onLogin }) {
   
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Something went wrong");
-      onLogin();
+
       navigate("/dashboard");
 
       localStorage.setItem("user", JSON.stringify(data));

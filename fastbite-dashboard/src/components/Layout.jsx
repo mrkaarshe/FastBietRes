@@ -11,6 +11,7 @@ import {
   Menu,
   X,
   ArrowRightLeft,
+  ArrowLeft,
   User
 } from "lucide-react"
 import { Button } from "./ui/button"
@@ -51,8 +52,8 @@ export default function Layout({ children, onLogout }) {
         <div className="flex flex-col h-full">
 
           {/* Logo */}
-          <div className="py-3 px-6 border-b border-zinc-800 flex items-center justify-between">
-            <Link to="/dashboard" className="text-xl font-bold text-yellow-400 transition-all duration-300">
+          <div className="pb-3 pt-4 px-6 border-b border-zinc-800 flex items-center justify-between">
+            <Link to="/dashboard" className="text-3xl font-bold text-yellow-400 transition-all duration-300">
               {sidebarCollapsed ? "FB" : "FastBite"}
             </Link>
             <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-gray-300 hover:text-white">
@@ -82,12 +83,12 @@ export default function Layout({ children, onLogout }) {
             ))}
 
             {/* Collapse Button */}
-            {!sidebarOpen ? '' : (<button
+           <button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="absolute -right-4 top-1/2 transform -translate-y-1/2 bg-zinc-800 hover:bg-zinc-700 p-2 rounded-full transition-all duration-300"
+              className={`absolute ${sidebarCollapsed ? '-right-6' : '-right-0'}   top-1/2 transform text-4xl -translate-y-1/2 bg-zinc-800 hover:bg-zinc-700 p-2 rounded-full transition-all duration-300`}
             >
-              <ArrowRightLeft className={`transition-transform duration-300 ${sidebarCollapsed ? "rotate-180" : ""}`} />
-            </button>)}
+              <ArrowLeft className={`transition-transform duration-300 ${sidebarCollapsed ? "rotate-180" : ""}`} />
+            </button>
 
           </nav>
 
@@ -124,7 +125,7 @@ export default function Layout({ children, onLogout }) {
         className={`
           w-full fixed top-0 z-10 border-b border-zinc-800 bg-black py-[14px] px-4 flex justify-between items-center
           transition-all duration-300
-          ${sidebarCollapsed ? "lg:pl-[8rem]" : "lg:pl-[20rem]"}
+          ${sidebarCollapsed ? "lg:pl-[100px]" : "lg:pl-[18rem]"}
         `}
       >
         <Button
@@ -134,7 +135,7 @@ export default function Layout({ children, onLogout }) {
           {sidebarOpen ? <X /> : <Menu />}
         </Button>
 
-        <h2 className="text-gray-200  font-bold ">FastBite Dashboard</h2>
+        <h2 className="text-gray-200 text-3xl  font-bold ">FastBite Dashboard</h2>
       </header>
 
       {/* Main */}

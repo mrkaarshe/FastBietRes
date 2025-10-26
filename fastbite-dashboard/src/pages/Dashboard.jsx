@@ -76,12 +76,12 @@ const totalPrice = data.reduce((sum, order) => {
   return (
     <div className="flex flex-col gap-4">
        <div className="mb-8">
-        <h1 className="text-3xl mt-0 sm:mt-10 md:mt-0 font-bold text-white mb-2">Dashboard</h1>
+        <h1 className="text-3xl mt-0 sm:mt-10 md:mt-0 font-bold text-yellow-500 mb-2">Dashboard</h1>
         <p className="text-gray-400">Welcome back! Here's your restaurant overview.</p>
       </div>
       {/* 🔹 Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
-        <Card className="bg-black border-zinc-800 p-5 hover:border-zinc-700 transition">
+        <Card className="bg-black border-zinc-800 p-5 hover:border-yellow-500 transition">
           <CardContent className="p-6 flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Total Orders</p>
@@ -91,7 +91,7 @@ const totalPrice = data.reduce((sum, order) => {
           </CardContent>
         </Card>
 
-        <Card className="bg-black border-zinc-800 p-5 hover:border-zinc-700 transition">
+        <Card className="bg-black border-zinc-800 p-5 hover:border-yellow-500 transition">
           <CardContent className="p-6 flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Pending Orders</p>
@@ -101,7 +101,7 @@ const totalPrice = data.reduce((sum, order) => {
           </CardContent>
         </Card>
 
-        <Card className="bg-black border-zinc-800 p-5 hover:border-zinc-700 transition">
+        <Card className="bg-black border-zinc-800 p-5 hover:border-yellow-500 transition">
           <CardContent className="p-6 flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Confirmed Orders</p>
@@ -111,7 +111,7 @@ const totalPrice = data.reduce((sum, order) => {
           </CardContent>
         </Card>
 
-        <Card className="bg-black border-zinc-800 p-5 hover:border-zinc-700 transition">
+        <Card className="bg-black border-zinc-800 p-5 hover:border-yellow-500 transition">
           <CardContent className="p-6 flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Total Food Items</p>
@@ -120,7 +120,7 @@ const totalPrice = data.reduce((sum, order) => {
             <List className="h-10 w-10 text-blue-400" />
           </CardContent>
         </Card>
-                <Card className="bg-black border-zinc-800 p-5 hover:border-zinc-700 transition">
+                <Card className="bg-black border-zinc-800 p-5 hover:border-yellow-500 transition">
           <CardContent className="p-6 flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Total Food Items</p>

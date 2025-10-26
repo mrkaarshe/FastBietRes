@@ -71,14 +71,14 @@ export default function ManageFoods() {
   return (
     <div>
       {/* Header */}
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8  flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">Manage Foods</h1>
           <p className="text-gray-400">View and manage your menu items.</p>
         </div>
         <Button
           onClick={() => navigate("/add-food")}
-          className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold flex items-center gap-2"
+          className="bg-yellow-400 hover:bg-yellow-500 text-xs sm:text-md text-black font-semibold flex items-center gap-2"
         >
           <Plus className="h-4 w-4" />
           Add Food
@@ -94,7 +94,7 @@ export default function ManageFoods() {
             className={`px-5 py-2 rounded-full font-medium shadow transition ${
               activeCategory === cat
                 ? "bg-white text-black"
-                : "bg-yellow-500 text-white hover:bg-transparent hover:border border-slate-600"
+                : "border text-white hover:bg-transparent hover:border border-slate-600"
             }`}
           >
             {cat}
