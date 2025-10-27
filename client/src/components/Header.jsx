@@ -28,7 +28,7 @@ const Header = () => {
     const product = products.find(p => p._id === item.productId);
     return product ? acc + product.price * item.quantity : acc;
   }, 0);
-  const delivery = subtotal > 0 ? 2 : 0;
+  const delivery = subtotal > 0 ? 0.75 : 0;
   const total = subtotal + delivery;
 
   // Fetch products
