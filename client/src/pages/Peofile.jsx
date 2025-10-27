@@ -169,14 +169,14 @@ const Profile = () => {
          <p className="text-gray-100 text-md">
            Status :
         <span
-          className={`ml-2 px-2 py-0.5 rounded text-xs ${
+          className={`ml-2 px-2 py-0.5 rounded border text-xs ${
             order.status === "Pending"
-              ? "bg-yellow-500 text-black"
+              ? "bg-yellow-400/30 border-yellow-400/30 text-yellow-400"
               : order.status === "Confirmed"
-              ? "bg-green-500 text-white"
+              ? "bg-green-400/30 border-green-400/30 text-green-400"
               : order.status === "Delivered"
-              ? "bg-blue-500 text-white"
-              : "bg-red-500 text-white"
+              ? "bg-blue-400/30 border-blue-400/30 text-blue-400"
+              : "bg-red-400/40 border-red-400/30 text-red-400"
           }`}
         >
           {order.status}
