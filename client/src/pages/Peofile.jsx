@@ -4,6 +4,7 @@ import { logout } from "../Store/userSlice";
 import { FiRefreshCcw } from "react-icons/fi";
 import { clearCart } from "../Store/Cart";
 import { LuLayoutDashboard } from "react-icons/lu";
+import { ShoppingBag } from "lucide-react"
 import {
   fetchUserOrders,
   deleteUserOrder,
@@ -117,12 +118,17 @@ const Profile = () => {
         </div>
 
         {/* Summary */}
-        <div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl">
-          <h3 className="text-xl text-yellow-500 font-semibold mb-3">Summary</h3>
-          <p className="text-3xl">
-            Total Orders:{" "}
-            <span className="text-yellow-500 font-bold">{orders.length}</span>
-          </p>
+        <div className="p-7 bg-black shadow-2xl border border-gray-600 rounded-2xl">
+          <p className="text-yellow-400 text-lg">Total Orders</p>
+            <div className="flex justify-between items-center gap-5 mt-3">
+              
+             <div className="flex justify-between items-center">
+               
+              <h2 className="text-4xl font-bold text-white">{orders.length}</h2>
+             </div>
+               <ShoppingBag className="h-10 w-10 text-white" />
+            </div>
+           
         </div>
       </div>
 

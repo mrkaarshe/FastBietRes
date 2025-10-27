@@ -45,15 +45,12 @@ export const deleteOrder = async (req, res) => {
     console.log('userId', userId)
     console.log('orderId', orderId)
     console.log('userRole', userRole)
-     // Assuming req.user.role is set by your auth middleware
 
     let orderToDelete;
 
     if (userRole === "admin") {
-      // Admin can delete any order
       orderToDelete = await Order.findById(orderId);
     } else {
-      // Regular user can delete only their own orders
       orderToDelete = await Order.findOne({ _id: orderId, user: userId });
     }
 
