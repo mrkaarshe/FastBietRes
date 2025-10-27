@@ -99,19 +99,19 @@ const Profile = () => {
           </h3>
           <button
             onClick={() => navigate("/menu")}
-            className="px-4 py-2 rounded bg-transparent border border-gray-800 hover:text-yellow-500 transition"
+            className="px-4 py-2 rounded bg-transparent border border-zinc-800 hover:text-yellow-500 transition"
           >
             View Menu
           </button>
           <button
             onClick={() => dispatch(clearCart())}
-            className="px-4 py-2 rounded bg-transparent border border-gray-800 hover:text-yellow-500 transition"
+            className="px-4 py-2 rounded bg-transparent border border-zinc-800 hover:text-yellow-500 transition"
           >
             Clear Cart
           </button>
           <button
             onClick={handleLogout}
-            className="px-4 py-2 text-red-500 border border-gray-800 rounded hover:text-gray-300 transition"
+            className="px-4 py-2 text-red-500 border border-zinc-800 rounded hover:text-gray-300 transition"
           >
             Sign Out
           </button>
@@ -156,7 +156,7 @@ const Profile = () => {
   {orders.map((order) => (
     <div
       key={order._id}
-      className="p-3 border flex flex-col min-h-40 max-h-40 bg-zinc-950 rounded-xl  border-gray-800 "
+      className="p-3 border flex flex-col min-h-40 max-h-40 bg-zinc-950 rounded-xl  border-zinc-800 "
     >
       <p className="font-semibold text-sm mb-1 text-yellow-500">
         Order ID: {order._id.slice(21)}

@@ -144,7 +144,7 @@ const Checkout = () => {
             <span className="font-bold text-gray-300">Please Sign In First</span>
             <Link
               to={"/login"}
-              className="border-slate-600 text-white rounded-md border-1 px-10 py-1 hover:bg-yellow-500 transition-colors"
+              className="border-zinc-800 text-white rounded-md border-1 px-10 py-1 hover:bg-yellow-500 transition-colors"
             >
               Sign In
             </Link>
@@ -157,7 +157,7 @@ const Checkout = () => {
           name="email"
           onChange={handleInputChange}
           placeholder="Email"
-          className="border-1 border-slate-600 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
           type="email"
           required
           value={info.email}
@@ -168,14 +168,14 @@ const Checkout = () => {
           name="country"
           value={info.country}
           disabled
-          className="border-1 border-slate-600 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
         />
 
         <select
           name="district"
           value={info.district}
           onChange={handleInputChange}
-          className="border-1 border-slate-600 bg-black  text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 bg-black  text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
         >
           {banadirDistricts.map((district) => (
             <option key={district} value={district}>
@@ -189,14 +189,14 @@ const Checkout = () => {
             name="firstName"
             onChange={handleInputChange}
             placeholder="First Name"
-            className="border-1 border-slate-600 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+            className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
             value={info.firstName}
           />
           <input
             name="lastName"
             onChange={handleInputChange}
             placeholder="Last Name"
-            className="border-1 border-slate-600 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+            className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
             value={info.lastName}
           />
         </div>
@@ -205,7 +205,7 @@ const Checkout = () => {
           name="address"
           onChange={handleInputChange}
           placeholder="Address"
-          className="border-1 border-slate-600 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
           value={info.address}
           required
         />
@@ -213,7 +213,7 @@ const Checkout = () => {
           name="currency"
           onChange={handleInputChange}
           placeholder="currency number"
-          className="border-1 border-slate-600 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
           value={info.currency}
           required
         />
@@ -221,21 +221,21 @@ const Checkout = () => {
           name="phone"
           onChange={handleInputChange}
           placeholder="Phone"
-          className="border-1 border-slate-600 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
           value={info.phone}
           required
           type="tel"
         />
 
-        <div className="flex justify-between items-center border-1 border-slate-600 text-white rounded-lg py-3 px-2">
+        <div className="flex justify-between items-center border-1 border-zinc-800 text-white rounded-lg py-3 px-2">
           <p>Delivery</p>
           <p>1KM $0.75</p>
         </div>
 
         <h2 className="text-xl text-white font-bold mt-6 mb-3">Payment</h2>
         <p className="text-gray-300">All transactions are secure. Use one of the methods below:</p>
-        <div className="flex flex-col gap-x-3 border-1 border-slate-600 text-white p-1 mt-3 rounded-lg">
-          <label className="flex gap-5 border-b-1 border-slate-600 p-3 text-sm md:text-md cursor-pointer">
+        <div className="flex flex-col gap-x-3 border-1 border-zinc-800 text-white p-1 mt-3 rounded-lg">
+          <label className="flex gap-5 border-b-1 border-zinc-800 p-3 text-sm md:text-md cursor-pointer">
             <input
               type="radio"
               name="payment"
@@ -246,7 +246,7 @@ const Checkout = () => {
             />
             <p>EVC Pluse : *712*611011973*$#</p>
           </label>
-          <label className="flex gap-5 border-b-1 border-slate-600 p-3 text-sm md:text-md cursor-pointer">
+          <label className="flex gap-5 border-b-1 border-zinc-800 p-3 text-sm md:text-md cursor-pointer">
             <input
               type="radio"
               name="payment"
@@ -273,14 +273,14 @@ const Checkout = () => {
         </div>
 
         {!user ? (
-          <button className="mt-6 w-full py-3 bg-yellow-500 hover:bg-transparent hover:border-1 border-slate-600 text-white rounded-lg font-bold">
+          <button className="mt-6 w-full py-3 bg-yellow-500 hover:bg-transparent hover:border-1 border-zinc-800 text-white rounded-lg font-bold">
             Sign In First ${total.toFixed(2)}
           </button>
         ) : (
           <button
             onClick={handlePlaceOrder}
             disabled={loading}
-            className="mt-6 w-full py-3 bg-yellow-500 hover:bg-transparent hover:border-1 border-slate-600 text-white rounded-lg font-bold"
+            className="mt-6 w-full py-3 bg-yellow-500 hover:bg-transparent hover:border-1 border-zinc-800 text-white rounded-lg font-bold"
           >
             {loading ? "Placing Order..." : `Place Order $${total.toFixed(2)}`}
           </button>
@@ -297,7 +297,7 @@ const Checkout = () => {
             return (
               <div
                 key={item.productId}
-                className="flex justify-between items-center gap-2 mb-2 border-1 border-slate-600 rounded-lg p-2"
+                className="flex justify-between items-center gap-2 mb-2 border-1 border-zinc-800 rounded-lg p-2"
               >
                 <img
                   src={`https://fastbietres-1.onrender.com${product.image}`}

@@ -7,7 +7,7 @@ import { BsTelephone } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <footer className="font-Poppins bg-black border-t-2 border-slate-600 rounded-t-lg shadow-2xl text-gray-300 pt-12">
+    <footer className="font-Poppins bg-black border-t-2 border-zinc-800 rounded-t-lg shadow-2xl text-gray-300 pt-12">
       <div className=" px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
         {/* About */}
         <div>
@@ -61,7 +61,7 @@ const Footer = () => {
        </div>
 
       {/* Bottom Bar */}
-      <div className="border-t-2 border-slate-600 mt-10 py-4 text-center text-gray-300 font-bol text-sm">
+      <div className="border-t-2 border-zinc-800 mt-10 py-4 text-center text-gray-300 font-bol text-sm">
         © 2025 FastBite Restaurant. All Rights Reserved.
       </div>
     </footer>

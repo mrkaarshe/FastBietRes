@@ -62,7 +62,7 @@ const AddFood = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center  px-4">
-      <div className="w-full max-w-lg border border-gray-900 bg-black p-8 rounded-2xl shadow-2xl backdrop-blur-lg">
+      <div className="w-full max-w-lg border border-zinc-800 bg-black p-8 rounded-2xl shadow-2xl backdrop-blur-lg">
         <h2 className="text-3xl font-bold text-yellow-500 mb-6 text-center">
           Add New Food
         </h2>

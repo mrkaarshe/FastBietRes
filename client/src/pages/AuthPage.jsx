@@ -48,7 +48,7 @@ const handleSubmit = async (e) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center  text-yellow-500 px-4">
-      <div className="w-full border border-gray-900 max-w-md bg-black rounded-2xl shadow-2xl backdrop-blur-lg p-8 transition-all duration-300 hover:shadow-yellow-500/30">
+      <div className="w-full border border-zinc-800 max-w-md bg-black rounded-2xl shadow-2xl backdrop-blur-lg p-8 transition-all duration-300 hover:shadow-yellow-500/30">
         {/* Title */}
         <h1 className="text-3xl font-bold text-center mb-8 tracking-tight">
           {mode === "login" ? "Login to your account" : "Register a new account"}

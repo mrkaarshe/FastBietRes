@@ -88,7 +88,7 @@ const Menu = () => {
               className={`px-5 py-2 rounded-full font-medium shadow transition ${
                 activeCategory === cat
                   ? "bg-white text-black"
-                  : "bg-yellow-500 text-white hover:bg-transparent hover:border border-slate-600"
+                  : "bg-yellow-500 text-white hover:bg-transparent hover:border border-zinc-800"
               }`}
             >
               {cat}
@@ -144,7 +144,7 @@ const Menu = () => {
                     <div className="flex items-center gap-3">
                       <Link
                         to={`/details/${item._id}`}
-                        className="flex items-center justify-center gap-2 px-5 py-3 rounded-full text-yellow-500 text-lg font-semibold shadow-md hover:bg-transparent border border-slate-600 hover:text-gray-200 transition-all duration-300"
+                        className="flex items-center justify-center gap-2 px-5 py-3 rounded-full text-yellow-500 text-lg font-semibold shadow-md hover:bg-transparent border border-zinc-800 hover:text-gray-200 transition-all duration-300"
                       >
                         <MdAddShoppingCart className="text-xl" />
                       </Link>
@@ -152,7 +152,7 @@ const Menu = () => {
                       {user?.role === "admin" && (
                         <button
                           onClick={() => handleDelete(item._id)}
-                          className="p-3 border border-slate-600 rounded-full text-white hover:text-yellow-500 transition-all duration-300"
+                          className="p-3 border border-zinc-800 rounded-full text-white hover:text-yellow-500 transition-all duration-300"
                         >
                           <FaTrash className="text-xl" />
                         </button>

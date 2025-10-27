@@ -11,7 +11,7 @@ const imageUrl = product?.image
   : "https://via.placeholder.com/150"; // fallback image haddii image ma jiro
 
   return (
-    <div className="flex items-center justify-between border-1 border-slate-600 rounded-xl my-2 p-2">
+    <div className="flex items-center justify-between border-1 border-zinc-800 rounded-xl my-2 p-2">
       <div className="flex items-center gap-3">
         <img src={`https://fastbietres-1.onrender.com${product.image}`} alt={product.title} className="w-16 h-16 object-cover rounded" />
         <div>

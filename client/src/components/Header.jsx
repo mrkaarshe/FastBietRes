@@ -114,7 +114,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         <div
           id="mobile-menu"
-          className={`${togel ? "-translate-y-[1000px]" : "-translate-y-0"} fixed bg-gradient-to-r from-black via-slate-950 to-black border-b  backdrop-blur-xl shadow-2xl top-17 left-0 right-0 min-w-[320px] max-w-full rounded-md z-10 transition-transform duration-300`}
+          className={`${togel ? "-translate-y-[1000px]" : "-translate-y-0"} fixed bg-gradient-to-r from-black via-zinc-900 to-black border-b  backdrop-blur-xl shadow-2xl top-17 left-0 right-0 min-w-[320px] max-w-full rounded-md z-10 transition-transform duration-300`}
         >
           <ul className="flex flex-col gap-2 py-4 px-4 max-w-1/1 mx-auto text-gray-300">
             <div className="flex gap-6 jusfty-center">
