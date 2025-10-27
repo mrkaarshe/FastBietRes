@@ -70,7 +70,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:block relative">
-          <ul className="flex gap-8 text-xl">
+          <ul className="flex gap-6 text-xl">
             
             <Link to='/home' className="text-yellow-500 border-b-2 font-Poppins  hover:scale-110">Home</Link>
             
@@ -114,10 +114,10 @@ const Header = () => {
         {/* Mobile Navigation */}
         <div
           id="mobile-menu"
-          className={`${togel ? "-translate-y-[1000px]" : "-translate-y-0"} fixed bg-gradient-to-r from-black via-slate-950 to-black border-b  backdrop-blur-xl shadow-2xl top-19 left-0 right-0 min-w-[320px] max-w-full rounded-md z-10 transition-transform duration-300`}
+          className={`${togel ? "-translate-y-[1000px]" : "-translate-y-0"} fixed bg-gradient-to-r from-black via-slate-950 to-black border-b  backdrop-blur-xl shadow-2xl top-17 left-0 right-0 min-w-[320px] max-w-full rounded-md z-10 transition-transform duration-300`}
         >
           <ul className="flex flex-col gap-2 py-4 px-4 max-w-1/1 mx-auto text-gray-300">
-            <div className="flex gap-3 jusfty-center">
+            <div className="flex gap-6 jusfty-center">
             
             <Link to='/home' className="text-yellow-500 border-b-2 font-Poppins  hover:scale-110">Home</Link>
             </div>
