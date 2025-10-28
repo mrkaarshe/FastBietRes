@@ -10,10 +10,59 @@ import { FaFacebook ,FaLinkedin ,FaGithub  ,FaEnvelope} from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import {  useState } from 'react';
 const Contact = () => {
   useEffect(()=>{
     aos.init({duration:1000},{once:true})
   })
+   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    // Data to be sent to the server
+    const contactData = {
+      name,
+      email,
+      phone,
+      message,
+    };
+
+    try {
+      const response = await fetch('https://fastbietres-1.onrender.com/api/contact/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
+
+      // Success - Reset form and show success message
+      setName('');
+      setEmail('');
+      setPhone('');
+      setMessage('');
+      alert('Message sent successfully!');
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <>
     
@@ -31,10 +80,10 @@ const Contact = () => {
     <div id='contact' className='flex flex-col  px-3 gap-10'>
 
     <div  data-aos="fade-up" className='w-full grid grid-cols-1 md:grid-cols-2 gap-10 '>
-    <div  data-aos="fade-right" className='flex flex-col gap-5 w-full sm:w-1/1 md:w-1/1 lg:w-1/2'>
+    <div  data-aos="fade-right" className='flex flex-col gap-5 w-full sm:w-1/1 md:w-1/1 lg:w-1/1'>
                 <h2 className='text-yellow-500 my-'>CONTACT-INFO</h2>
             <div className='flex gap-3'>
-                <div className=' border-1 border-gray-800 rounded-lg hover:border-white hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
+                <div className=' border-1 border-zinc-800 rounded-lg hover:border-white hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
                 < LuMapPin />
             </div>
             <div className='h-5'>
@@ -46,7 +95,7 @@ const Contact = () => {
             </div>
 
             <div className='flex gap-3'>
-                <div className=' border-1 border-gray-800 rounded-lg hover:border-green-500 hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
+                <div className=' border-1 border-zinc-800 rounded-lg hover:border-green-500 hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-300'>
                 <MdOutlineLocalPhone />
             </div>
             <div className='h-5'>
@@ -60,7 +109,7 @@ const Contact = () => {
          
 
             <div className='flex gap-3'>
-                <div className=' border-1 border-gray-800 rounded-lg hover:border-red-400 hover:duration-300 w-20 h-20 flex justify-center items-center text-gray-400'>
+                <div className=' border-1 border-zinc-800 rounded-lg hover:border-red-400 hover:duration-300 min-w-19 h-20 flex justify-center items-center text-gray-400'>
                <FaRegClock />
             </div>
             <div className='h-5'>
@@ -76,27 +125,61 @@ const Contact = () => {
             </div>
 
             <div className='flex gap-3'>
-                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-white'>< FaEnvelope size={20}/></p>
-                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-green-500'><FaWhatsapp  size={20}/></p>
-                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-gray-800 hover:border-blue-400'><FaFacebook  size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-zinc-800 hover:border-white'>< FaEnvelope size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-zinc-800 hover:border-green-500'><FaWhatsapp  size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-zinc-800 hover:border-blue-400'><FaFacebook  size={20}/></p>
             </div>
 
         </div>
 
         <div className=' w-full rounded-2xl  p- flex flex-col gap-5'>
                 <h2 className='text-white text-2xl'>We’d Love to Hear From <span className='text-yellow-500'>You</span></h2>
-            <form  className='flex flex-col gap-5'>
-                    <input type="text" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-gray-800 focus:ring-yellow-500 outline-0  ' required placeholder='Your Name' />
-                    <input type="email" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-gray-800 focus:ring-yellow-500  outline-0 ' required placeholder='Your Email' />
-                    <input type="text" className=' h-10 px-3 w-1/1   rounded-lg text-white border-2 border-gray-800 focus:ring-yellow-500 outline-0 ' required placeholder='Your Phone' />
-                    <textarea name="" className=' min-h-40 min-w-focus:ring-yellow-500ull text-white  max-h-40 border-2 border-gray-800 focus:ring-yellow-500 outline-0  rounded-lg placeholder-[#14ca8d p-5' placeholder='type---' id=""></textarea>
-                    <button  className='w-full hover:border-2 bg-yellow-500 border-gray-800 text-white rounded-lg py-4 hover:bg-transparent transform-colors duration-300'>Send</button>
-            </form>
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                    <input
+                      type="text"
+                      className="h-10 px-3 w-1/1 rounded-lg text-white border-1 border-zinc-800 focus:ring-yellow-500 outline-0"
+                      required
+                      placeholder="Your Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                    <input
+                      type="email"
+                      className="h-10 px-3 w-1/1 rounded-lg text-white border-1 border-zinc-800 focus:ring-yellow-500 outline-0"
+                      required
+                      placeholder="Your Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                      type="text"
+                      className="h-10 px-3 w-1/1 rounded-lg text-white border-1 border-zinc-800 focus:ring-yellow-500 outline-0"
+                      required
+                      placeholder="Your Phone"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                    <textarea
+                      className="min-h-40 text-white max-h-40 border-1 border-zinc-800 focus:ring-yellow-500 outline-0 rounded-lg p-5"
+                      required
+                      placeholder="Type your message..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                    {error && <p className="text-red-500">{error}</p>}
+                    <button
+                      type="submit"
+                      className="w-full bg-yellow-500 border-zinc-800 text-white rounded-lg py-4 hover:bg-transparent transform-colors duration-300"
+                      disabled={loading}
+                    >
+                      {loading ? 'Sending...' : 'Send'}
+                    </button>
+                  </form>
         </div>
  
             
     </div>
-           <div className='border border-gray-800 text-gray-300 p-7 rounded-lg w-1/1 '>
+           <div className='border border-zinc-800 text-gray-300 p-7 rounded-lg w-1/1 '>
           <div>Reservations</div>
               <div>For the best dining experience, we recommend making a reservation.</div>
             

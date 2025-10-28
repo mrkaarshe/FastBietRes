@@ -117,7 +117,7 @@ const Menu = () => {
                 <div
                   key={item._id}
                   data-aos="fade-up"
-                  className="relative group flex flex-col justify-between items-center w-[97%] mr-2 rounded-xl overflow-hidden bg-gradient-to-br from-transparent via-slate-950 to-black backdrop-blur-lg shadow-md shadow-yellow-500/10 transition-all duration-500"
+                  className="relative group flex flex-col justify-between items-center w-[97%] mr-2 rounded-xl overflow-hidden bg-zinc-950  backdrop-blur-lg transition-all duration-500"
                 >
                   {/* Image Section */}
                   <div className="relative w-full overflow-hidden">
@@ -126,7 +126,7 @@ const Menu = () => {
                       alt={item.title}
                       className="object-cover w-full h-60 rounded-t-xl transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0  opacity-70 group-hover:opacity-50 transition-opacity duration-500"></div>
                   </div>
 
                   {/* Content */}

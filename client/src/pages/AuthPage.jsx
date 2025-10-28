@@ -104,7 +104,7 @@ const handleSubmit = async (e) => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full bg-black  focus:bg-slate-950 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
+              className="w-full bg-black  focus:bg-zinc-800 text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
               placeholder="Email"
               required
             />
@@ -117,7 +117,7 @@ const handleSubmit = async (e) => {
               name="password"
               value={form.password}
               onChange={handleChange}
-              className="w-full bg-black  focus:bg-slate-950  text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
+              className="w-full bg-black  focus:bg-zinc-800  text-white p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-yellow-500 outline-none transition"
               placeholder="******"
               required
             />

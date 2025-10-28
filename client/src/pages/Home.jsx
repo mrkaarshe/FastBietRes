@@ -69,7 +69,7 @@ const handleAddToCart = (item) => {
 
   return (
     <>
-      <div className="  w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col   mt-10 font-Poppins  lg:flex-col xl:flex-row  justify-around items-center px-2 md:px-10 lg:px-20  ">
+      <div className="  w-screen sm:w-sm md:w-1/1 flex flex-col md:flex-col   mt-10 font-Poppins  lg:flex-col xl:flex-row  justify-between items-center px-2 md:px-10 lg:px-10  ">
 
         
         <div data-aos="fade-right" className=" mt-15 w-screen md:w-1/1 lg:w-1/1 xl:w-1/2 mx-2 px-2 md:mx-5 flex justify-start flex-col  text-space-y-1 lg:space-y-2">
@@ -81,18 +81,18 @@ const handleAddToCart = (item) => {
             Where speed meets flavor — enjoy chef-crafted dishes prepared with passion and delivered with perfection. Every bite is a blend of freshness, flavor, and quality — from our kitchen to your doorstep. Whether you’re craving something spicy, sweet, or savory, our chefs bring restaurant-quality meals straight to your home — hot, fast, and full of love.
           </p>
          <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-5 lg:mt-10 lg:w-1/1'>
-           <Link to={'/menu'} className='bg-yellow-500 border-zinc-800 w-[95%] md:w-1/1 py-4 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 '>View Menu</Link>
-           <button className='border-2  border-zinc-800 w-[95%] md:w-1/1 py-4 rounded-lg font-bold hover:bg-yellow-500 text-white transition-colors duration-300 hover:border-0'>See More</button>
+           <Link to={'/menu'} className='bg-yellow-500 border-zinc-700 w-[95%] md:w-1/1 py-4 rounded-lg text-center text-white font-bold hover:bg-transparent hover:border-1 '>View Menu</Link>
+           <button className='border-2  border-zinc-700 w-[95%] md:w-1/1 py-4 rounded-lg font-bold hover:bg-yellow-500 text-white transition-colors duration-300 hover:border-0'>See More</button>
          </div>
             <div className='flex gap-3 mt-5'>
-                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-zinc-800 hover:border-white'>< FaEnvelope size={20}/></p>
-                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-zinc-800 hover:border-green-500'><FaWhatsapp  size={20}/></p>
-                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-zinc-800 hover:border-blue-400'><FaFacebook  size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-zinc-700 hover:border-white'>< FaEnvelope size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-zinc-700 hover:border-green-500'><FaWhatsapp  size={20}/></p>
+                    <p className='h-20 rounded-full flex justify-center items-center min-w-20 text-white border-1 border-zinc-700 hover:border-blue-400'><FaFacebook  size={20}/></p>
             </div>
         </div>
 
         {/* Cards Section */}
-      <div data-aos="fade-left" className=' bg-gradient-to-r from-slate-950/70 to-slate-950/30  mt-25 rounded-xl w-screen sm:w-sm md:w-1/1 mx-10  lg:w-1/1 xl:w-1/2  z-10  pb-10'>
+      <div data-aos="fade-left" className=' bg-gradient-to-r from-zinc-950/30 to-zinc-950/90  mt-25 rounded-xl w-screen sm:w-sm md:w-1/1 mx-10  lg:w-1/1 xl:w-1/2  z-10  pb-10'>
        
           <div className="flex flex-col  md:felx-row   sm:mt-10 md:mt-6 sm:pt-5  ">
          <h2 className='text-5xl text-yellow-300 text-center font-bold '>Our Specialist</h2>
@@ -100,12 +100,12 @@ const handleAddToCart = (item) => {
             {items.map((item) => (
               <div data-aos="fade-up" key={item.id} className=" relative ">
 
-                <div className="mt-5 shadow-2xl bg-zinc-900 p-2 gap-1  rounded-full  flex justify-around  pt-2 min-w-sm lg:min-w-[300px]   lg:mx-2  relative z-100">
+                <div className="mt-5 shadow-2xl bg-zinc-900 p-2 gap-1  rounded-full  flex justify-around  pt-2 min-w-xs lg:min-w-[300px]   lg:mx-2  relative z-100">
                  <div className="">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-35 h-35 object-cover rounded-full shadow-lg border-4 border-zinc-800 hover:scale-125 duration-300 transition-transform cursor-pointer"
+                    className="w-35 h-35 object-cover rounded-full shadow-lg border-4 border-zinc-700 hover:scale-125 duration-300 transition-transform cursor-pointer"
                   />
                 </div>
                   <div className="text-center">

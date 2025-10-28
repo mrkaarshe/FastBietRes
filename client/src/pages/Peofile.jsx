@@ -119,18 +119,25 @@ const Profile = () => {
         </div>
 
         {/* Summary */}
-        <div className="p-7 bg-black shadow-2xl border border-gray-600 rounded-2xl">
-          <p className="text-yellow-400 text-lg">Total Orders</p>
-            <div className="flex justify-between items-center gap-5 mt-3">
-              
-             <div className="flex justify-between items-center">
-               
-              <h2 className="text-4xl font-bold text-white">{orders.length}</h2>
-             </div>
-               <ShoppingBag className="h-10 w-10 text-white" />
-            </div>
-           
-        </div>
+<div className="p-4 bg-black shadow-2xl border border-gray-600 rounded-2xl transition-all hover:shadow-xl">
+  <p className="text-yellow-400 text-lg font-semibold">Summary</p>
+
+  <div className="flex justify-between items-center gap- mt-4">
+    
+    <div className="flex justify-between items-center gap-2">
+      <h2 className="flex justify-center items-center text-xl gap-1 text-white font-medium">
+        Total Orders
+        <span className="text-2xl font-bold text-yellow-400"> {orders.length}</span>
+      </h2>
+    </div>
+    
+    <div className="p-4 bg-yellow-400 rounded-full shadow-lg hover:shadow-xl">
+      <ShoppingBag className="h-10 w-10 text-gray-800" />
+    </div>
+    
+  </div>
+</div>
+
       </div>
 
       {/* ORDER HISTORY */}

@@ -11,6 +11,7 @@ const Detail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState(null); // New state for updated price
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ const Detail = () => {
         if (!res.ok) throw new Error(`HTTP error ${res.status}`);
         const data = await res.json();
         setProduct(data);
+        setPrice(data.price); // Set initial price on load
         console.log("Fetched food:", data);
       } catch (err) {
         console.error(err);
@@ -34,10 +36,19 @@ const Detail = () => {
     fetchFood();
   }, [id, navigate]);
 
-  if (!product) return <div className="my-50 max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-t-4  border-yellow-500 animate-spin"></div>;
+  // Update price whenever quantity changes
+  useEffect(() => {
+    if (product) {
+      setPrice(product.price * quantity); // Update price based on quantity
+    }
+  }, [quantity, product]); // Runs when quantity or product changes
+
+  if (!product) return <div className=" min-h-screen ">
+    <p className="max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-t-4  border-yellow-500 animate-spin"></p>
+  </div>;
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ productId: product._id, product: product , quantity }));
+    dispatch(addToCart({ productId: product._id, product: product, quantity }));
     navigate("/home");
   };
 
@@ -47,7 +58,7 @@ const Detail = () => {
       <div data-aos="fade-left">
         <h1 className="text-6xl text-yellow-500 font-bold">{product.title}</h1>
         <p className="text-gray-300 text-xl font-bold mt-1">{product.subtitle}</p>
-        <p className="text-4xl font-semibold text-yellow-500 ">${product.price}</p>
+        <p className="text-4xl font-semibold text-yellow-500 ">${price}</p> {/* Display updated price */}
 
         {/* Quantity */}
         <div className="flex items-center gap-4 mt-1">
@@ -57,7 +68,7 @@ const Detail = () => {
         </div>
 
         {/* Add to Cart */}
-        <button onClick={handleAddToCart} className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-yellow-500 text-white text-lg font-medium shadow hover:bg-transparent hover:border-1 border-yellow-500 transition">
+        <button onClick={handleAddToCart} className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-yellow-500 text-white text-lg font-medium shadow hover:bg-transparent hover:border-1 border-zinc-800 transition">
           <MdAddShoppingCart /> Add to Cart
         </button>
       </div>

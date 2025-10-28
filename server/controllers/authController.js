@@ -7,16 +7,30 @@ import { SendMyEmail } from "../config/nodeMailer.js";
 // Helper function for FastBite styled email
 const fastBiteEmail = (title, bodyHtml) => `
 <html>
-<body style="background-color:#000000; color:#facc15; font-family: Arial, sans-serif; padding:20px;">
-  <div style="max-width:600px; margin:auto; background-color:#111111; padding:20px; border-radius:8px;">
-    <h1 style="color:#facc15; text-align:center;">${title}</h1>
-    ${bodyHtml}
-    <hr style="border-color:#facc15; margin:20px 0;">
-    <p style="text-align:center; font-size:12px; color:#cccccc;">© ${new Date().getFullYear()} FastBite. All rights reserved.</p>
-  </div>
+<body style=" color: #dfb407; font-family: Arial, sans-serif; padding: 0px;">
+    <div style="border-radius: 15px; max-width: 600px; margin: auto; background-color: #1a1a1a; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);">
+        <header style="background-color: #dfb407; border-radius: 10px 10px 0px 0px; color: #ffffff; text-align: center; font-weight: bold; padding: 10px;">
+            <p style="font-size: 24px; margin: 0;">${title}</p>
+        </header>
+        
+        <div style="padding: 20px; color: #fff;">
+            <p style="font-size: 18px; color: #f4f4f4;">Hi there!</p>
+            ${bodyHtml}
+        </div>
+
+        <hr style="border-color: #dfb407; margin: 20px 0; border-width: 2px;">
+         <p style="text-align:center; font-size: 14px; color: #fff;">© ${new Date().getFullYear()} FastBite. All rights reserved.</p>
+
+    </div>
 </body>
 </html>
+
+</html>
+
+
 `;
+
+
 
 // ------------------ REGISTER ------------------
 export const register = async (req, res) => {
@@ -49,9 +63,9 @@ export const register = async (req, res) => {
     const mailOptions = {
       from: process.env.SENDER_EMAIL,
       to: email,
-      subject: 'Welcome to FastBite 🍔',
+      subject: 'Welcome to FastBite ',
       text: `Hello ${name}, Thank you for registering at FastBite!`,
-      html: fastBiteEmail(`Welcome to FastBite, ${name}!`, `<p style="text-align:center; font-size:16px;">Your account has been successfully created with this email: <strong>${email}</strong></p><p style="text-align:center;">🍔 Enjoy delicious meals delivered fast!</p>`),
+      html: fastBiteEmail(`Welcome to FastBite, ${name}!`, `<p style="text-align:center; font-size:16px;">Your account has been successfully created with this email: <strong>${email}</strong></p><p style="text-align:center;"> Enjoy delicious meals delivered fast!</p>`),
     };
     await SendMyEmail(mailOptions);
 
@@ -183,7 +197,10 @@ export const sendResetPasswordOtp = async (req, res) => {
       to: user.email,
       subject: 'FastBite Password Reset',
       text: `Your password reset code is ${OTP}`,
-      html: fastBiteEmail(`Reset Your Password`, `<p style="text-align:center; font-size:18px;">Use the code below to reset your password:</p><p style="text-align:center; font-size:24px; font-weight:bold;">${OTP}</p>`),
+      html: fastBiteEmail(`Reset Your Password`, `<p style=" font-size:10px; color:white;">We received a request to reset your password. Use the code below to proceed:</p>
+                <p style="text-align:center; width:full; font-size:24px; color:white;background-color:#353535; padding: 8px; border-radius: 10px; text-align: center;  font-weight:bold;">${OTP}</p>
+                  <p style="color: #cecdcd; font-size: 10px; ">this code will expire in <strong>24hurs</strong></p>
+        <p style="color: #cecdcd; font-size: 10px; ">If you didn’t request a password reset, you can safely ignore this email.</p>`),
     };
     await SendMyEmail(mailOptions);
 

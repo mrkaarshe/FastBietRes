@@ -9,8 +9,8 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import foodRoutes from "./routes/foodRoutes.js";
 import orderRouter from "./routes/orderRouter.js";
-import userOrder from "./models/userOrder.js";
 import userOrderRouter from "./routes/userOrderRoutes.js";
+import router from "./routes/contactRouter.js";
 import { deleteOrder } from "./controllers/userOrderController.js";
 
 dotenv.config();
@@ -29,12 +29,14 @@ if (!fs.existsSync(uploadDir)) {
 // Static folder
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
-// ✅ ROUTES
+// ROUTES
 app.use("/api/auth", authRoutes);
 app.use("/api/foods", foodRoutes);
 app.use("/api/history", orderRouter);
 app.use("/api/userOrders", userOrderRouter);
+app.use('/api/contact', router); // Updated route for contact form submission
 app.delete('/api/userOrders/orders/:orderId', deleteOrder);
+
 // Health check
 app.get("/", (req, res) => {
   res.json({ message: "✅ API running successfully!" });
