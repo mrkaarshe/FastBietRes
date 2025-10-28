@@ -17,30 +17,38 @@ import AuthPage from './pages/AuthPage'
 import AddFood from './pages/AddFood';
 import ErrorPage from './pages/ErrorPage';
 import Profile from './pages/Peofile';
-import AdminOrders from './pages/AdminDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import ForgotPassword from './pages/ForgetPassword';
+import VerifyOtp from './pages/VerifyOtp';
+import ResetPassword from './pages/ResetPassword';
+
 const App = () => {
   return (
     <BrowserRouter>
-    <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-right" reverseOrder={false} />
       <Routes>
-        <Route path='/' element={<Layout />}>   
+        {/* Public pages without Layout */}
+        <Route path="/register" element={<AuthPage />} />
+        <Route path="/login" element={<AuthPage />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
+        {/* Main site pages inside Layout */}
+        <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/home' element={<Home />} />
           <Route path=':details/:id' element={<Detail />} />
           <Route path='/menu' element={<Menu />} />
-          <Route path='/register' element={<AuthPage/>} />
-           <Route path='/login' element={<AuthPage />} />
-           <Route path="/checkout" element={<Checkout />} />
-           <Route path="/contact" element={<Contact />} />
-           <Route path="/add-food" element={<AddFood />} />
-           <Route path="/order-confirmed" element={<OrderConfirmed />} />
-           <Route path='/profile' element={<Profile />} />
-           <Route path='/admin' element={<AdminDashboard />} />
-          <Route path='*' element={<ErrorPage/>} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/add-food" element={<AddFood />} />
+          <Route path="/order-confirmed" element={<OrderConfirmed />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/admin' element={<AdminDashboard />} />
+          <Route path='*' element={<ErrorPage />} />
         </Route>
-        
       </Routes>
       <ToastContainer />
     </BrowserRouter>

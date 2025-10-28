@@ -36,7 +36,7 @@ export const fetchUserOrders = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
-      const token = state.user?.user?.token || localStorage.getItem("token");
+      const token = state.user?.user?.token || localStorage.getItem("token") ;
 
       const res = await fetch("https://fastbietres-1.onrender.com/api/userOrders/getOrders", {
         headers: {

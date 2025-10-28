@@ -44,6 +44,7 @@ const Profile = () => {
     dispatch(clearCart());
     dispatch(clearUserOrders());
     localStorage.removeItem("user");
+    localStorage.removeItem('token')
     localStorage.removeItem("cart");
     navigate("/home");
     toast.success("Logged out successfully");
