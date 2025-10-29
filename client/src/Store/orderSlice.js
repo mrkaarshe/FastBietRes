@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { clearCart } from "../Store/Cart";
 
-const BASE_URL = "http://localhost:3000/api/history";
+const BASE_URL = "https://fastbietres-1.onrender.com/api/history";
 
 /* ──────────────── 1️⃣ USER - PLACE ORDER ──────────────── */
 export const placeOrder = createAsyncThunk(
