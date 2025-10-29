@@ -108,7 +108,7 @@ const Checkout = () => {
         paymentMethod,
       };
 
-      const token = user?.token;
+      const token = localStorage.getItem('token')
 
       const res = await fetch("https://fastbietres-4.onrender.com/api/history/orders", {
         method: "POST",

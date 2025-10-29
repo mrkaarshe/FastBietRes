@@ -3,7 +3,7 @@ import Order from "../models/order.js";
 
 export const placeOrder = async (req, res) => {
   try {
-    const { items, contact, paymentMethod } = req.body;
+    const { items, contact, paymentMethod ,userId} = req.body;
 
     // Compose full address string from contact info
     const address = `${contact.address}, ${contact.city}, ${contact.region} ${contact.currency}`;
@@ -16,6 +16,7 @@ export const placeOrder = async (req, res) => {
       paymentMethod, // <-- New field here
       status: "Pending",
     });
+    console.log(userId)
     
 
     res.status(201).json({ message: "Order placed successfully", order });

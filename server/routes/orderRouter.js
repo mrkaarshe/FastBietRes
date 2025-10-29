@@ -11,7 +11,7 @@ import { authenticateUser, authenticateAdmin } from "../middleware/userMiddlewar
 const router = express.Router();
 
 // USER routes
-router.post("/orders", placeOrder);
+router.post("/orders", authenticateUser, placeOrder);
 router.get("/orders/myorders", authenticateUser, getUserOrders);
 
 router.get("/admin/orders", authenticateAdmin, getAllOrders);
