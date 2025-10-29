@@ -12,7 +12,7 @@ const OrderConfirmed = () => {
         <p className="text-gray-300 mb-6">
           Thank you for your purchase. Your order has been placed successfully.
         </p>
-       <div className="flex flex-col md:flex-row gap-4">
+       <div className="flex flex-col md:flex-row justify-center items-center gap-4">
          <Link
           to="/home"
           className="inline-block  bg-yellow-500 hover:bg-transparent hover:border border-slate-600 text-white px-6 py-3 rounded-full font-semibold transition"
