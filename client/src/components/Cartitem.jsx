@@ -7,7 +7,7 @@ const Cartitem = ({ product, quantity, onIncrease, onDecrease, onRemove }) => {
 const imageUrl = product?.image
   ? product.image.startsWith("http")
     ? product.image
-    : `https://fastbietres-1.onrender.com/${product.image}`
+    : `https://fastbietres-4.onrender.com/${product.image}`
   : "https://via.placeholder.com/150"; // fallback image haddii image ma jiro
 
   return (

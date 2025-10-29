@@ -13,7 +13,7 @@ export default function ForgotPassword() {
     if (!email) return toast.error("Please enter your email");
     setLoading(true);
     try {
-      const { data } = await axios.post("https://fastbietres-1.onrender.com/api/auth/send-reset-opt", { email });
+      const { data } = await axios.post("https://fastbietres-4.onrender.com/api/auth/send-reset-opt", { email });
       if (data.success) {
         toast.success("OTP sent to your email");
         navigate("/verify-otp", { state: { email } });

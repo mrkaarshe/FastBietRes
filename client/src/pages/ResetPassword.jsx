@@ -17,7 +17,7 @@ export default function ResetPassword() {
     setLoading(true);
 
     try {
-      const { data } = await axios.post("https://fastbietres-1.onrender.com/api/auth/reset-password", {
+      const { data } = await axios.post("https://fastbietres-4.onrender.com/api/auth/reset-password", {
         email,
         OTP: otp,
         newPassword,

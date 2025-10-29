@@ -12,7 +12,7 @@ const Cart = () => {
       const productsData = await Promise.all(
         cart.map(async (item) => {
           try {
-            const res = await fetch(`https://fastbietres-1.onrender.com/api/foods/${item.productId}`);
+            const res = await fetch(`https://fastbietres-4.onrender.com/api/foods/${item.productId}`);
             if (!res.ok) return null; // skip missing product
             const data = await res.json();
             return { ...data, quantity: item.quantity }; // attach quantity here

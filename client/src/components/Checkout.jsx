@@ -55,7 +55,7 @@ const Checkout = () => {
       try {
         const productsData = await Promise.all(
           cart.map(async (item) => {
-            const res = await fetch(`https://fastbietres-1.onrender.com/api/foods/${item.productId}`);
+            const res = await fetch(`https://fastbietres-4.onrender.com/api/foods/${item.productId}`);
             return await res.json();
           })
         );
@@ -110,7 +110,7 @@ const Checkout = () => {
 
       const token = user?.token;
 
-      const res = await fetch("https://fastbietres-1.onrender.com/api/history/orders", {
+      const res = await fetch("https://fastbietres-4.onrender.com/api/history/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

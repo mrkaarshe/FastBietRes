@@ -13,7 +13,7 @@ const handleNext = async (e) => {
   if (!otp) return toast.error("Enter the OTP");
 
   try {
-    const res = await fetch('https://fastbietres-1.onrender.com/api/auth/verify-reset-otp', {
+    const res = await fetch('https://fastbietres-4.onrender.com/api/auth/verify-reset-otp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, otp }),

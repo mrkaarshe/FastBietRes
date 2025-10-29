@@ -3,12 +3,12 @@ import dotenv from "dotenv";
 
 dotenv.config(); // hubi in .env la akhriyey
 
-// ✅ samee transporter
-const transporter = nodemailer.createTransport({
+// ✅ samee transporterexporft 
+export const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.SENDER_EMAIL || "odaykaarshe@gmail.com",
-    pass: process.env.SENDER_EMAIL_PASSWORD || "scbn ugoj cgvp gjof", // magaca saxda ah
+    user:"odaykaarshe@gmail.com",
+    pass:"scbn ugoj cgvp gjof", // magaca saxda ah
   },
 });
 
