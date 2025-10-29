@@ -26,7 +26,7 @@ export default function ManageFoods() {
   const fetchFoods = async () => {
     try {
       setLoading(true);
-      const response = await fetch("https://fastbietres-1.onrender.com/api/foods/getfood");
+      const response = await fetch("https://fastbietres-4.onrender.com/api/foods/getfood");
       if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
       const data = await response.json();
       setFoods(data); // <-- Use setFoods here, not setFood
@@ -49,7 +49,7 @@ export default function ManageFoods() {
     const token = localStorage.getItem("token");
     try {
       setLoading(true);
-      const res = await fetch(`https://fastbietres-1.onrender.com/api/foods/delete/${id}`, {
+      const res = await fetch(`https://fastbietres-4.onrender.com/api/foods/delete/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

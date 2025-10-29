@@ -20,7 +20,7 @@ const Detail = () => {
 
     const fetchFood = async () => {
       try {
-        const res = await fetch(`https://fastbietres-1.onrender.com/api/foods/${id}`);
+        const res = await fetch(`https://fastbietres-4.onrender.com/api/foods/${id}`);
         if (!res.ok) throw new Error(`HTTP error ${res.status}`);
         const data = await res.json();
         setProduct(data);

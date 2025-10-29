@@ -37,7 +37,7 @@ const Contact = () => {
     };
 
     try {
-      const response = await fetch('https://fastbietres-1.onrender.com/api/contact/contact', {
+      const response = await fetch('https://fastbietres-4.onrender.com/api/contact/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -11,7 +11,7 @@ export const createUserOrder = createAsyncThunk(
       const state = thunkAPI.getState();
       const token = state.user?.user?.token || localStorage.getItem("token");
 
-      const response = await fetch("https://fastbietres-1.onrender.com/api/userOrders/orders", {
+      const response = await fetch("https://fastbietres-4.onrender.com/api/userOrders/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export const fetchUserOrders = createAsyncThunk(
       const state = thunkAPI.getState();
       const token = state.user?.user?.token || localStorage.getItem("token") ;
 
-      const res = await fetch("https://fastbietres-1.onrender.com/api/userOrders/getOrders", {
+      const res = await fetch("https://fastbietres-4.onrender.com/api/userOrders/getOrders", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -66,7 +66,7 @@ export const deleteUserOrder = createAsyncThunk(
 
       console.log("Deleting order with ID:", orderId);  // Debugging line
 
-      const res = await fetch(`https://fastbietres-1.onrender.com/api/userOrders/orders/${orderId}`, {
+      const res = await fetch(`https://fastbietres-4.onrender.com/api/userOrders/orders/${orderId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

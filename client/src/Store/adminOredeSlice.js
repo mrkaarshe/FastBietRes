@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Change if your API base URL differs
-const BASE_URL = "https://fastbietres-1.onrender.com/api/history";
+const BASE_URL = "https://fastbietres-4.onrender.com/api/history";
 
 // Thunk to fetch all orders (admin)
 export const fetchAllOrders = createAsyncThunk(

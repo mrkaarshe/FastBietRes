@@ -13,7 +13,7 @@ export default function AdminOrders() {
   const fetchOrders = async () => {
     setLoading(true)
     try {
-      const res = await fetch("https://fastbietres-1.onrender.com/api/history/admin/orders", {
+      const res = await fetch("https://fastbietres-4.onrender.com/api/history/admin/orders", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       if (!res.ok) throw new Error("Failed to fetch orders")
@@ -32,7 +32,7 @@ export default function AdminOrders() {
 
   const handleStatusChange = async (orderId, newStatus) => {
     try {
-      const res = await fetch(`https://fastbietres-1.onrender.com/api/history/admin/orders/${orderId}`, {
+      const res = await fetch(`https://fastbietres-4.onrender.com/api/history/admin/orders/${orderId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export default function AdminOrders() {
   const handleDeleteOrder = async (orderId) => {
     if (!window.confirm("Are you sure you want to delete this order?")) return
     try {
-      const res = await fetch(`https://fastbietres-1.onrender.com/api/history/admin/orders/${orderId}`, {
+      const res = await fetch(`https://fastbietres-4.onrender.com/api/history/admin/orders/${orderId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })

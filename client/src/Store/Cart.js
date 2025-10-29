@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const statusUpdate = createAsyncThunk(
   'cart/statusUpdateAsync',
   async ({ productId, status }) => {
-    const response = await fetch(`https://fastbietres-1.onrender.com/api/history/orders/${productId}/status`, {
+    const response = await fetch(`https://fastbietres-4.onrender.com/api/history/orders/${productId}/status`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status }),

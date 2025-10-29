@@ -21,8 +21,8 @@ const handleSubmit = async (e) => {
   setloading(true); // Start loading immediately
   try {
     const url = mode === "login"
-      ? "https://fastbietres-1.onrender.com/api/auth/login"
-      : "https://fastbietres-1.onrender.com/api/auth/register";
+      ? "https://fastbietres-4.onrender.com/api/auth/login"
+      : "https://fastbietres-4.onrender.com/api/auth/register";
 
     const res = await fetch(url, {
       method: "POST",
@@ -193,7 +193,7 @@ const handleSubmit = async (e) => {
 //       const token = JSON.parse(localStorage.getItem('user'))?.token
 //       if (!token) return toast.info('Please login first')
 
-//       const { data } = await axios.get(`https://fastbietres-1.onrender.com//api/user/data`, {
+//       const { data } = await axios.get(`https://fastbietres-4.onrender.com//api/user/data`, {
 //         headers: {
 //           Authorization: `Bearer ${token}`,
 //         },
@@ -211,7 +211,7 @@ const handleSubmit = async (e) => {
 
 //     try {
 //       if (state === 'sign up') {
-//         const { data } = await axios.post(`https://fastbietres-1.onrender.com//api/auth/register`, {
+//         const { data } = await axios.post(`https://fastbietres-4.onrender.com//api/auth/register`, {
 //           name,
 //           email,
 //           password,
@@ -223,7 +223,7 @@ const handleSubmit = async (e) => {
         
 //         navigate('/')
 //       } else {
-//         const { data } = await axios.post(`https://fastbietres-1.onrender.com//api/auth/login`, {
+//         const { data } = await axios.post(`https://fastbietres-4.onrender.com//api/auth/login`, {
 //           email,
 //           password,
 //         })

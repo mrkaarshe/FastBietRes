@@ -16,7 +16,7 @@ export default function Dashboard() {
   const fetchData = async () => {
     setLoading(true)
     try {
-      const res = await fetch("https://fastbietres-1.onrender.com/api/history/admin/orders", {
+      const res = await fetch("https://fastbietres-4.onrender.com/api/history/admin/orders", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
