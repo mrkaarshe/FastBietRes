@@ -7,8 +7,9 @@ dotenv.config(); // hubi in .env la akhriyey
 export const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user:"odaykaarshe@gmail.com",
-    pass:"scbn ugoj cgvp gjof", // magaca saxda ah
+    user:"thomasyrui900@gmail.com",
+    pass:"johy cpsl rymb rftc",
+     // magaca saxda ah
   },
 });
 

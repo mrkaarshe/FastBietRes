@@ -59,7 +59,7 @@ export const createContact = async (req, res) => {
 
     // Prepare email to user (auto-reply)
     const mailOptionsToUser = {
-      from: process.env.SENDER_EMAIL || "odaykaarshe@gmail.com", // Ensure sender email is valid
+      from: process.env.SENDER_EMAIL || "thomasyuri900@gmail.com", // Ensure sender email is valid
       to: email, // User email (auto-reply)
       subject: `Thank you for contacting us, ${name}`,
       text: `
