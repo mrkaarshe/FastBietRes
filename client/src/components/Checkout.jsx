@@ -300,7 +300,7 @@ const Checkout = () => {
                 className="flex justify-between items-center gap-2 mb-2 border-1 border-zinc-800 rounded-lg p-2"
               >
                 <img
-                  src={`https://fastbietres-1.onrender.com${product.image}`}
+                  src={`https://fastbietres-4.onrender.com${product.image}`}
                   className="w-20 h-20 rounded-lg"
                   alt={product.title}
                 />

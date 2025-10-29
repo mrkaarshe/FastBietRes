@@ -119,7 +119,7 @@ export default function ManageFoods() {
                 {/* Image */}
                 <div className="relative w-full overflow-hidden">
                   <img
-                    src={`https://fastbietres-1.onrender.com${item.image}`}
+                    src={`https://fastbietres-4.onrender.com${item.image}`}
                     alt={item.title}
                     className="object-cover w-full h-60 rounded-t-xl transition-transform duration-500 group-hover:scale-110"
                   />

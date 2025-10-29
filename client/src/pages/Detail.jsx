@@ -54,7 +54,7 @@ const Detail = () => {
 
   return (
     <div className="max-w-7xl mx-auto min-h-[100vh] mt-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-10">
-      <img data-aos="fade-right" src={`https://fastbietres-1.onrender.com${product.image}`} alt={product.title} className="h-110 w-1/1  md:h-140 md:w-150 object-center rounded-2xl" />
+      <img data-aos="fade-right" src={`https://fastbietres-4.onrender.com${product.image}`} alt={product.title} className="h-110 w-1/1  md:h-140 md:w-150 object-center rounded-2xl" />
       <div data-aos="fade-left">
         <h1 className="text-6xl text-yellow-500 font-bold">{product.title}</h1>
         <p className="text-gray-300 text-xl font-bold mt-1">{product.subtitle}</p>
