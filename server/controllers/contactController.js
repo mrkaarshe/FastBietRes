@@ -29,7 +29,7 @@ const fastBiteEmail = (title, bodyHtml) => `
 
         <!-- Card Footer -->
         <footer style="background-color: #dfb407; padding: 15px 0; border-radius: 10px; color: #ffffff; margin-top: 20px;">
-          <p style="font-size: 14px; margin: 0;">© ${new Date().getFullYear()} FastBite. All rights reserved.</p>
+          <p style="font-size: 14px; margin: 0;"> © ${new Date().getFullYear()} FastBite. All rights reserved.</p>
         </footer>
 
       </div>
@@ -58,37 +58,37 @@ export const createContact = async (req, res) => {
     await contact.save();
 
     // Prepare email to user (auto-reply)
-    const mailOptionsToUser = {
-      from: process.env.SENDER_EMAIL || "thomasyuri900@gmail.com", // Ensure sender email is valid
-      to: email, // User email (auto-reply)
-      subject: `Thank you for contacting us, ${name}`,
-      text: `
-        Hi ${name},
+    // const mailOptionsToUser = {
+    //   from: process.env.SENDER_EMAIL || "thomasyuri900@gmail.com", // Ensure sender email is valid
+    //   to: email,
+    //   subject: `Thank you for contacting us, ${name}`,
+    //   text: `
+    //     Hi ${name},
 
-        Thank you for contacting us! We have received your message and will respond shortly.
+    //     Thank you for contacting us! We have received your message and will respond shortly.
 
-        Your message details:
-        Name: ${name}
-        Email: ${email}
-        Message: ${message}
+    //     Your message details:
+    //     Name: ${name}
+    //     Email: ${email}
+    //     Message: ${message}
 
-        Best regards,
-        FAST-BITE Team
-      `,
-      html: fastBiteEmail(
-        `Welcome to FastBite, ${name}!`, 
-        `<p style="color:white; font-size:16px;">Thank you for reaching out to us! We will respond to your inquiry shortly. <span>${email}</span></p>
-        <p style="color:white; font-size:16px;">Enjoy delicious meals delivered fast!</p>
-        <p style="color:white; font-size:16px;">Best regards,</p>
-        <p style="color:white; font-size:16px; font-weight:bold;">The FastBite Team</p>`
-      ) // Ensure the HTML email body is passed correctly
-    };
+    //     Best regards,
+    //     FAST-BITE Team
+    //   `,
+    //   html: fastBiteEmail(
+    //     `Welcome to FastBite, ${name}!`, 
+    //     `<p style="color:white; font-size:16px;">Thank you for reaching out to us! We will respond to your inquiry shortly. <span>${email}</span></p>
+    //     <p style="color:white; font-size:16px;">Enjoy delicious meals delivered fast!</p>
+    //     <p style="color:white; font-size:16px;">Best regards,</p>
+    //     <p style="color:white; font-size:16px; font-weight:bold;">The FastBite Team</p>`
+    //   ) // Ensure the HTML email body is passed correctly
+    // };
 
-    console.log("SENDER_EMAIL:", process.env.SENDER_EMAIL);
-    console.log("SENDER_EMAIL_PASSWORD:", process.env.SENDER_EMAIL_PASSWORD);
+    // console.log("SENDER_EMAIL:", process.env.SENDER_EMAIL);
+    // console.log("SENDER_EMAIL_PASSWORD:", process.env.SENDER_EMAIL_PASSWORD);
 
     try {
-      // Send to user (auto-reply)
+     
       await SendMyEmail(mailOptionsToUser);
       res.status(200).json({ message: 'Message sent successfully!' });
     } catch (error) {
