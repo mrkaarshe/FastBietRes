@@ -87,14 +87,7 @@ export const createContact = async (req, res) => {
     // console.log("SENDER_EMAIL:", process.env.SENDER_EMAIL);
     // console.log("SENDER_EMAIL_PASSWORD:", process.env.SENDER_EMAIL_PASSWORD);
 
-    try {
-     
-      await SendMyEmail(mailOptionsToUser);
-      res.status(200).json({ message: 'Message sent successfully!' });
-    } catch (error) {
-      console.error('Error sending email:', error.message);
-      res.status(500).json({ error: 'There was an issue sending the email.' });
-    }
+
   } catch (error) {
     console.error('Error saving contact:', error.message);
     res.status(500).json({ error: 'Error saving contact' });

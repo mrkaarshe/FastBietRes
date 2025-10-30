@@ -160,53 +160,67 @@ const Profile = () => {
   )}
 
   {!loading && !error && orders.length > 0 && (
-  <div className="space-y-4 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-  {orders.map((order) => (
-    <div
-      key={order._id}
-      className="p-3 border flex flex-col min-h-40 max-h-40 bg-zinc-950 rounded-xl  border-zinc-800 "
-    >
-      <p className="font-semibold text-sm mb-1 text-yellow-500">
-        Order ID: {order._id.slice(21)}
-      </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-h-[420px]  overflow-auto">
+      {!loading ? (
+  orders.map((item) => {
+    const total = item.items.reduce((sum, f) => sum + (f.totalPrice || 0), 0)
 
+    return (
+      <div
+        key={item._id}
+        className="bg-zinc-950 border border-zinc-700 rounded-2xl p-5 hover:border-yellow-400/40 transition-all duration-300 shadow-md hover:shadow-yellow-400/10"
+      >
+        {/* Order Header */}
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-lg font-semibold text-white">
+            Order #{item._id.slice(21)}
+          </h3>
 
-      {/* ORDER STATUS */}
-      
-        <div className="space-y-1">
-        {order.items.map((item, idx) => (
-          <p key={idx} className="text-gray-50 text-md">
-           Food : <span className="text-gray-400">{item.productTitle} x {item.quantity}</span>
+          <span
+            className={`px-3 py-1 text-xs font-semibold rounded-full border transition ${
+              item.status === "Pending"
+                ? "bg-yellow-400/10 text-yellow-400 border-yellow-400/30"
+                : "bg-green-400/10 text-green-400 border-green-400/30"
+            }`}
+          >
+            {item.status}
+          </span>
+        </div>
+
+        {/* Order Items */}
+        <div className="space-y-1 mb-4">
+          {item.items.map((food, i) => (
+            <p
+              key={i}
+              className="text-sm text-gray-300 flex justify-between"
+            >
+              {food.productTitle} 
+              <span className="text-gray-400">x{food.quantity}</span>
+            </p>
+          ))}
+        </div>
+
+        {/* Info */}
+        <div className="text-xs text-gray-400 space-y-1 border-t border-zinc-800 pt-3">
+          <p>
+            Ordered:{" "}
+            <span className="text-gray-300">
+              {new Date(item.createdAt).toLocaleString()}
+            </span>
           </p>
-        ))}
-     
-         <p className="text-gray-100 text-md">
-           Status :
-        <span
-          className={`ml-2 px-2 py-0.5 rounded border text-xs ${
-            order.status === "Pending"
-              ? "bg-yellow-400/30 border-yellow-400/30 text-yellow-400"
-              : order.status === "Confirmed"
-              ? "bg-green-400/30 border-green-400/30 text-green-400"
-              : order.status === "Delivered"
-              ? "bg-blue-400/30 border-blue-400/30 text-blue-400"
-              : "bg-red-400/40 border-red-400/30 text-red-400"
-          }`}
-        >
-          {order.status}
-        </span>
-      </p>
-
-     
-         
-        <p className="text-slate-100 text-md mb-1">
-        Ordred: <span className="text-xs text-gray-400">{new Date(order.createdAt).toLocaleString()}</span>
-      </p>
- 
-  </div>
-    </div>
-  ))}
+          <p>
+            Payment:{" "}
+            <span className="text-gray-300">{item.paymentMethod}</span>
+          </p>
+          <p className="text-sm font-semibold text-yellow-400 pt-1">
+            Total${total.toFixed(2)}
+          </p>
+        </div>
+      </div>
+    )
+  })) : (<div className="flex justify-center items-center w-full min-h-full font-bold text-xl">fetching orders </div>)}
 </div>
+
   )}
 </div>
 
