@@ -131,7 +131,7 @@ export default function AdminOrders() {
                   key={order._id}
                   className="border-t border-zinc-800 hover:bg-zinc-800 transition-colors"
                 >
-                  <td className="px-4 py-3 text-gray-200 font-medium">{order._id.slice(-6)}</td>
+                  <td className="px-4 py-3 text-gray-200 font-medium">{order._id.slice(3)}</td>
                   <td className="px-4 py-3 text-gray-300">
                     {order.contact?.firstName} {order.contact?.lastName}
                   </td>

@@ -100,7 +100,7 @@ const Menu = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading
             ? // Loading Skeletons
-              filteredItems.map((_, index) => (
+              foods.map((_, index) => (
                 <div
                   key={index}
                   data-aos="fade-up"
@@ -124,7 +124,7 @@ const Menu = () => {
                     <img
                       src={`https://fastbietres-4.onrender.com${item.image}`}
                       alt={item.title}
-                      className="object-cover w-full h-60 rounded-t-xl transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover bg-cover w-full h-70 rounded-t-xl transition-transform duration-500  group-hover:scale-110"
                     />
                     <div className="absolute inset-0  opacity-70 group-hover:opacity-50 transition-opacity duration-500"></div>
                   </div>
