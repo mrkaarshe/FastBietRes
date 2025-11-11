@@ -46,7 +46,7 @@ const Menu = () => {
       : foods.filter((item) => item.category === activeCategory);
 
   const handleDelete = async (id) => {
-    const token = user?.token;
+    const token =  localStorage.getItem('token');
     if (!token) {
       toast.error("Please login first!");
       return;
@@ -85,7 +85,7 @@ const Menu = () => {
             <button
               key={i}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2 rounded-full font-medium shadow transition ${
+              className={`px-2 py-2 rounded-full font-medium shadow transition ${
                 activeCategory === cat
                   ? "bg-white text-black"
                   : "bg-yellow-500 text-white hover:bg-transparent hover:border border-zinc-800"
