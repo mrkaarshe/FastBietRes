@@ -1,10 +1,9 @@
 import Food from "../models/Food.js";
 
-// Get all foods
 export const addFood = async (req, res) => {
   try {
     const { title, subtitle, price, category } = req.body;
-    const image = req.file ? `/uploads/${req.file.filename}` : null;
+    const image = req.file?.path;
 
     if (!image) return res.status(400).json({ message: "Image is required" });
 

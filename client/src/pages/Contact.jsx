@@ -151,7 +151,7 @@ const Contact = () => {
             </div>
 
             {/* Google Map Section */}
-            <div className="h-[400px] md:h-[720px] w-full rounded-lg overflow-hidden" data-aos="fade-left">
+            <div className="h-[400px] mx-2 sm:mx-0 md:h-[720px] w-full rounded-lg overflow-hidden" data-aos="fade-left">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.9601327172354!2d45.309051470227764!3d2.042475209763933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5843ffa8a16db3%3A0x909f40422de8119d!2sTaleex!5e0!3m2!1sen!2sso!4v1758471149260!5m2!1sen!2sso"
                 width="100%"

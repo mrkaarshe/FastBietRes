@@ -14,7 +14,7 @@ const About = () => {
   return (
     <div
       data-aos="fade-up"
-      className="my-20 lg:mx-10 flex flex-col items-center text-gray-300"
+      className="my-20 mx-2 sm:mx-0 lg:mx-10 flex flex-col items-center text-gray-300"
     >
       <h2 className="text-yellow-500 py-10 text-4xl font-bold uppercase tracking-wide">
         About Us

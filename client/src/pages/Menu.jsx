@@ -122,7 +122,7 @@ const Menu = () => {
                   {/* Image Section */}
                   <div className="relative w-full overflow-hidden">
                     <img
-                      src={`https://fastbietres-4.onrender.com${item.image}`}
+                      src={`${item.image}`}
                       alt={item.title}
                       className="object-cover bg-cover w-full h-70 rounded-t-xl transition-transform duration-500  group-hover:scale-110"
                     />
