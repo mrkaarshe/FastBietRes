@@ -31,7 +31,7 @@ const AddFood = () => {
   setloading(true); // Start loading
 
   try {
-    const token = user.token;
+     const token = localStorage.getItem("token");
     const formData = new FormData();
     formData.append("title", form.title);
     formData.append("subtitle", form.subtitle);
