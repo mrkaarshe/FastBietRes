@@ -31,7 +31,7 @@ const AddFood = () => {
   setloading(true); // Start loading
 
   try {
-     const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     const formData = new FormData();
     formData.append("title", form.title);
     formData.append("subtitle", form.subtitle);
@@ -39,7 +39,7 @@ const AddFood = () => {
     formData.append("category", form.category);
     formData.append("image", form.image);
 
-    const res = await fetch("http://localhost:7000/api/foods/addFood", {
+    const res = await fetch("https://fastbietres-4.onrender.com/api/foods/addFood", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
