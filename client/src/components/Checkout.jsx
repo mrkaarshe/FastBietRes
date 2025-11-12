@@ -74,7 +74,7 @@ const Checkout = () => {
 
   const delivery = cart.length > 0 ? 0.75 : 0;
   const taxes = subtotal * 0.0035;
-  const total = subtotal + delivery + taxes;
+  const total = subtotal  + taxes;
 
   const handleInputChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
@@ -157,7 +157,7 @@ const Checkout = () => {
           name="email"
           onChange={handleInputChange}
           placeholder="Email"
-          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 placeholder-gray-300 text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
           type="email"
           required
           value={info.email}
@@ -168,7 +168,7 @@ const Checkout = () => {
           name="country"
           value={info.country}
           disabled
-          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 placeholder-gray-300 text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
         />
 
         <select
@@ -189,14 +189,14 @@ const Checkout = () => {
             name="firstName"
             onChange={handleInputChange}
             placeholder="First Name"
-            className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+            className="border-1 border-zinc-800 placeholder-gray-300 text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
             value={info.firstName}
           />
           <input
             name="lastName"
             onChange={handleInputChange}
             placeholder="Last Name"
-            className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+            className="border-1 border-zinc-800 placeholder-gray-300 text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
             value={info.lastName}
           />
         </div>
@@ -205,26 +205,28 @@ const Checkout = () => {
           name="address"
           onChange={handleInputChange}
           placeholder="Address"
-          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 placeholder-gray-300 text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
           value={info.address}
           required
         />
         <input
           name="currency"
           onChange={handleInputChange}
-          placeholder="currency number"
-          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          placeholder="Please enter the phone number you sent the money from"
+          className="border-1 border-zinc-800 placeholder-gray-300 text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
           value={info.currency}
+          type="number"
           required
         />
         <input
           name="phone"
           onChange={handleInputChange}
           placeholder="Phone"
-          className="border-1 border-zinc-800 placeholder-white text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
+          className="border-1 border-zinc-800 placeholder-gray-300 text-white outline-cyan-500 p-2 mb-3 w-full h-13 rounded-md"
           value={info.phone}
+
           required
-          type="tel"
+          type="number"
         />
 
         <div className="flex justify-between items-center border-1 border-zinc-800 text-white rounded-lg py-3 px-2">
@@ -300,7 +302,7 @@ const Checkout = () => {
                 className="flex justify-between items-center gap-2 mb-2 border-1 border-zinc-800 rounded-lg p-2"
               >
                 <img
-                  src={`https://fastbietres-4.onrender.com${product.image}`}
+                  src={`${product.image}`}
                   className="w-20 h-20 rounded-lg"
                   alt={product.title}
                 />
@@ -318,7 +320,7 @@ const Checkout = () => {
             <span>Subtotal</span> <span>${subtotal.toFixed(2)}</span>
           </div>
           <div className="text-gray-300 flex justify-between mb-1">
-            <span>Delivery</span> <span>${delivery.toFixed(2)}</span>
+            <span>Delivery</span> <span>1KM_$0.75</span>
           </div>
           <div className="text-gray-300 flex justify-between mb-1">
             <span>Taxes</span> <span>${taxes.toFixed(2)}</span>

@@ -29,7 +29,7 @@ const Header = () => {
     return product ? acc + product.price * item.quantity : acc;
   }, 0);
   const delivery = subtotal > 0 ? 0.75 : 0;
-  const total = subtotal + delivery;
+  const total = subtotal ;
 
   // Fetch products
   useEffect(() => {
@@ -152,7 +152,7 @@ const Header = () => {
 
             <div className="mt-2 absolute right-0 left-0 bottom-0 bg-yellow-500 px-3 text-white rounded-b-xl p-4">
               <p className="flex justify-between"><span>Subtotal</span> <span>${subtotal.toFixed(2)}</span></p>
-              <p className="flex justify-between"><span>Delivery</span> <span>${delivery.toFixed(2)}</span></p>
+              
               <p className="flex justify-between font-bold text-lg"><span>Total</span> <span>${total.toFixed(2)}</span></p>
               <Link to='/checkout' onClick={() => setOpen(false)} className="px-10 flex justify-center mt-4 py-2 bg-black hover:bg-[#0e0d0df8]  text-white rounded">
                 Checkout ${total.toFixed(2)}

@@ -53,8 +53,8 @@ const Detail = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto min-h-[100vh] mt-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-10">
-      <img data-aos="fade-right" src={`https://fastbietres-4.onrender.com${product.image}`} alt={product.title} className="h-110 w-1/1  md:h-140 md:w-150 object-center rounded-2xl" />
+    <div className="max-w-7xl mx-auto min-h-[100vh] mt-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-5">
+      <img data-aos="fade-right" src={`${product.image}`} alt={product.title} className="w-1/1 md:w-200 lg:w-240 h-70 md:h-120 lg:h-150 bg-center object-cover rounded-2xl" />
       <div data-aos="fade-left">
         <h1 className="text-6xl text-yellow-500 font-bold">{product.title}</h1>
         <p className="text-gray-300 text-xl font-bold mt-1">{product.subtitle}</p>
@@ -68,7 +68,7 @@ const Detail = () => {
         </div>
 
         {/* Add to Cart */}
-        <button onClick={handleAddToCart} className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-yellow-500 text-white text-lg font-medium shadow hover:bg-transparent hover:border-1 border-zinc-800 transition">
+        <button onClick={handleAddToCart} className="mt-6 inline-flex items-center gap-2 px-4 py-3 rounded-full bg-yellow-500 text-white text-lg font-medium shadow hover:bg-transparent hover:border-1 border-zinc-800 transition">
           <MdAddShoppingCart /> Add to Cart
         </button>
       </div>
