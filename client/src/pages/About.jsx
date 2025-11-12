@@ -26,7 +26,7 @@ const About = () => {
           data-aos="fade-right"
           src={hero}
           alt="Our restaurant"
-          className="h-150 w-[900px] rounded-2xl border border-zinc-800 object-cover shadow-lg hover:shadow-cyan-500/20 transition"
+          className="h-100 md:h-150 w-1/1 rounded-2xl border border-zinc-800 object-cover shadow-lg hover:shadow-cyan-500/20 transition"
         />
 
       <div data-aos="fade-left" className="flex flex-col gap-5">
@@ -92,7 +92,7 @@ const About = () => {
             {/* HOURS */}
             <div
               data-aos="fade-right"
-              className="p-8 border border-zinc-800 rounded-2xl hover:-translate-y-2 hover:border-white transition duration-300 bg-slate-950/10"
+              className="p-8 border border-zinc-800 rounded-2xl hover:-translate-y-2 hover:border-yellow-600 hover:duration-300 transition duration-300 bg-slate-950/10"
             >
               <div className="flex items-center justify-center gap-3 mb-4">
                 <FaRegClock className="text-white text-xl" />
@@ -107,7 +107,7 @@ const About = () => {
                 <div className="text-gray-300 font-semibold text-left">
                   <p>5:00 PM - 10:00 PM</p>
                   <p>5:00 PM - 11:00 PM</p>
-                  <p>5:00 PM - 9:00 PM</p>
+                  <p>5:00 PM - 11:00 PM</p>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@ const About = () => {
             {/* LOCATION */}
             <div
               data-aos="fade-up"
-              className="p-8 border border-zinc-800 rounded-2xl hover:-translate-y-2 hover:border-white transition duration-300 bg-slate-950/10"
+              className="p-8 border border-zinc-800 rounded-2xl hover:-translate-y-2 hover:border-yellow-600 hover:duration-300 transition duration-300 bg-slate-950/10"
             >
               <div className="flex items-center justify-center gap-3 mb-4">
                 <IoLocationOutline className="text-white text-xl" />
@@ -124,7 +124,7 @@ const About = () => {
                 </h3>
               </div>
               <div className="text-sm md:text-base text-gray-400 space-y-2">
-                <p> taleex Street, fastbite City</p>
+                <p> taleex Street, fastbite</p>
                 <p>Mogadishu somalia</p>
                
               </div>
@@ -133,7 +133,7 @@ const About = () => {
             {/* CONTACT */}
             <div
               data-aos="fade-left"
-              className="p-8 border border-zinc-800 rounded-2xl hover:-translate-y-2 hover:border-white transition duration-300 bg-slate-950/10"
+              className="p-8 border border-zinc-800 rounded-2xl hover:-translate-y-2 hover:border-yellow-600 hover:duration-300 transition duration-300 bg-slate-950/10"
             >
               <div className="flex items-center justify-center gap-3 mb-4">
                 <MdOutlinePhoneCallback className="text-white text-xl" />
@@ -152,7 +152,7 @@ const About = () => {
       {/* CTA SECTION */}
       <div
         data-aos="zoom-in"
-        className="mt-10 max-w-3xl flex flex-col items-center text-center p-10 border-x border-zinc-800 rounded-md hover:border-white transition duration-300"
+        className="mt-10 max-w-3xl flex flex-col items-center text-center p-10 border-x border-zinc-800 rounded-md hover:border-yellow-600 hover:duration-300 transition duration-300"
       >
         <h3 className="text-2xl font-bold text-white mb-3">
           Hungry for something amazing?
