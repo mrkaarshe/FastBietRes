@@ -1,16 +1,27 @@
 import Food from "../models/Food.js";
+import imagekit from "../config/imagekit.js";
 
 export const addFood = async (req, res) => {
   try {
     const { title, subtitle, price, category } = req.body;
-    const image = req.file?.path;
 
-    if (!image) return res.status(400).json({ message: "Image is required" });
+    if (!req.file) return res.status(400).json({ message: "Image is required" });
+
+    // Upload image to ImageKit
+    const uploadResponse = await imagekit.upload({
+      file: req.file.buffer, // buffer ka file-ka
+      fileName: req.file.originalname,
+    });
+
+    const image = uploadResponse.url;
 
     const food = await Food.create({ title, subtitle, price, category, image });
     res.status(201).json(food);
+    console.log('image',image)
+
   } catch (err) {
     res.status(500).json({ message: err.message });
+    console.log(err)
   }
 };
 
