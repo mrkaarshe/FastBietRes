@@ -44,7 +44,7 @@ const Detail = () => {
   }, [quantity, product]); // Runs when quantity or product changes
 
   if (!product) return <div className=" min-h-screen ">
-    <p className="max-w-xl mx-auto flex justify-center items-center  w-20 h-20 rounded-full  border-t-4  border-yellow-500 animate-spin"></p>
+    <p className="max-w-xl mx-auto flex justify-center items-center min-h-[100vh] my-40 w-20 h-20 rounded-full  border-t-4  border-yellow-500 animate-spin"></p>
   </div>;
 
   const handleAddToCart = () => {
