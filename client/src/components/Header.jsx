@@ -72,7 +72,7 @@ const Header = () => {
         <div className="hidden md:block relative">
           <ul className="flex gap-6 text-xl">
             
-            <Link to='/home' className="text-yellow-500 border-b-2 font-Poppins  hover:scale-110">Home</Link>
+            <Link to='/home' className="text-gray-300 border-b-2 font-Poppins  hover:scale-110">Home</Link>
             
             <Link to='/about' className="text-gray-300 font-Poppins  hover:scale-110">About</Link>
            
