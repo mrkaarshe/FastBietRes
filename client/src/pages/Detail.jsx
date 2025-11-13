@@ -53,7 +53,7 @@ const Detail = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto min-h-[100vh] mt-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-5">
+    <div className="max-w-7xl border border-yellow-500 mx-auto min-h-[100vh] mt-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-5">
       <img data-aos="fade-right" src={`${product.image}`} alt={product.title} className="w-1/1 md:w-200 lg:w-240 h-70 md:h-120 lg:h-150 bg-center object-cover rounded-2xl" />
       <div data-aos="fade-left">
         <h1 className="text-6xl text-yellow-500 font-bold">{product.title}</h1>
