@@ -44,7 +44,7 @@ const Detail = () => {
   }, [quantity, product]); // Runs when quantity or product changes
 
   if (!product) return <div className=" min-h-screen ">
-    <p className="max-w-xl mx-auto flex justify-center items-center min-h-[100vh] my-40 w-20 h-20 rounded-full  border-t-4  border-yellow-500 animate-spin"></p>
+    <p className="max-w-xs mx-auto flex justify-center items-center my-60 w-20 h-20 rounded-full  border-t-4  border-yellow-500 animate-spin"></p>
   </div>;
 
   const handleAddToCart = () => {
@@ -53,8 +53,8 @@ const Detail = () => {
   };
 
   return (
-    <div className="max-w-7xl border border-yellow-500 mx-auto min-h-[100vh] mt-40 px-2 py-6 rounded-lg flex flex-col md:flex-row gap-5">
-      <img data-aos="fade-right" src={`${product.image}`} alt={product.title} className="w-1/1 md:w-200 lg:w-240 h-70 md:h-120 lg:h-150 bg-center object-cover rounded-2xl" />
+    <div className="max-w-7xl mx-auto min my-40 px-2 py-2 rounded-lg flex flex-col md:flex-row gap-5">
+      <img data-aos="fade-right " src={`${product.image}`} alt={product.title} className="w-1/1  border-3 border-yellow-600 p-0 md:w-200 lg:w-240 h-70 md:h-120 lg:h-150 bg-center object-cover rounded-2xl" />
       <div data-aos="fade-left">
         <h1 className="text-6xl text-yellow-500 font-bold">{product.title}</h1>
         <p className="text-gray-300 text-xl font-bold mt-1">{product.subtitle}</p>
